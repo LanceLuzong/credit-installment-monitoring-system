@@ -143,14 +143,40 @@ function initDashboard() {
 
   if (!shell) return;
 
-  const notifBtn = document.getElementById("notifBtn");
+const notifBtn = document.getElementById("notifBtn");
+const notifPanel = document.getElementById("notifPanel");
+const notifOverlay = document.getElementById("notifOverlay");
+const notifCloseBtn = document.getElementById("notifCloseBtn");
 
-  if (notifBtn) {
-    notifBtn.addEventListener("click", () => {
-      window.location.href = "notifications.html";
-    });
-  }
+function openNotifPanel() {
+  if (notifPanel) notifPanel.classList.add("show");
+  if (notifOverlay) notifOverlay.classList.add("show");
+}
 
+function closeNotifPanel() {
+  if (notifPanel) notifPanel.classList.remove("show");
+  if (notifOverlay) notifOverlay.classList.remove("show");
+}
+
+if (notifBtn && notifPanel) {
+  notifBtn.addEventListener("click", () => {
+    notifPanel.classList.contains("show")
+      ? closeNotifPanel()
+      : openNotifPanel();
+  });
+} else if (notifBtn) {
+  notifBtn.addEventListener("click", () => {
+    window.location.href = "notifications.html";
+  });
+}
+
+if (notifCloseBtn) {
+  notifCloseBtn.addEventListener("click", closeNotifPanel);
+}
+
+if (notifOverlay) {
+  notifOverlay.addEventListener("click", closeNotifPanel);
+}
   const logoutBtn = document.getElementById("logoutBtn");
   const logoutModal = document.getElementById("logoutModal");
   const cancelLogout = document.getElementById("cancelLogout");
