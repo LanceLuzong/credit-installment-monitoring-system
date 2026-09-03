@@ -37,6 +37,9 @@ No additional installation or build process is required because VALOBLOX is a fr
 Project Structure
 
 
+## Project Structure
+
+```
 106_VALOBLOX/
 ├── index.html
 ├── css/
@@ -56,3 +59,4 @@ Project Structure
 │   ├── profile.html
 │   └── notifications.html
 └── README.md
+```
