@@ -57,6 +57,5 @@ Project Structure
 │   ├── settings.html
 │   ├── change-password.html
 │   ├── profile.html
-│   └── notifications.html
 └── README.md
 ```
