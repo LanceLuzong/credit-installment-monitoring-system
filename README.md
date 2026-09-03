@@ -26,7 +26,7 @@ Technologies Used
 
 Setup Instructions
 
-1. Clone or download the VALOBLOX repository.
+1. Clone or download the "credit-installment-monitoring-system" repository.
 2. Open the project folder in Visual Studio Code.
 3. Make sure all project files and folders are in their correct locations.
 4. Open "index.html" in a web browser.
