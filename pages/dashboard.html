@@ -1,0 +1,306 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Maryanne's Online Shop</title>
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body class="page-dashboard">
+  <div class="dashboard-shell">
+    <aside class="side-nav">
+      <div class="side-nav-brand">
+        <div class="side-nav-avatar">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="24" height="24" rx="12" fill="#FF6B00" />
+            <path d="M12 6L18 10V18H6V10L12 6Z" fill="white" />
+          </svg>
+        </div>
+        <div class="side-nav-brand-text">
+          <p class="side-nav-title">Admin Portal</p>
+          <p class="side-nav-subtitle">Management System</p>
+        </div>
+      </div>
+
+      <nav class="side-nav-list">
+        <a href="dashboard.html" class="side-nav-item active">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="2" width="6" height="6" rx="1" stroke="white" stroke-width="1.4" />
+            <rect x="10" y="2" width="6" height="6" rx="1" stroke="white" stroke-width="1.4" />
+            <rect x="2" y="10" width="6" height="6" rx="1" stroke="white" stroke-width="1.4" />
+            <rect x="10" y="10" width="6" height="6" rx="1" stroke="white" stroke-width="1.4" />
+          </svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="applications.html" class="side-nav-item">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+            <path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+          <span>Applications</span>
+        </a>
+        <a href="installment.html" class="side-nav-item">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+            <path d="M2 7.5H16" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+          </svg>
+          <span>Installments</span>
+        </a>
+        <a href="settings.html" class="side-nav-item">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="9" cy="9" r="2.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+            <path
+              d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6"
+              stroke="rgba(207,230,242,0.7)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
+          </svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <div class="side-nav-footer">
+        <button type="button" class="side-nav-logout" id="logoutBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
+            <path d="M11.5 12.5L15 9L11.5 5.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15 9H6.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
+          </svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <div class="dashboard-main">
+      <header class="dashboard-header">
+        <h1 class="dashboard-title">Dashboard</h1>
+        <button type="button" class="notif-btn" id="notifBtn" aria-label="Notifications">
+          <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z"
+              stroke="#151C27"
+              stroke-width="1.3"
+              stroke-linejoin="round"
+            />
+            <path d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5" stroke="#151C27" stroke-width="1.3" stroke-linecap="round" />
+          </svg>
+        </button>
+      </header>
+
+      <main class="dashboard-content">
+        <section class="metrics-grid">
+          <article class="metric-card">
+            <div class="metric-card-top">
+              <p class="metric-label">Total Customers</p>
+              <span class="metric-icon metric-icon-blue">
+                <svg width="18" height="14" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <circle cx="6" cy="4" r="2.5" stroke="#0B6EA8" stroke-width="1.2" />
+                  <path d="M1.5 12.5C1.5 9.7 3.5 8 6 8C8.5 8 10.5 9.7 10.5 12.5" stroke="#0B6EA8" stroke-width="1.2" stroke-linecap="round" />
+                  <circle cx="12.5" cy="4.5" r="2" stroke="#0B6EA8" stroke-width="1.2" />
+                  <path d="M10.5 12.5C10.5 10.1 12 8.6 14 8.6C15.6 8.6 16.5 9.9 16.5 11.7" stroke="#0B6EA8" stroke-width="1.2" stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="metric-value">10</p>
+            <div class="metric-footer metric-footer-positive">
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7L5 3L7.5 5.5L12 1" stroke="#1B6D24" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 1H12V4" stroke="#1B6D24" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>+10% this month</span>
+            </div>
+          </article>
+
+          <a href="applications.html" class="metric-card metric-card-link">
+            <div class="metric-card-top">
+              <p class="metric-label">Pending Applications</p>
+              <span class="metric-icon metric-icon-amber">
+                <svg width="15" height="16" viewBox="0 0 15 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <rect x="2" y="2.5" width="11" height="12" rx="1.2" stroke="#946F00" stroke-width="1.2" />
+                  <path d="M5 6H10M5 8.5H10M5 11H8" stroke="#946F00" stroke-width="1.2" stroke-linecap="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="metric-value">3</p>
+            <p class="metric-footer-text">Requires manual review</p>
+          </a>
+
+          <a href="installment.html" class="metric-card metric-card-link">
+            <div class="metric-card-top">
+              <p class="metric-label">Completed Installments</p>
+              <span class="metric-icon metric-icon-green">
+                <svg width="15" height="14" viewBox="0 0 15 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M1.5 7L5.5 11L13.5 2.5" stroke="#1B6D24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </span>
+            </div>
+            <p class="metric-value">5</p>
+            <div class="metric-footer metric-footer-positive">
+              <svg width="13" height="8" viewBox="0 0 13 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 7L5 3L7.5 5.5L12 1" stroke="#1B6D24" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M9 1H12V4" stroke="#1B6D24" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+              <span>2 New</span>
+            </div>
+          </a>
+
+          <a href="installment.html" class="metric-card metric-card-link">
+            <div class="metric-card-top">
+              <p class="metric-label">Overdue Accounts</p>
+              <span class="metric-icon metric-icon-red">
+                <svg width="17" height="14" viewBox="0 0 17 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M8.5 1.5L16 13H1L8.5 1.5Z" stroke="#BA1A1A" stroke-width="1.2" stroke-linejoin="round" />
+                  <path d="M8.5 6V9" stroke="#BA1A1A" stroke-width="1.2" stroke-linecap="round" />
+                  <circle cx="8.5" cy="11" r="0.6" fill="#BA1A1A" />
+                </svg>
+              </span>
+            </div>
+            <p class="metric-value metric-value-danger">1</p>
+            <p class="metric-footer-text metric-footer-text-danger">Action required</p>
+          </a>
+        </section>
+
+        <section class="workspace-grid">
+          <div class="panel panel-activity">
+            <div class="panel-header">
+              <h2 class="panel-title">Recent Activity</h2>
+              <a href="applications.html" class="panel-link">View All</a>
+            </div>
+            <ul class="timeline">
+              <li class="timeline-item">
+                <span class="timeline-dot timeline-dot-amber"></span>
+                <div class="timeline-row">
+                  <p class="timeline-text">Jea Mae Dela Cruz submitted a new application.</p>
+                  <span class="timeline-time">10 mins ago</span>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot timeline-dot-green"></span>
+                <div class="timeline-row">
+                  <div>
+                    <p class="timeline-text">Jean Delacruz Submitted a Payment</p>
+                    <p class="timeline-subtext">Please Review the payment</p>
+                  </div>
+                  <span class="timeline-time">1 hr ago</span>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot timeline-dot-red"></span>
+                <div class="timeline-row">
+                  <div>
+                    <p class="timeline-text">Pedro Garcia marked as overdue.</p>
+                    <p class="timeline-subtext">Status changed to High Priority</p>
+                  </div>
+                  <span class="timeline-time">3 hrs ago</span>
+                </div>
+              </li>
+              <li class="timeline-item">
+                <span class="timeline-dot timeline-dot-gray"></span>
+                <div class="timeline-row">
+                  <div>
+                    <p class="timeline-text">System completed daily backup.</p>
+                    <p class="timeline-subtext">All data synced successfully</p>
+                  </div>
+                  <span class="timeline-time">Yesterday</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="panel panel-actions">
+            <div class="panel-header">
+              <h2 class="panel-title">Quick Actions</h2>
+            </div>
+            <div class="quick-actions">
+              <a href="review-application.html" class="quick-action">
+                <span class="quick-action-icon">
+                  <svg width="20" height="16" viewBox="0 0 20 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="1" width="18" height="14" rx="1.5" stroke="#45474B" stroke-width="1.3" />
+                    <path d="M4.5 5.5H15.5M4.5 8H12M4.5 10.5H9" stroke="#45474B" stroke-width="1.3" stroke-linecap="round" />
+                  </svg>
+                </span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Review Application</span>
+                  <span class="quick-action-desc">Review customer application.</span>
+                </span>
+              </a>
+              <a href="installment.html" class="quick-action">
+                <span class="quick-action-icon">
+                  <svg width="19" height="18" viewBox="0 0 19 18" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="1" y="4" width="17" height="11" rx="1.5" stroke="#45474B" stroke-width="1.3" />
+                    <path d="M1 8H18" stroke="#45474B" stroke-width="1.3" />
+                    <circle cx="14" cy="11.5" r="1.2" fill="#45474B" />
+                  </svg>
+                </span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Installment</span>
+                  <span class="quick-action-desc">Manage Installment.</span>
+                </span>
+              </a>
+              <a href="settings.html" class="quick-action">
+                <span class="quick-action-icon">
+                  <svg width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="9.5" cy="9.5" r="2.6" stroke="#45474B" stroke-width="1.3" />
+                    <path
+                      d="M9.5 2.5V4.2M9.5 14.8V16.5M16.5 9.5H14.8M4.2 9.5H2.5M14 5L12.7 6.3M6.3 12.7L5 14M14 14L12.7 12.7M6.3 6.3L5 5"
+                      stroke="#45474B"
+                      stroke-width="1.3"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </span>
+                <span class="quick-action-text">
+                  <span class="quick-action-title">Settings</span>
+                  <span class="quick-action-desc">Manage your account.</span>
+                </span>
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <div class="logout-modal" id="logoutModal">
+  <div class="logout-modal-overlay" id="logoutModalOverlay"></div>
+
+  <div class="logout-modal-card">
+    <div class="logout-modal-icon">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <path d="M21 19V5C21 3.89543 20.105 3 19 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h3>Log out?</h3>
+    <p>Are you sure you want to log out of your account?</p>
+
+    <div class="logout-modal-actions">
+      <button type="button" class="logout-cancel-btn" id="cancelLogout">
+        Cancel
+      </button>
+
+      <button type="button" class="logout-confirm-btn" id="confirmLogout">
+        Log Out
+      </button>
+    </div>
+  </div>
+</div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>

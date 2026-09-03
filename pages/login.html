@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In — Maryanne's Online Shop</title>
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+
+<body class="page-login">
+  <div class="login-page">
+
+    <aside class="brand-panel d-none d-lg-flex flex-column justify-content-between">
+      <div class="brand-top">
+        <div class="brand-logo">
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="48" height="48" rx="24" fill="white" />
+            <path d="M24 10L34 18V38H14V18L24 10Z" fill="#FF6B00" />
+            <rect x="20" y="26" width="8" height="12" fill="white" />
+            <path d="M12 20L24 10L36 20" stroke="#FF6B00" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+          </svg>
+        </div>
+
+        <h1 class="brand-title">
+          Maryanne&rsquo;s <span>Online Shop</span>
+        </h1>
+
+        <p class="brand-subtitle">
+          Management System
+        </p>
+      </div>
+
+      <div class="brand-bottom">
+        <h2 class="brand-welcome">
+          Welcome Back.
+        </h2>
+
+        <p class="brand-copy">
+          Securely access your dashboard to manage applications, track installments, and streamline your operations.
+        </p>
+      </div>
+    </aside>
+
+    <main class="form-panel d-flex align-items-center justify-content-center">
+      <div class="form-wrap">
+
+        <div class="form-card">
+
+          <div class="form-card-head">
+            <h2 class="sign-in-title">
+              Sign In
+            </h2>
+
+            <p class="sign-in-subtitle">
+              Enter your credentials to access your account.
+            </p>
+          </div>
+
+          <div
+            id="formError"
+            class="form-error d-none"
+            role="alert"
+          ></div>
+
+          <form id="loginForm" novalidate>
+
+            <div class="form-group">
+              <label
+                for="email"
+                class="field-label"
+              >
+                Email Address
+              </label>
+
+              <input
+                type="email"
+                class="form-control field-input"
+                id="email"
+                name="email"
+                placeholder="name@example.com"
+                autocomplete="email"
+                required
+              />
+
+              <div
+                class="field-error"
+                id="emailError"
+              ></div>
+            </div>
+
+            <div class="form-group password-group">
+
+              <div class="password-header">
+                <label
+                  for="password"
+                  class="field-label mb-0"
+                >
+                  Password
+                </label>
+
+                <a
+                  href="#forgot-password"
+                  class="forgot-link"
+                >
+                  Forgot Password?
+                </a>
+              </div>
+
+              <div class="password-wrapper">
+
+                <input
+                  type="password"
+                  class="form-control field-input"
+                  id="password"
+                  name="password"
+                  placeholder="••••••••"
+                  autocomplete="current-password"
+                  required
+                />
+
+                <button
+                  type="button"
+                  class="password-toggle"
+                  id="togglePassword"
+                  aria-label="Show password"
+                >
+                  <svg
+                    id="eyeIcon"
+                    width="19"
+                    height="19"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M2.5 12C4.5 8.5 8 6.5 12 6.5C16 6.5 19.5 8.5 21.5 12C19.5 15.5 16 17.5 12 17.5C8 17.5 4.5 15.5 2.5 12Z"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+
+                    <circle
+                      cx="12"
+                      cy="12"
+                      r="3"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                    />
+                  </svg>
+                </button>
+
+              </div>
+
+              <div
+                class="field-error"
+                id="passwordError"
+              ></div>
+
+            </div>
+
+            <div class="form-check remember-row">
+
+              <input
+                class="form-check-input remember-check"
+                type="checkbox"
+                id="rememberMe"
+              />
+
+              <label
+                class="form-check-label remember-label"
+                for="rememberMe"
+              >
+                Remember me for 30 days
+              </label>
+
+            </div>
+
+            <button
+              type="submit"
+              class="btn login-btn w-100"
+              id="loginBtn"
+            >
+
+              <span id="loginBtnText">
+                Login
+              </span>
+
+              <svg
+                id="loginBtnIcon"
+                width="13"
+                height="13"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M2.5 6H9.5M9.5 6L6.5 3M9.5 6L6.5 9"
+                  stroke="white"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+
+              <span
+                id="loginBtnSpinner"
+                class="spinner-border spinner-border-sm d-none"
+                role="status"
+                aria-hidden="true"
+              ></span>
+
+            </button>
+
+          </form>
+
+          <p class="signup-line">
+            Don&rsquo;t have an account?
+            <a href="#create-account">
+              Create an Account
+            </a>
+          </p>
+
+        </div>
+
+        <div class="support-line">
+
+          <svg
+            width="13"
+            height="13"
+            viewBox="0 0 13 13"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <circle
+              cx="6.5"
+              cy="6.5"
+              r="5.75"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+
+            <path
+              d="M4.9 4.9c0-.884.716-1.6 1.6-1.6s1.6.716 1.6 1.6c0 .7-.4 1.05-.8 1.35-.35.26-.6.5-.6 1"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+            />
+
+            <circle
+              cx="6.5"
+              cy="9"
+              r="0.55"
+              fill="currentColor"
+            />
+          </svg>
+
+          <a href="#support">
+            Need help logging in?
+          </a>
+
+        </div>
+
+      </div>
+    </main>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+  <script src="../js/script.js"></script>
+</body>
+</html>
