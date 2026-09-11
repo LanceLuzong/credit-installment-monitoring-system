@@ -54,6 +54,7 @@ Project Structure
 │   ├── create-application.html
 │   ├── review-application.html
 │   ├── installment.html
+│   ├── installment-details.html
 │   ├── settings.html
 │   ├── change-password.html
 │   ├── profile.html
