@@ -328,8 +328,10 @@ const translations = {
         installments: "Installments",
         settings: "Settings",
         logout: "Logout",
+
         adminPortal: "Admin Portal",
         managementSystem: "Management System",
+
         profileInformation: "Profile Information",
         profileDescription: "Manage your account information and profile settings.",
         changePhoto: "Change Photo",
@@ -337,16 +339,21 @@ const translations = {
         username: "Username",
         emailAddress: "Email Address",
         administrativeRole: "Administrative Role",
+        accountRole: "Account Role",
         roleHint: "Your administrative role cannot be changed.",
+        customerRoleHint: "Your account role cannot be changed.",
+
         edit: "Edit",
         saveChanges: "Save Changes",
         changesSaved: "Changes Saved Successfully",
         profileUpdated: "Your profile information has been updated.",
+
         security: "Security",
         securityDescription: "Manage your password and account security.",
         password: "Password",
         passwordDescription: "Keep your account secure with a strong password.",
         changePassword: "Change Password",
+
         systemPreferences: "System Preferences",
         systemDescription: "Customize your system experience.",
         emailNotifications: "Email Notifications",
@@ -355,27 +362,34 @@ const translations = {
         darkModeDescription: "Use a darker appearance throughout the system.",
         language: "Language",
         languageDescription: "Select the language used by the system.",
+
         notifications: "Notifications",
         today: "Today",
+
         logoutTitle: "Log out?",
         logoutDescription: "Are you sure you want to log out of your account?",
         cancel: "Cancel",
         logOut: "Log Out",
+
         passwordUpdated: "Password Updated Successfully",
         passwordUpdatedDescription: "Your account security has been updated.",
         passwordUpdatedDescription2: "You can now use your new password to log in.",
         done: "Done",
+
         currentPassword: "Current Password",
         newPassword: "New Password",
         confirmNewPassword: "Confirm New Password",
+
         currentPasswordPlaceholder: "Enter current password",
         newPasswordPlaceholder: "Create new password",
         confirmPasswordPlaceholder: "Confirm new password",
+
         passwordRequirements: "Password Requirements",
         minimumCharacters: "Minimum 8 characters",
         uppercaseLetter: "At least one uppercase letter",
         numberOrSymbol: "At least one number or symbol",
         updatePassword: "Update Password",
+
         pendingApplications: "Pending Applications",
         reviewManageApplications: "Review and manage customer installment applications.",
         customerName: "Customer Name",
@@ -385,14 +399,17 @@ const translations = {
         approve: "Approve",
         reject: "Reject",
         reviewApplication: "Review Application",
+
         paymentHistory: "Payment History",
         customerProfile: "Customer Profile",
         identityDocuments: "Identity Documents",
         viewInformation: "View Information",
+
         pending: "Pending",
         paid: "Paid",
         overdue: "Overdue",
         upcoming: "Upcoming",
+
         filter: "Filter",
         search: "Search",
         total: "Total",
@@ -404,11 +421,65 @@ const translations = {
         frequency: "Frequency",
         monthly: "Monthly",
         active: "Active",
+
         confirmRejection: "Confirm Rejection",
         rejectDescription: "Are you sure you want to reject this application?",
         confirmReject: "Confirm Reject",
+
         allInstallments: "All Installments",
-        searchCustomerProduct: "Search by Customer Name, Product..."
+        searchCustomerProduct: "Search by Customer Name, Product...",
+
+        welcomeBack: "Welcome back",
+        paymentReminder: "Payment Reminder",
+        paymentReminderDescription: "Your next installment payment is due soon.",
+        makePayment: "Make Payment",
+        viewInstallment: "View Installment",
+        currentBalance: "Current Balance",
+        nextPayment: "Next Payment",
+        dueDate: "Due Date",
+        paymentProgress: "Payment Progress",
+        quickActions: "Quick Actions",
+        myInstallment: "My Installment",
+        application: "Application",
+
+        goodStanding: "Good Standing",
+        accountStatus: "Account Status",
+        activePlan: "Active Plan",
+        paymentSchedule: "Payment Schedule",
+        remaining: "Remaining",
+        complete: "Complete",
+        completed: "Completed",
+        payNow: "Pay Now",
+        installment: "Installment",
+
+        totalBalancePaid: "Total Balance Paid",
+        of: "of",
+        nextPaymentDue: "Next Payment Due",
+
+        applicationStatus: "Application Status",
+        totalPending: "Total Pending",
+        approved: "Approved",
+        rejected: "Rejected",
+        currentInstallment: "Current Installment",
+        totalInstallment: "Total Installment",
+        monthlyPayment: "Monthly Payment",
+        remainingBalance: "Remaining Balance",
+        paidPercentage: "Paid",
+        installmentDetailsTitle: "Installment Details",
+        applyNewInstallment: "Apply For A New Installment?",
+        applyNow: "Apply Now",
+
+        paymentInformation: "Payment Information",
+        selectInstallments: "Select Installments",
+        selectAll: "Select All",
+        payAll: "Pay All",
+        selectedInstallments: "Selected Installments",
+        paymentTotal: "Payment Total",
+        proceedPayment: "Proceed to Payment",
+
+        welcomeToMOS: "Welcome to M.O.S",
+        applicationApproved: "Application Approved",
+        noNotifications: "No notifications"
     },
 
     fil: {
@@ -417,8 +488,10 @@ const translations = {
         installments: "Mga Hulugan",
         settings: "Mga Setting",
         logout: "Mag-logout",
+
         adminPortal: "Admin Portal",
         managementSystem: "Sistema ng Pamamahala",
+
         profileInformation: "Impormasyon ng Profile",
         profileDescription: "Pamahalaan ang impormasyon at mga setting ng iyong account.",
         changePhoto: "Baguhin ang Larawan",
@@ -426,16 +499,21 @@ const translations = {
         username: "Username",
         emailAddress: "Email Address",
         administrativeRole: "Administratibong Tungkulin",
+        accountRole: "Tungkulin ng Account",
         roleHint: "Hindi maaaring baguhin ang iyong administratibong tungkulin.",
+        customerRoleHint: "Hindi maaaring baguhin ang iyong tungkulin bilang customer.",
+
         edit: "I-edit",
         saveChanges: "I-save ang Mga Pagbabago",
         changesSaved: "Matagumpay na Na-save ang Mga Pagbabago",
         profileUpdated: "Na-update na ang impormasyon ng iyong profile.",
+
         security: "Seguridad",
         securityDescription: "Pamahalaan ang iyong password at seguridad ng account.",
         password: "Password",
         passwordDescription: "Panatilihing ligtas ang iyong account gamit ang matibay na password.",
         changePassword: "Baguhin ang Password",
+
         systemPreferences: "Mga Kagustuhan sa Sistema",
         systemDescription: "I-customize ang iyong karanasan sa system.",
         emailNotifications: "Mga Notification sa Email",
@@ -444,27 +522,34 @@ const translations = {
         darkModeDescription: "Gumamit ng mas madilim na hitsura sa buong system.",
         language: "Wika",
         languageDescription: "Piliin ang wikang gagamitin ng system.",
+
         notifications: "Mga Notification",
         today: "Ngayon",
+
         logoutTitle: "Mag-logout?",
         logoutDescription: "Sigurado ka bang gusto mong mag-logout sa iyong account?",
         cancel: "Kanselahin",
         logOut: "Mag-logout",
+
         passwordUpdated: "Matagumpay na Nabago ang Password",
         passwordUpdatedDescription: "Na-update na ang seguridad ng iyong account.",
         passwordUpdatedDescription2: "Maaari mo nang gamitin ang bagong password sa pag-login.",
         done: "Tapos",
+
         currentPassword: "Kasalukuyang Password",
         newPassword: "Bagong Password",
         confirmNewPassword: "Kumpirmahin ang Bagong Password",
+
         currentPasswordPlaceholder: "Ilagay ang kasalukuyang password",
         newPasswordPlaceholder: "Gumawa ng bagong password",
         confirmPasswordPlaceholder: "Kumpirmahin ang bagong password",
+
         passwordRequirements: "Mga Kinakailangan sa Password",
         minimumCharacters: "Hindi bababa sa 8 character",
         uppercaseLetter: "Hindi bababa sa isang malaking titik",
         numberOrSymbol: "Hindi bababa sa isang numero o simbolo",
         updatePassword: "I-update ang Password",
+
         pendingApplications: "Mga Nakabinbing Aplikasyon",
         reviewManageApplications: "Suriin at pamahalaan ang mga installment application ng customer.",
         customerName: "Pangalan ng Customer",
@@ -474,14 +559,17 @@ const translations = {
         approve: "Aprubahan",
         reject: "Tanggihan",
         reviewApplication: "Suriin ang Aplikasyon",
+
         paymentHistory: "Kasaysayan ng Bayad",
         customerProfile: "Profile ng Customer",
         identityDocuments: "Mga Dokumento ng Pagkakakilanlan",
         viewInformation: "Tingnan ang Impormasyon",
+
         pending: "Nakabinbin",
         paid: "Bayad",
         overdue: "Overdue",
         upcoming: "Paparating",
+
         filter: "Salain",
         search: "Maghanap",
         total: "Kabuuan",
@@ -493,11 +581,65 @@ const translations = {
         frequency: "Dalas ng Bayad",
         monthly: "Buwan-buwan",
         active: "Aktibo",
+
         confirmRejection: "Kumpirmahin ang Pagtanggi",
         rejectDescription: "Sigurado ka bang gusto mong tanggihan ang aplikasyong ito?",
         confirmReject: "Kumpirmahin ang Pagtanggi",
+
         allInstallments: "Lahat ng Hulugan",
-        searchCustomerProduct: "Maghanap ayon sa Pangalan ng Customer, Produkto..."
+        searchCustomerProduct: "Maghanap ayon sa Pangalan ng Customer, Produkto...",
+
+        welcomeBack: "Maligayang pagbabalik",
+        paymentReminder: "Paalala sa Bayad",
+        paymentReminderDescription: "Malapit na ang iyong susunod na hulog.",
+        makePayment: "Magbayad",
+        viewInstallment: "Tingnan ang Hulugan",
+        currentBalance: "Kasalukuyang Balanse",
+        nextPayment: "Susunod na Bayad",
+        dueDate: "Takdang Petsa",
+        paymentProgress: "Pag-usad ng Bayad",
+        quickActions: "Mabilis na Aksyon",
+        myInstallment: "Aking Hulugan",
+        application: "Aplikasyon",
+
+        goodStanding: "Maayos ang Katayuan",
+        accountStatus: "Katayuan ng Account",
+        activePlan: "Aktibong Plano",
+        paymentSchedule: "Iskedyul ng Bayad",
+        remaining: "Natitira",
+        complete: "Kumpleto",
+        completed: "Nakumpleto",
+        payNow: "Magbayad Ngayon",
+        installment: "Hulugan",
+
+        totalBalancePaid: "Kabuuang Nabayaran",
+        of: "mula sa",
+        nextPaymentDue: "Susunod na Bayad",
+
+        applicationStatus: "Katayuan ng Aplikasyon",
+        totalPending: "Kabuuang Nakabinbin",
+        approved: "Naaprubahan",
+        rejected: "Tinanggihan",
+        currentInstallment: "Kasalukuyang Hulugan",
+        totalInstallment: "Kabuuang Hulugan",
+        monthlyPayment: "Buwanang Bayad",
+        remainingBalance: "Natitirang Balanse",
+        paidPercentage: "Nabayaran",
+        installmentDetailsTitle: "Detalye ng Hulugan",
+        applyNewInstallment: "Mag-apply Para sa Bagong Hulugan?",
+        applyNow: "Mag-apply Ngayon",
+
+        paymentInformation: "Impormasyon ng Bayad",
+        selectInstallments: "Pumili ng mga Hulugan",
+        selectAll: "Piliin Lahat",
+        payAll: "Bayaran Lahat",
+        selectedInstallments: "Napiling mga Hulugan",
+        paymentTotal: "Kabuuang Bayad",
+        proceedPayment: "Magpatuloy sa Pagbabayad",
+
+        welcomeToMOS: "Maligayang Pagdating sa M.O.S",
+        applicationApproved: "Naaprubahan ang Aplikasyon",
+        noNotifications: "Walang mga notification"
     }
 };
 
@@ -507,10 +649,81 @@ const automaticTranslations = {
     "Installments": "Mga Hulugan",
     "Settings": "Mga Setting",
     "Logout": "Mag-logout",
+
     "Admin Portal": "Admin Portal",
     "Management System": "Sistema ng Pamamahala",
     "Notifications": "Mga Notification",
     "Today": "Ngayon",
+
+    "My Installment": "Aking Hulugan",
+    "Application": "Aplikasyon",
+    "Welcome": "Maligayang Pagdating",
+    "Welcome back": "Maligayang pagbabalik",
+    "Welcome back, Jea!": "Maligayang pagbabalik, Jea!",
+    "Welcome to M.O.S": "Maligayang Pagdating sa M.O.S",
+
+    "Payment Reminder": "Paalala sa Bayad",
+    "Your next installment payment is due soon.": "Malapit na ang iyong susunod na hulog.",
+    "Make Payment": "Magbayad",
+    "View Installment": "Tingnan ang Hulugan",
+
+    "Current Balance": "Kasalukuyang Balanse",
+    "Next Payment": "Susunod na Bayad",
+    "Due Date": "Takdang Petsa",
+    "Payment Progress": "Pag-usad ng Bayad",
+    "Quick Actions": "Mabilis na Aksyon",
+
+    "Good Standing": "Maayos ang Katayuan",
+    "Account Status": "Katayuan ng Account",
+    "Active Plan": "Aktibong Plano",
+    "Payment Schedule": "Iskedyul ng Bayad",
+    "Remaining": "Natitira",
+    "Complete": "Kumpleto",
+    "Completed": "Nakumpleto",
+    "Pay Now": "Magbayad Ngayon",
+    "Installment": "Hulugan",
+
+    "Total Balance Paid": "Kabuuang Nabayaran",
+    "of": "mula sa",
+    "Next Payment Due": "Susunod na Bayad",
+
+    "Application Status": "Katayuan ng Aplikasyon",
+    "Total Pending": "Kabuuang Nakabinbin",
+    "Approved": "Naaprubahan",
+    "Rejected": "Tinanggihan",
+    "Current Installment": "Kasalukuyang Hulugan",
+    "Total Installment": "Kabuuang Hulugan",
+    "Monthly Payment": "Buwanang Bayad",
+    "Remaining Balance": "Natitirang Balanse",
+    "Paid": "Bayad",
+
+    "Installment Details": "Detalye ng Hulugan",
+    "Apply For A New Installment?": "Mag-apply Para sa Bagong Hulugan?",
+    "Apply Now": "Mag-apply Ngayon",
+
+    "Payment Information": "Impormasyon ng Bayad",
+    "Select Installments": "Pumili ng mga Hulugan",
+    "Select All": "Piliin Lahat",
+    "Pay All": "Bayaran Lahat",
+    "Selected Installments": "Napiling mga Hulugan",
+    "Payment Total": "Kabuuang Bayad",
+    "Proceed to Payment": "Magpatuloy sa Pagbabayad",
+
+    "Pending": "Nakabinbin",
+    "Overdue": "Overdue",
+    "Upcoming": "Paparating",
+
+    "Filter": "Salain",
+    "Search": "Maghanap",
+    "Total": "Kabuuan",
+    "Amount Paid": "Halagang Nabayan",
+    "Balance": "Balanse",
+    "Product Name": "Pangalan ng Produkto",
+    "Start Date": "Petsa ng Pagsisimula",
+    "Frequency": "Dalas ng Bayad",
+    "Monthly": "Buwan-buwan",
+    "Active": "Aktibo",
+
     "Pending Applications": "Mga Nakabinbing Aplikasyon",
     "Review and manage customer installment applications.": "Suriin at pamahalaan ang mga installment application ng customer.",
     "Customer Name": "Pangalan ng Customer",
@@ -520,30 +733,66 @@ const automaticTranslations = {
     "Approve": "Aprubahan",
     "Reject": "Tanggihan",
     "Review Application": "Suriin ang Aplikasyon",
+
     "Payment History": "Kasaysayan ng Bayad",
     "Customer Profile": "Profile ng Customer",
     "Identity Documents": "Mga Dokumento ng Pagkakakilanlan",
     "View Information": "Tingnan ang Impormasyon",
-    "Pending": "Nakabinbin",
-    "Paid": "Bayad",
-    "Overdue": "Overdue",
-    "Upcoming": "Paparating",
-    "Filter": "Salain",
-    "Search": "Maghanap",
-    "Total": "Kabuuan",
-    "Amount Paid": "Halagang Nabayan",
-    "Balance": "Balanse",
-    "Product Name": "Pangalan ng Produkto",
-    "Installment Details": "Detalye ng Hulugan",
-    "Start Date": "Petsa ng Pagsisimula",
-    "Frequency": "Dalas ng Bayad",
-    "Monthly": "Buwan-buwan",
-    "Active": "Aktibo",
+
     "Confirm Rejection": "Kumpirmahin ang Pagtanggi",
     "Cancel": "Kanselahin",
     "Confirm Reject": "Kumpirmahin ang Pagtanggi",
+
     "Save Changes": "I-save ang Mga Pagbabago",
-    "Change Password": "Baguhin ang Password"
+    "Change Password": "Baguhin ang Password",
+
+    "Profile Information": "Impormasyon ng Profile",
+    "Manage your account information and profile settings.": "Pamahalaan ang impormasyon at mga setting ng iyong account.",
+    "Change Photo": "Baguhin ang Larawan",
+    "Full Name": "Buong Pangalan",
+    "Username": "Username",
+    "Email Address": "Email Address",
+    "Administrative Role": "Administratibong Tungkulin",
+    "Account Role": "Tungkulin ng Account",
+
+    "Edit": "I-edit",
+    "Changes Saved Successfully": "Matagumpay na Na-save ang Mga Pagbabago",
+    "Your profile information has been updated.": "Na-update na ang impormasyon ng iyong profile.",
+
+    "Security": "Seguridad",
+    "Manage your password and account security.": "Pamahalaan ang iyong password at seguridad ng account.",
+    "Password": "Password",
+    "Keep your account secure with a strong password.": "Panatilihing ligtas ang iyong account gamit ang matibay na password.",
+
+    "System Preferences": "Mga Kagustuhan sa Sistema",
+    "Customize your system experience.": "I-customize ang iyong karanasan sa system.",
+    "Email Notifications": "Mga Notification sa Email",
+    "Receive notifications about account activity.": "Tumanggap ng mga notification tungkol sa aktibidad ng account.",
+    "Dark Mode": "Dark Mode",
+    "Use a darker appearance throughout the system.": "Gumamit ng mas madilim na hitsura sa buong system.",
+    "Language": "Wika",
+    "Select the language used by the system.": "Piliin ang wikang gagamitin ng system.",
+
+    "Log out?": "Mag-logout?",
+    "Are you sure you want to log out of your account?": "Sigurado ka bang gusto mong mag-logout sa iyong account?",
+    "Log Out": "Mag-logout",
+
+    "Current Password": "Kasalukuyang Password",
+    "New Password": "Bagong Password",
+    "Confirm New Password": "Kumpirmahin ang Bagong Password",
+    "Password Requirements": "Mga Kinakailangan sa Password",
+    "Minimum 8 characters": "Hindi bababa sa 8 character",
+    "At least one uppercase letter": "Hindi bababa sa isang malaking titik",
+    "At least one number or symbol": "Hindi bababa sa isang numero o simbolo",
+    "Update Password": "I-update ang Password",
+
+    "Password Updated Successfully": "Matagumpay na Nabago ang Password",
+    "Your account security has been updated.": "Na-update na ang seguridad ng iyong account.",
+    "You can now use your new password to log in.": "Maaari mo nang gamitin ang bagong password sa pag-login.",
+    "Done": "Tapos",
+
+    "Application Approved": "Naaprubahan ang Aplikasyon",
+    "No notifications": "Walang mga notification"
 };
 
 const originalTextMap = new WeakMap();
@@ -569,16 +818,13 @@ function applyLanguage(language) {
         }
     });
 
-    document
-        .querySelectorAll("[data-i18n-placeholder]")
-        .forEach((element) => {
-            const key =
-                element.getAttribute("data-i18n-placeholder");
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
+        const key = element.getAttribute("data-i18n-placeholder");
 
-            if (dictionary[key]) {
-                element.placeholder = dictionary[key];
-            }
-        });
+        if (dictionary[key]) {
+            element.placeholder = dictionary[key];
+        }
+    });
 
     document.querySelectorAll("body *").forEach((element) => {
         if (element.children.length === 0) {
@@ -631,6 +877,21 @@ function applyLanguage(language) {
                 originalPlaceholder === "Search..."
             ) {
                 element.placeholder = "Maghanap...";
+            } else if (
+                originalPlaceholder === "Enter current password"
+            ) {
+                element.placeholder =
+                    "Ilagay ang kasalukuyang password";
+            } else if (
+                originalPlaceholder === "Create new password"
+            ) {
+                element.placeholder =
+                    "Gumawa ng bagong password";
+            } else if (
+                originalPlaceholder === "Confirm new password"
+            ) {
+                element.placeholder =
+                    "Kumpirmahin ang bagong password";
             }
         } else {
             element.placeholder = originalPlaceholder;

@@ -3,676 +3,1050 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Settings — Maryanne's Online Shop</title>
 
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet" />
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+
   <link
     href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
     rel="stylesheet"
   />
+
+  <link rel="stylesheet" href="../css/style.css" />
+
   <style>
-/* ==========================================================================
-   M.O.S — Shared Design System
-   Used by both /admin and /customer pages
-   ========================================================================== */
+    .settings-content {
+      max-width: 896px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
 
-:root{
-  --orange:#FF6B00;
-  --orange-dark:#E85D00;
-  --orange-tint:#FFF1E6;
+    .settings-card {
+      background: #fff;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      overflow: hidden;
+    }
 
-  --ink:#151C27;
-  --muted:#767C85;
-  --bg:#F7F9FB;
-  --line:#E7EAEE;
-  --white:#FFFFFF;
+    .settings-card-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid #e2e8f0;
+    }
 
-  --sidebar:#0B111A;
-  --sidebar-active:#16202C;
-  --sidebar-text: rgba(207,230,242,0.7);
+    .settings-card-header h3 {
+      margin: 0 0 5px;
+      font-family: var(--font-body);
+      font-size: 18px;
+      line-height: 26px;
+      font-weight: 600;
+      color: #1a202c;
+    }
 
-  --navy:#182234;
+    .settings-card-header p {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 20px;
+      color: #718096;
+    }
 
-  --blue:#0B6EA8;
-  --blue-tint:#E4F1FA;
-  --amber:#946F00;
-  --amber-tint:#FFF3DA;
-  --green:#1B6D24;
-  --green-tint:#E4F7E7;
-  --red:#BA1A1A;
-  --red-tint:#FBE4E4;
+    .settings-card-body {
+      padding: 24px;
+    }
 
-  --radius-sm:8px;
-  --radius-md:12px;
-  --radius-lg:16px;
+    .profile-form {
+      display: flex;
+      align-items: flex-start;
+      gap: 32px;
+    }
 
-  --shadow-panel: 0 1px 2px rgba(21,28,39,0.04);
-}
+    .avatar-upload {
+      width: 100px;
+      min-width: 100px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
 
-*{box-sizing:border-box;}
-html,body{margin:0;padding:0;}
-body{
-  font-family:'Inter', system-ui, -apple-system, Roboto, Helvetica, Arial, sans-serif;
-  background:var(--bg);
-  color:var(--ink);
-}
-h1,h2,h3,h4,.brand-font{
-  font-family:'Hanken Grotesk', 'Inter', sans-serif;
-}
-a{color:inherit;}
-button{font-family:inherit;}
+    .avatar-upload-circle {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #f1f5f9;
+      border: 1px solid #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
 
-/* ---------- Shell layout ---------- */
-.dashboard-shell{
-  display:flex;
-  min-height:100vh;
-}
+    .avatar-upload-circle svg {
+      width: 88px;
+      height: 88px;
+    }
 
-/* ---------- Side nav ---------- */
-.side-nav{
-  width:264px;
-  flex-shrink:0;
-  background:var(--sidebar);
-  color:var(--sidebar-text);
-  display:flex;
-  flex-direction:column;
-  justify-content:space-between;
-  padding:22px 0;
-}
-.side-nav-brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:0 22px 20px;
-  border-bottom:1px solid rgba(255,255,255,0.08);
-  margin-bottom:14px;
-}
-.side-nav-avatar{
-  width:38px;height:38px;
-  border-radius:8px;
-  flex-shrink:0;
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;
-}
-.side-nav-avatar svg{display:block;}
-.side-nav-brand-text{line-height:1.25;}
-.side-nav-title{
-  margin:0;
-  font-size:16px;
-  font-weight:700;
-  color:#fff;
-}
-.side-nav-subtitle{
-  margin:0;
-  font-size:12px;
-  color:rgba(207,230,242,0.5);
-}
-.side-nav-list{
-  display:flex;
-  flex-direction:column;
-  gap:2px;
-  padding:0 12px;
-}
-.side-nav-item{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:11px 14px;
-  border-radius:8px;
-  text-decoration:none;
-  font-size:14.5px;
-  font-weight:500;
-  color:var(--sidebar-text);
-  border-left:3px solid transparent;
-}
-.side-nav-item svg path,
-.side-nav-item svg rect,
-.side-nav-item svg circle{ transition:stroke .12s; }
-.side-nav-item:hover{
-  background:rgba(255,255,255,0.05);
-  color:#fff;
-}
-.side-nav-item.active{
-  background:var(--sidebar-active);
-  color:#fff;
-  border-left-color:var(--orange);
-}
-.side-nav-item.active svg path,
-.side-nav-item.active svg rect,
-.side-nav-item.active svg circle{
-  stroke:#fff !important;
-}
-.side-nav-footer{padding:14px 12px 0;}
-.side-nav-logout{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap:12px;
-  padding:11px 14px;
-  border-radius:8px;
-  border:none;
-  background:transparent;
-  color:var(--sidebar-text);
-  font-size:14.5px;
-  cursor:pointer;
-  border-top:1px solid rgba(255,255,255,0.08);
-  padding-top:18px;
-  margin-top:4px;
-}
-.side-nav-logout:hover{color:#fff;}
+    .avatar-upload-link {
+      border: none;
+      background: transparent;
+      padding: 0;
+      font-family: var(--font-body);
+      font-size: 12px;
+      font-weight: 600;
+      color: #d95f00;
+      cursor: pointer;
+    }
 
-/* ---------- Main column ---------- */
-.dashboard-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  min-width:0;
-}
-.dashboard-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:22px 40px;
-  background:#fff;
-  border-bottom:1px solid var(--line);
-}
-.dashboard-title{
-  margin:0;
-  font-size:26px;
-  font-weight:700;
-  color:var(--orange-dark);
-}
-.dashboard-title .sep{
-  color:#D9A98A;
-  font-weight:400;
-  margin:0 6px;
-}
-.notif-btn{
-  width:38px;height:38px;
-  border-radius:50%;
-  border:1px solid var(--line);
-  background:#fff;
-  display:flex;align-items:center;justify-content:center;
-  cursor:pointer;
-}
-.notif-btn:hover{background:var(--bg);}
-.dashboard-content{padding:32px 40px 60px;}
-.dashboard-content h2{font-size:24px;font-weight:700;margin:0 0 6px;}
-.dashboard-content > p.lede{color:var(--muted);font-size:14.5px;margin:0 0 24px;}
+    .avatar-upload-link:hover {
+      text-decoration: underline;
+    }
 
-/* ---------- Metrics grid ---------- */
-.metrics-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-bottom:28px;
-}
-.metric-card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius-md);
-  padding:20px;
-  box-shadow:var(--shadow-panel);
-  text-decoration:none;
-  color:inherit;
-  display:block;
-}
-.metric-card-link{cursor:pointer;transition:border-color .12s, transform .12s;}
-.metric-card-link:hover{border-color:#D5DAE1;transform:translateY(-1px);}
-.metric-card.dark{background:var(--navy);border:none;color:#fff;}
-.metric-card-top{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  margin-bottom:14px;
-}
-.metric-label{
-  margin:0;
-  font-size:12.5px;
-  color:var(--muted);
-  font-weight:600;
-}
-.metric-card.dark .metric-label{color:#AEB6C4;}
-.metric-icon{
-  width:34px;height:34px;
-  border-radius:9px;
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.metric-icon-blue{background:var(--blue-tint);}
-.metric-icon-amber{background:var(--amber-tint);}
-.metric-icon-green{background:var(--green-tint);}
-.metric-icon-red{background:var(--red-tint);}
-.metric-value{
-  margin:0 0 8px;
-  font-size:26px;
-  font-weight:800;
-}
-.metric-value-danger{color:var(--red);}
-.metric-footer{display:flex;align-items:center;gap:6px;font-size:12.5px;}
-.metric-footer-positive{color:var(--green);}
-.metric-footer-text{margin:0;font-size:12.5px;color:var(--muted);}
-.metric-footer-text-danger{color:var(--red);}
+    .profile-fields {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
 
-/* ---------- Workspace / panels ---------- */
-.workspace-grid{
-  display:grid;
-  grid-template-columns:1.6fr 1fr;
-  gap:18px;
-}
-.panel{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius-md);
-  box-shadow:var(--shadow-panel);
-  overflow:hidden;
-}
-.panel-body{padding:24px;}
-.panel-header{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:20px 24px;
-  border-bottom:1px solid var(--line);
-}
-.panel-title{margin:0;font-size:17px;font-weight:700;}
-.panel-link{
-  font-size:13.5px;
-  font-weight:600;
-  color:var(--orange-dark);
-  text-decoration:none;
-}
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
 
-/* ---------- Timeline ---------- */
-.timeline{list-style:none;margin:0;padding:0;}
-.timeline-item{
-  display:flex;
-  gap:14px;
-  padding:16px 24px;
-  border-bottom:1px solid var(--line);
-}
-.timeline-item:last-child{border-bottom:none;}
-.timeline-dot{
-  width:9px;height:9px;
-  border-radius:50%;
-  margin-top:6px;
-  flex-shrink:0;
-}
-.timeline-dot-amber{background:var(--amber);}
-.timeline-dot-green{background:var(--green);}
-.timeline-dot-red{background:var(--red);}
-.timeline-dot-gray{background:#A7ACB3;}
-.timeline-row{
-  flex:1;
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:16px;
-}
-.timeline-text{margin:0;font-size:14px;font-weight:600;}
-.timeline-subtext{margin:2px 0 0;font-size:12.5px;color:var(--muted);}
-.timeline-time{font-size:12px;color:var(--muted);white-space:nowrap;}
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
 
-/* ---------- Quick actions ---------- */
-.quick-actions{display:flex;flex-direction:column;padding:8px 0;}
-.quick-action{
-  display:flex;
-  align-items:center;
-  gap:14px;
-  padding:14px 24px;
-  text-decoration:none;
-  color:inherit;
-}
-.quick-action:hover{background:var(--bg);}
-.quick-action-icon{
-  width:38px;height:38px;
-  border-radius:9px;
-  background:var(--bg);
-  border:1px solid var(--line);
-  display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;
-}
-.quick-action-text{display:flex;flex-direction:column;gap:2px;}
-.quick-action-title{font-size:14px;font-weight:700;}
-.quick-action-desc{font-size:12.5px;color:var(--muted);}
+    .form-group label {
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #45474b;
+    }
 
-/* ---------- Buttons ---------- */
-.btn-brand{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  border:none;
-  border-radius:var(--radius-sm);
-  font-weight:700;
-  font-size:14px;
-  padding:12px 22px;
-  cursor:pointer;
-  text-decoration:none;
-}
-.btn-brand-primary{background:var(--orange);color:#fff;}
-.btn-brand-primary:hover{background:var(--orange-dark);color:#fff;}
-.btn-brand-primary:disabled{background:#F1D3B8;cursor:not-allowed;}
-.btn-brand-dark{background:var(--ink);color:#fff;}
-.btn-brand-dark:hover{background:#0A0F16;color:#fff;}
-.btn-brand-outline{background:#fff;color:var(--ink);border:1px solid var(--line);}
-.btn-brand-outline:hover{border-color:#C6CBD2;}
-.btn-brand-tint{background:var(--orange-tint);color:var(--orange-dark);border:1px solid #F3D6BD;}
+    .form-group input,
+    .preference-select {
+      width: 100%;
+      height: 42px;
+      background: #fff;
+      border: 1px solid #c5c6cb;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #151c27;
+      outline: none;
+    }
 
-/* ---------- Cards / stat tiles (customer use) ---------- */
-.stat-grid{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-  margin-bottom:28px;
-}
-.card{
-  background:#fff;
-  border:1px solid var(--line);
-  border-radius:var(--radius-md);
-  padding:20px;
-  box-shadow:var(--shadow-panel);
-}
-.card.dark{background:var(--navy);border:none;color:#fff;}
+    .form-group input:focus,
+    .preference-select:focus {
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
 
-/* ---------- Progress ---------- */
-.progress-track{
-  height:8px;
-  border-radius:6px;
-  background:#DCE9FF;
-  position:relative;
-}
-.progress-track .fill{
-  position:absolute;left:0;top:0;bottom:0;
-  border-radius:6px;
-  background:var(--navy);
-  min-width:8px;
-}
+    .profile-input:disabled {
+      background: #f8fafb;
+      color: #718096;
+      cursor: not-allowed;
+    }
 
-/* ---------- Badges / status chips ---------- */
-.chip{
-  display:inline-flex;
-  align-items:center;
-  gap:6px;
-  font-size:11.5px;
-  font-weight:700;
-  letter-spacing:0.3px;
-  padding:5px 12px;
-  border-radius:20px;
-  background:#F1F3F5;
-  color:#5B6169;
-}
-.chip-green{background:var(--green-tint);color:var(--green);}
-.chip-amber{background:var(--amber-tint);color:var(--amber);}
-.chip-red{background:var(--red-tint);color:var(--red);}
+    .profile-input.editable {
+      background: #fff;
+      color: #151c27;
+      cursor: text;
+    }
 
-/* ---------- Tables ---------- */
-.table-clean{width:100%;border-collapse:collapse;}
-.table-clean thead th{
-  text-align:left;
-  font-size:11.5px;
-  letter-spacing:0.4px;
-  color:var(--muted);
-  font-weight:700;
-  padding:14px 24px;
-  border-bottom:1px solid var(--line);
-}
-.table-clean tbody td{
-  padding:16px 24px;
-  font-size:14.5px;
-  border-bottom:1px solid var(--line);
-}
-.table-clean tbody tr:last-child td{border-bottom:none;}
+    .input-locked {
+      position: relative;
+      width: 100%;
+    }
 
-/* ---------- Tabs ---------- */
-.tabs-row{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  margin-bottom:22px;
-  flex-wrap:wrap;
-  gap:12px;
-}
-.tabs{display:flex;align-items:center;gap:26px;}
-.tab{
-  padding-bottom:12px;
-  font-size:15px;
-  font-weight:600;
-  color:var(--muted);
-  text-decoration:none;
-  border-bottom:2px solid transparent;
-}
-.tab.active{color:var(--orange-dark);border-bottom-color:var(--orange-dark);}
+    .input-locked input {
+      padding-right: 42px;
+      background: #f8fafb;
+      color: #718096;
+    }
 
-/* ---------- Form fields ---------- */
-.field{margin-bottom:16px;}
-.field label{
-  display:block;
-  font-size:13px;
-  font-weight:600;
-  margin-bottom:7px;
-}
-.field input, .field select{
-  width:100%;
-  padding:12px 14px;
-  border:1px solid var(--line);
-  border-radius:8px;
-  background:#F4F6F8;
-  font-size:14.5px;
-  font-family:inherit;
-  color:var(--ink);
-}
-.field input:focus, .field select:focus{outline:2px solid var(--orange);outline-offset:1px;}
+    .input-locked svg {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
 
-/* ---------- Switch ---------- */
-.switch{position:relative;width:44px;height:24px;flex-shrink:0;display:inline-block;}
-.switch input{display:none;}
-.switch .track{position:absolute;inset:0;background:#D8DCE1;border-radius:24px;transition:background .15s;}
-.switch input:checked + .track{background:var(--orange);}
-.switch .thumb{
-  position:absolute;top:3px;left:3px;width:18px;height:18px;border-radius:50%;
-  background:#fff;box-shadow:0 1px 3px rgba(0,0,0,0.25);transition:left .15s;
-}
-.switch input:checked ~ .thumb{left:23px;}
+    .form-hint {
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 18px;
+      color: #718096;
+    }
 
-/* ---------- Notification panel ---------- */
-.notif-overlay{
-  position:fixed;inset:0;
-  background:rgba(11,17,26,0.35);
-  opacity:0;pointer-events:none;
-  transition:opacity .18s;
-  z-index:40;
-}
-.notif-overlay.open{opacity:1;pointer-events:auto;}
+    .settings-card-actions {
+      display: flex;
+      justify-content: flex-end;
+      margin-top: 24px;
+    }
 
-.notif-panel{
-  position:fixed;
-  top:0;right:0;bottom:0;
-  width:380px;
-  max-width:90vw;
-  background:#fff;
-  box-shadow:-8px 0 24px rgba(21,28,39,0.12);
-  transform:translateX(100%);
-  transition:transform .2s ease;
-  z-index:50;
-  display:flex;
-  flex-direction:column;
-}
-.notif-panel.open{transform:translateX(0);}
-.notif-panel-header{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:20px 22px;
-  border-bottom:1px solid var(--line);
-}
-.notif-panel-title{margin:0;font-size:18px;font-weight:700;}
-.notif-close-btn{
-  border:none;background:none;font-size:22px;line-height:1;
-  cursor:pointer;color:var(--muted);
-}
-.notif-panel-body{overflow-y:auto;flex:1;}
-.notif-group-label{
-  margin:0;
-  padding:14px 22px 6px;
-  font-size:12px;
-  font-weight:700;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:0.4px;
-}
-.notif-item{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:10px;
-  padding:14px 22px;
-  text-decoration:none;
-  color:inherit;
-  border-bottom:1px solid var(--line);
-}
-.notif-item:hover{background:var(--bg);}
-.notif-item-unread{background:var(--orange-tint);}
-.notif-item-unread:hover{background:#FCE7D6;}
-.notif-item-title{
-  margin:0 0 4px;
-  font-size:14px;
-  font-weight:700;
-  display:flex;
-  align-items:center;
-  gap:6px;
-}
-.notif-warning-icon{color:var(--red);display:inline-flex;}
-.notif-item-desc{margin:0;font-size:12.5px;color:var(--muted);line-height:1.5;}
-.notif-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:var(--orange);
-  margin-top:5px;
-  flex-shrink:0;
-}
+    .btn-edit-profile {
+      height: 40px;
+      min-width: 120px;
+      padding: 8px 18px;
+      border: 1px solid #c5c6cb;
+      border-radius: 8px;
+      background: #fff;
+      color: #151c27;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
 
-/* ---------- Logout modal ---------- */
-.logout-modal{
-  position:fixed;inset:0;
-  display:flex;align-items:center;justify-content:center;
-  opacity:0;pointer-events:none;
-  transition:opacity .15s;
-  z-index:60;
-}
-.logout-modal.open{opacity:1;pointer-events:auto;}
-.logout-modal-overlay{
-  position:absolute;inset:0;
-  background:rgba(11,17,26,0.45);
-}
-.logout-modal-card{
-  position:relative;
-  background:#fff;
-  border-radius:var(--radius-lg);
-  padding:30px 28px;
-  width:340px;
-  max-width:90vw;
-  text-align:center;
-  box-shadow:0 20px 50px rgba(21,28,39,0.25);
-}
-.logout-modal-icon{
-  width:52px;height:52px;
-  border-radius:50%;
-  background:var(--orange-tint);
-  color:var(--orange-dark);
-  display:flex;align-items:center;justify-content:center;
-  margin:0 auto 16px;
-}
-.logout-modal-card h3{margin:0 0 8px;font-size:19px;font-weight:700;}
-.logout-modal-card p{margin:0 0 22px;font-size:14px;color:var(--muted);}
-.logout-modal-actions{display:flex;gap:12px;}
-.logout-cancel-btn, .logout-confirm-btn{
-  flex:1;
-  padding:12px 16px;
-  border-radius:8px;
-  font-weight:700;
-  font-size:14px;
-  cursor:pointer;
-  border:none;
-}
-.logout-cancel-btn{background:var(--bg);border:1px solid var(--line);color:var(--ink);}
-.logout-confirm-btn{background:var(--orange);color:#fff;}
-.logout-confirm-btn:hover{background:var(--orange-dark);}
+    .btn-edit-profile:hover {
+      background: #f8fafb;
+    }
 
-/* ---------- Responsive ---------- */
-@media (max-width:960px){
-  .metrics-grid, .stat-grid{grid-template-columns:repeat(2,1fr);}
-  .workspace-grid{grid-template-columns:1fr;}
-  .side-nav{width:220px;}
-  .dashboard-header, .dashboard-content{padding-left:24px;padding-right:24px;}
-}
+    .btn-edit-profile.editing {
+      background: #ff6b00;
+      border-color: #ff6b00;
+      color: #fff;
+    }
 
-</style>
+    .btn-edit-profile.editing:hover {
+      background: #e66000;
+      border-color: #e66000;
+    }
+
+    .security-card {
+      padding: 24px;
+    }
+
+    .security-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 18px;
+      background: #f8fafb;
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+    }
+
+    .security-row h4 {
+      margin: 0 0 4px;
+      font-family: var(--font-body);
+      font-size: 15px;
+      line-height: 22px;
+      font-weight: 600;
+      color: #151c27;
+    }
+
+    .security-row p {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 19px;
+      color: #718096;
+    }
+
+    .btn-change-password {
+      height: 40px;
+      padding: 8px 18px;
+      border: 1px solid #ff6b00;
+      border-radius: 8px;
+      background: #ff6b00;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: 0.2s ease;
+    }
+
+    .btn-change-password:hover {
+      background: #e66000;
+      border-color: #e66000;
+    }
+
+    .preferences-list {
+      padding: 0 24px;
+    }
+
+    .preference-item {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .preference-item:last-child {
+      border-bottom: none;
+    }
+
+    .preference-item h4 {
+      margin: 0 0 3px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      line-height: 20px;
+      font-weight: 600;
+      color: #151c27;
+    }
+
+    .preference-item p {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 18px;
+      color: #718096;
+    }
+
+    .preference-select {
+      width: 180px;
+      height: 40px;
+      cursor: pointer;
+    }
+
+    .toggle-switch {
+      position: relative;
+      display: inline-block;
+      width: 42px;
+      height: 24px;
+      flex-shrink: 0;
+    }
+
+    .toggle-switch input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .toggle-slider {
+      position: absolute;
+      inset: 0;
+      background: #cbd5e1;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .toggle-slider::before {
+      content: "";
+      position: absolute;
+      width: 18px;
+      height: 18px;
+      left: 3px;
+      top: 3px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    }
+
+    .toggle-switch input:checked + .toggle-slider {
+      background: #ff6b00;
+    }
+
+    .toggle-switch input:checked + .toggle-slider::before {
+      transform: translateX(18px);
+    }
+
+    .password-modal-overlay,
+    .success-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.45);
+      backdrop-filter: blur(2px);
+      z-index: 1050;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s ease, visibility 0.2s ease;
+    }
+
+    .password-modal-overlay.active,
+    .success-modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .password-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 560px;
+      max-width: calc(100% - 32px);
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      transform: translate(-50%, -48%);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1051;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+    }
+
+    .password-modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%);
+    }
+
+    .password-modal-header {
+      padding: 24px 28px 16px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .password-modal-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255, 107, 0, 0.1);
+      color: #ff6b00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .password-modal-heading h3 {
+      margin: 0 0 4px;
+      font-family: var(--font-body);
+      font-size: 20px;
+      line-height: 28px;
+      font-weight: 700;
+      color: #151c27;
+    }
+
+    .password-modal-heading p {
+      margin: 0;
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 19px;
+      color: #718096;
+    }
+
+    .password-close-btn {
+      margin-left: auto;
+      width: 30px;
+      height: 30px;
+      border: none;
+      background: transparent;
+      color: #718096;
+      font-size: 24px;
+      line-height: 1;
+      border-radius: 7px;
+      cursor: pointer;
+    }
+
+    .password-close-btn:hover {
+      background: #f1f5f9;
+    }
+
+    .password-modal-body {
+      padding: 8px 28px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 17px;
+    }
+
+    .password-modal .form-group {
+      gap: 7px;
+    }
+
+    .password-modal .form-group label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      font-weight: 700;
+      color: #45474b;
+    }
+
+    .password-input-wrap {
+      position: relative;
+    }
+
+    .password-input-wrap input {
+      height: 44px;
+      padding: 10px 46px 10px 13px;
+      border: 1px solid #c5c6cb;
+      border-radius: 8px;
+      background: #fff;
+      width: 100%;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #151c27;
+      outline: none;
+    }
+
+    .password-input-wrap input:focus {
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
+
+    .password-toggle-btn {
+      position: absolute;
+      right: 9px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 32px;
+      height: 32px;
+      border: none;
+      background: transparent;
+      color: #718096;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .password-toggle-btn:hover {
+      color: #ff6b00;
+    }
+
+    .password-requirements {
+      padding: 13px 15px;
+      background: #fff7f0;
+      border: 1px solid #ffd9bd;
+      border-radius: 8px;
+    }
+
+    .password-requirements-title {
+      margin: 0 0 8px;
+      font-family: var(--font-body);
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #45474b;
+    }
+
+    .password-requirement {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 5px;
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: #718096;
+    }
+
+    .password-requirement svg {
+      flex-shrink: 0;
+      color: #ff6b00;
+    }
+
+    .password-error {
+      display: none;
+      padding: 10px 13px;
+      border: 1px solid #fecaca;
+      background: #fef2f2;
+      border-radius: 8px;
+      color: #b91c1c;
+      font-family: var(--font-body);
+      font-size: 12px;
+      line-height: 18px;
+    }
+
+    .password-error.show {
+      display: block;
+    }
+
+    .password-modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 3px;
+    }
+
+    .password-cancel-btn,
+    .password-save-btn {
+      height: 40px;
+      padding: 8px 18px;
+      border-radius: 8px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .password-cancel-btn {
+      background: #fff;
+      border: 1px solid #c5c6cb;
+      color: #45474b;
+    }
+
+    .password-cancel-btn:hover {
+      background: #f8fafb;
+    }
+
+    .password-save-btn {
+      background: #ff6b00;
+      border: 1px solid #ff6b00;
+      color: #fff;
+    }
+
+    .password-save-btn:hover {
+      background: #e66000;
+    }
+
+    .success-modal {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      width: 440px;
+      max-width: calc(100% - 32px);
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      transform: translate(-50%, -48%);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 1052;
+      transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s ease;
+      padding: 32px 30px 28px;
+      text-align: center;
+    }
+
+    .success-modal.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translate(-50%, -50%);
+    }
+
+    .success-modal-icon {
+      width: 78px;
+      height: 78px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: #fff7f0;
+      border: 3px solid #ff6b00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-modal-icon svg {
+      width: 42px;
+      height: 42px;
+    }
+
+    .success-modal h3 {
+      margin: 0 0 7px;
+      font-family: var(--font-body);
+      font-size: 19px;
+      line-height: 27px;
+      font-weight: 700;
+      color: #27345d;
+    }
+
+    .success-modal p {
+      margin: 0 auto 24px;
+      max-width: 300px;
+      font-family: var(--font-body);
+      font-size: 13px;
+      line-height: 20px;
+      color: #718096;
+    }
+
+    .success-done-btn {
+      width: 100%;
+      height: 42px;
+      border: none;
+      border-radius: 8px;
+      background: #ff6b00;
+      color: #fff;
+      font-family: var(--font-body);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .success-done-btn:hover {
+      background: #e66000;
+    }
+
+    .profile-success-message {
+      display: none;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+      padding: 16px 18px;
+      border: 1px solid #ffd9bd;
+      background: #fff7f0;
+      border-radius: 10px;
+    }
+
+    .profile-success-message.show {
+      display: flex;
+    }
+
+    .profile-success-icon {
+      color: #ff6b00;
+      flex-shrink: 0;
+    }
+
+    .profile-success-message strong {
+      display: block;
+      margin-bottom: 2px;
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: #27345d;
+    }
+
+    .profile-success-message span {
+      font-family: var(--font-body);
+      font-size: 12px;
+      color: #718096;
+    }
+
+    body.dark-mode {
+      background: #111827;
+      color: #f1f5f9;
+    }
+
+    body.dark-mode .dashboard-main {
+      background: #111827;
+    }
+
+    body.dark-mode .dashboard-content {
+      background: #111827;
+    }
+
+    body.dark-mode .dashboard-header {
+      background: #111827;
+      border-bottom-color: #273244;
+    }
+
+    body.dark-mode .dashboard-title {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .notif-btn svg path {
+      stroke: #f1f5f9;
+    }
+
+    body.dark-mode .settings-card {
+      background: #1e293b;
+      border-color: #334155;
+    }
+
+    body.dark-mode .settings-card-header {
+      border-bottom-color: #334155;
+    }
+
+    body.dark-mode .settings-card-header h3 {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .settings-card-header p,
+    body.dark-mode .form-hint,
+    body.dark-mode .security-row p,
+    body.dark-mode .preference-item p {
+      color: #94a3b8;
+    }
+
+    body.dark-mode .form-group label {
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .form-group input,
+    body.dark-mode .preference-select {
+      background: #0f172a;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .profile-input:disabled,
+    body.dark-mode .input-locked input {
+      background: #172033;
+      color: #94a3b8;
+    }
+
+    body.dark-mode .profile-input.editable {
+      background: #0f172a;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .btn-edit-profile {
+      background: #1e293b;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .btn-edit-profile:hover {
+      background: #334155;
+    }
+
+    body.dark-mode .security-row {
+      background: #172033;
+      border-color: #334155;
+    }
+
+    body.dark-mode .security-row h4,
+    body.dark-mode .preference-item h4 {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .preference-item {
+      border-bottom-color: #334155;
+    }
+
+    body.dark-mode .avatar-upload-circle {
+      background: #172033;
+      border-color: #334155;
+    }
+
+    body.dark-mode .password-modal,
+    body.dark-mode .success-modal {
+      background: #1e293b;
+    }
+
+    body.dark-mode .password-modal-heading h3,
+    body.dark-mode .success-modal h3 {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .password-modal-heading p,
+    body.dark-mode .success-modal p {
+      color: #94a3b8;
+    }
+
+    body.dark-mode .password-modal .form-group label,
+    body.dark-mode .password-requirements-title {
+      color: #e2e8f0;
+    }
+
+    body.dark-mode .password-input-wrap input {
+      background: #0f172a;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .password-cancel-btn {
+      background: #1e293b;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .password-cancel-btn:hover {
+      background: #334155;
+    }
+
+    body.dark-mode .password-requirements {
+      background: #2b2118;
+      border-color: #69452d;
+    }
+
+    body.dark-mode .password-requirement {
+      color: #94a3b8;
+    }
+
+    body.dark-mode .password-close-btn:hover {
+      background: #334155;
+    }
+
+    body.dark-mode .profile-success-message {
+      background: #2b2118;
+      border-color: #69452d;
+    }
+
+    body.dark-mode .profile-success-message strong {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .profile-success-message span {
+      color: #94a3b8;
+    }
+
+    @media (max-width: 899.98px) {
+      .page-dashboard .side-nav {
+        display: none;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .profile-form {
+        flex-direction: column;
+      }
+
+      .avatar-upload {
+        width: 100%;
+      }
+
+      .profile-fields {
+        width: 100%;
+        grid-template-columns: 1fr;
+      }
+
+      .form-group-full {
+        grid-column: auto;
+      }
+
+      .security-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn-change-password {
+        width: 100%;
+      }
+
+      .password-modal {
+        width: calc(100% - 32px);
+      }
+
+      .password-modal-header {
+        padding: 20px;
+      }
+
+      .password-modal-body {
+        padding: 8px 20px 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .settings-card-header {
+        padding: 18px;
+      }
+
+      .settings-card-body {
+        padding: 18px;
+      }
+
+      .preferences-list {
+        padding: 0 18px;
+      }
+
+      .preference-item {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px 0;
+      }
+
+      .preference-select {
+        width: 100%;
+      }
+
+      .settings-card-actions {
+        justify-content: stretch;
+      }
+
+      .btn-edit-profile {
+        width: 100%;
+      }
+
+      .password-modal-actions {
+        flex-direction: column-reverse;
+      }
+
+      .password-cancel-btn,
+      .password-save-btn {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 
-<body class="page-customer">
+<body class="page-dashboard">
 
   <div class="dashboard-shell">
 
     <aside class="side-nav">
 
-      <div>
-        <div class="side-nav-brand">
-          <div class="side-nav-avatar">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <rect width="24" height="24" rx="12" fill="#FF6B00" />
-              <path d="M12 6L18 10V18H6V10L12 6Z" fill="white" />
-            </svg>
-          </div>
-
-          <div class="side-nav-brand-text">
-            <p class="side-nav-title">M.O.S</p>
-            <p class="side-nav-subtitle">Installment System</p>
-          </div>
+      <div class="side-nav-brand">
+        <div class="side-nav-avatar">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <rect width="24" height="24" rx="12" fill="#FF6B00" />
+            <path d="M12 6L18 10V18H6V10L12 6Z" fill="white" />
+          </svg>
         </div>
 
-        <nav class="side-nav-list">
+        <div class="side-nav-brand-text">
+          <p class="side-nav-title">M.O.S</p>
+          <p class="side-nav-subtitle">Installment System</p>
+        </div>
+      </div>
+
+      <nav class="side-nav-list">
 
         <a href="customer_dashboard.html" class="side-nav-item">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" /><rect x="10" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" /><rect x="2" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" /><rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+            <rect x="10" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+            <rect x="2" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+            <rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
           </svg>
-          <span>Dashboard</span>
+          <span data-i18n="dashboard">Dashboard</span>
         </a>
 
         <a href="customer_installment.html" class="side-nav-item">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" /><path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+            <path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round"/>
           </svg>
           <span>My Installment</span>
         </a>
 
         <a href="customer_application.html" class="side-nav-item">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" /><path d="M2 7.5H16" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+            <path d="M2 7.5H16" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
           </svg>
           <span>Application</span>
         </a>
 
         <a href="customer_settings.html" class="side-nav-item active">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="9" cy="9" r="2.5" stroke="#fff" stroke-width="1.4" /><path d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6" stroke="#fff" stroke-width="1.4" stroke-linecap="round" />
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <circle cx="9" cy="9" r="2.5" stroke="white" stroke-width="1.4"/>
+            <path
+              d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6"
+              stroke="white"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
           </svg>
-          <span>Settings</span>
+          <span data-i18n="settings">Settings</span>
         </a>
 
-        </nav>
-      </div>
+      </nav>
 
       <div class="side-nav-footer">
-        <button type="button" class="side-nav-logout" id="logoutBtn" data-href="customer_welcome.html">
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7"
-              stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
-            <path d="M11.5 12.5L15 9L11.5 5.5"
-              stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-            <path d="M15 9H6.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
+        <button type="button" class="side-nav-logout" id="logoutBtn">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path
+              d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7"
+              stroke="rgba(207,230,242,0.7)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
+            <path
+              d="M11.5 12.5L15 9L11.5 5.5"
+              stroke="rgba(207,230,242,0.7)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M15 9H6.5"
+              stroke="rgba(207,230,242,0.7)"
+              stroke-width="1.4"
+              stroke-linecap="round"
+            />
           </svg>
-          <span>Logout</span>
+          <span data-i18n="logout">Logout</span>
         </button>
       </div>
 
@@ -681,77 +1055,367 @@ button{font-family:inherit;}
     <div class="dashboard-main">
 
       <header class="dashboard-header">
-        <h1 class="dashboard-title">Settings</h1>
-        <button type="button" class="notif-btn" id="notifBtn" aria-label="Notifications">
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z"
-              stroke="#151C27" stroke-width="1.3" stroke-linejoin="round" />
-            <path d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5"
-              stroke="#151C27" stroke-width="1.3" stroke-linecap="round" />
+
+        <h1 class="dashboard-title" data-i18n="settings">Settings</h1>
+
+        <button
+          type="button"
+          class="notif-btn"
+          id="notifBtn"
+          aria-label="Notifications"
+        >
+          <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+            <path
+              d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z"
+              stroke="#151C27"
+              stroke-width="1.3"
+              stroke-linejoin="round"
+            />
+            <path
+              d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5"
+              stroke="#151C27"
+              stroke-width="1.3"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
+
       </header>
 
       <main class="dashboard-content">
 
-        <h2>Your Account</h2>
-        <p class="lede">Manage your account preferences and personal details.</p>
+        <div class="settings-content">
 
-        <div class="workspace-grid" style="grid-template-columns:1fr 1fr;margin-bottom:18px;">
-          <div class="panel">
-            <div class="panel-body">
-              <h3 style="display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;margin:0 0 20px;">
-                <span class="metric-icon metric-icon-amber" style="width:30px;height:30px;">&#128100;</span> Personal Details
-              </h3>
-              <div class="field"><label>Full Name</label><input type="text" value="Jea Mae Dela Cruz" /></div>
-              <div class="field"><label>Email Address</label><input type="email" value="jea_delacruz@example.com" /></div>
-              <div class="field"><label>Phone Number</label><input type="text" value="+63 912 345 6789" /></div>
-              <button class="btn-brand btn-brand-tint">&#9998; Edit Details</button>
+          <section class="settings-card">
+
+            <div class="settings-card-header">
+              <h3 data-i18n="profileInformation">Profile Information</h3>
+              <p data-i18n="profileDescription">
+                Manage your account information and profile settings.
+              </p>
             </div>
-          </div>
 
-          <div class="panel">
-            <div class="panel-body">
-              <h3 style="display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;margin:0 0 20px;">
-                <span class="metric-icon metric-icon-amber" style="width:30px;height:30px;">&#9881;</span> Preferences
-              </h3>
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);">
-                <div>
-                  <p style="margin:0 0 3px;font-size:14.5px;font-weight:700;">Email Notifications</p>
-                  <p style="margin:0;font-size:13px;color:var(--muted);">Receive updates about your installments.</p>
+            <div class="settings-card-body">
+
+              <div class="profile-form">
+
+                <div class="avatar-upload">
+
+                  <div class="avatar-upload-circle">
+                    <svg width="88" height="88" viewBox="0 0 88 88" fill="none">
+                      <rect width="88" height="88" rx="44" fill="#F1F5F9"/>
+                      <circle cx="44" cy="34" r="14" fill="#94A3B8"/>
+                      <path
+                        d="M20 72C22.8 57.5 32.1 50 44 50C55.9 50 65.2 57.5 68 72"
+                        fill="#94A3B8"
+                      />
+                    </svg>
+                  </div>
+
+                  <button
+                    type="button"
+                    class="avatar-upload-link"
+                    data-i18n="changePhoto"
+                  >
+                    Change Photo
+                  </button>
+
                 </div>
-                <label class="switch"><input type="checkbox" checked /><span class="track"></span><span class="thumb"></span></label>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;padding:16px 0;border-bottom:1px solid var(--line);">
-                <div>
-                  <p style="margin:0 0 3px;font-size:14.5px;font-weight:700;">SMS Alerts</p>
-                  <p style="margin:0;font-size:13px;color:var(--muted);">Get text messages for payment reminders.</p>
+
+                <div class="profile-fields">
+
+                  <div class="form-group form-group-full">
+
+                    <label for="fullName" data-i18n="fullName">
+                      Full Name
+                    </label>
+
+                    <input
+                      type="text"
+                      id="fullName"
+                      class="profile-input"
+                      value="Jea Mae Dela Cruz"
+                      disabled
+                    />
+
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="username" data-i18n="username">
+                      Username
+                    </label>
+
+                    <input
+                      type="text"
+                      id="username"
+                      class="profile-input"
+                      value="jeamae"
+                      disabled
+                    />
+
+                  </div>
+
+                  <div class="form-group">
+
+                    <label for="email" data-i18n="emailAddress">
+                      Email Address
+                    </label>
+
+                    <input
+                      type="email"
+                      id="email"
+                      class="profile-input"
+                      value="customer@valoblox.com"
+                      disabled
+                    />
+
+                  </div>
+
+                  <div class="form-group form-group-full">
+
+                    <label for="role" data-i18n="role">
+                      Account Role
+                    </label>
+
+                    <div class="input-locked">
+
+                      <input
+                        type="text"
+                        id="role"
+                        value="Customer"
+                        readonly
+                      />
+
+                      <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                        <rect
+                          x="4"
+                          y="7"
+                          width="8"
+                          height="6"
+                          rx="1"
+                          stroke="#718096"
+                          stroke-width="1.2"
+                        />
+                        <path
+                          d="M6 7V5C6 3.89543 6.89543 3 8 3C9.10457 3 10 3.89543 10 5V7"
+                          stroke="#718096"
+                          stroke-width="1.2"
+                        />
+                      </svg>
+
+                    </div>
+
+                    <span class="form-hint">
+                      Your customer role cannot be changed.
+                    </span>
+
+                  </div>
+
                 </div>
-                <label class="switch"><input type="checkbox" /><span class="track"></span><span class="thumb"></span></label>
-              </div>
-              <div style="padding-top:16px;">
-                <p style="margin:0 0 10px;font-size:14.5px;font-weight:700;">Language</p>
-                <select><option>English (US)</option><option>Filipino</option></select>
-              </div>
-            </div>
-          </div>
-        </div>
 
-        <div class="panel">
-          <div class="panel-body">
-            <h3 style="display:flex;align-items:center;gap:10px;font-size:17px;font-weight:700;margin:0 0 20px;">
-              <span class="metric-icon metric-icon-red" style="width:30px;height:30px;">&#128274;</span> Security
-            </h3>
-            <div style="display:flex;align-items:center;justify-content:space-between;background:#F4F6F8;border:1px solid var(--line);border-radius:10px;padding:16px 20px;">
-              <div>
-                <p style="margin:0 0 3px;font-size:14.5px;font-weight:700;">Password</p>
-                <p style="margin:0;font-size:13px;color:var(--muted);">Last changed 3 months ago.</p>
               </div>
-              <button class="btn-brand btn-brand-outline">Change Password</button>
-            </div>
-          </div>
-        </div>
 
+              <div
+                class="profile-success-message"
+                id="profileSuccessMessage"
+              >
+
+                <div class="profile-success-icon">
+
+                  <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+                    <circle
+                      cx="11"
+                      cy="11"
+                      r="9"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                    />
+                    <path
+                      d="M7 11L9.5 13.5L15 8"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+
+                </div>
+
+                <div>
+                  <strong data-i18n="changesSaved">
+                    Changes Saved Successfully
+                  </strong>
+
+                  <span data-i18n="profileUpdated">
+                    Your profile information has been updated.
+                  </span>
+                </div>
+
+              </div>
+
+              <div class="settings-card-actions">
+
+                <button
+                  type="button"
+                  class="btn-edit-profile"
+                  id="editProfileBtn"
+                  data-i18n="edit"
+                >
+                  Edit
+                </button>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <section class="settings-card">
+
+            <div class="settings-card-header">
+
+              <h3 data-i18n="security">
+                Security
+              </h3>
+
+              <p data-i18n="securityDescription">
+                Manage your password and account security.
+              </p>
+
+            </div>
+
+            <div class="settings-card-body security-card">
+
+              <div class="security-row">
+
+                <div>
+
+                  <h4 data-i18n="password">
+                    Password
+                  </h4>
+
+                  <p data-i18n="passwordDescription">
+                    Keep your account secure with a strong password.
+                  </p>
+
+                </div>
+
+                <button
+                  type="button"
+                  class="btn-change-password"
+                  id="changePasswordBtn"
+                  data-i18n="changePassword"
+                >
+                  Change Password
+                </button>
+
+              </div>
+
+            </div>
+
+          </section>
+
+          <section class="settings-card">
+
+            <div class="settings-card-header">
+
+              <h3 data-i18n="systemPreferences">
+                System Preferences
+              </h3>
+
+              <p data-i18n="systemDescription">
+                Customize your system experience.
+              </p>
+
+            </div>
+
+            <div class="preferences-list">
+
+              <div class="preference-item">
+
+                <div>
+
+                  <h4 data-i18n="emailNotifications">
+                    Email Notifications
+                  </h4>
+
+                  <p data-i18n="emailNotificationsDescription">
+                    Receive notifications about account activity.
+                  </p>
+
+                </div>
+
+                <label class="toggle-switch">
+
+                  <input
+                    type="checkbox"
+                    id="emailNotifications"
+                    checked
+                  />
+
+                  <span class="toggle-slider"></span>
+
+                </label>
+
+              </div>
+
+              <div class="preference-item">
+
+                <div>
+
+                  <h4 data-i18n="darkMode">
+                    Dark Mode
+                  </h4>
+
+                  <p data-i18n="darkModeDescription">
+                    Use a darker appearance throughout the system.
+                  </p>
+
+                </div>
+
+                <label class="toggle-switch">
+
+                  <input
+                    type="checkbox"
+                    id="darkModeToggle"
+                  />
+
+                  <span class="toggle-slider"></span>
+
+                </label>
+
+              </div>
+
+              <div class="preference-item">
+
+                <div>
+
+                  <h4 data-i18n="language">
+                    Language
+                  </h4>
+
+                  <p data-i18n="languageDescription">
+                    Select the language used by the system.
+                  </p>
+
+                </div>
+
+                <select
+                  class="preference-select"
+                  id="languageSelect"
+                >
+                  <option value="en">English</option>
+                  <option value="fil">Filipino</option>
+                </select>
+
+              </div>
+
+            </div>
+
+          </section>
+
+        </div>
 
       </main>
 
@@ -762,63 +1426,835 @@ button{font-family:inherit;}
   <div class="notif-overlay" id="notifOverlay"></div>
 
   <aside class="notif-panel" id="notifPanel">
+
     <div class="notif-panel-header">
-      <h2 class="notif-panel-title">Notifications</h2>
-      <button type="button" class="notif-close-btn" id="notifCloseBtn" aria-label="Close notifications">&times;</button>
+
+      <h2
+        class="notif-panel-title"
+        data-i18n="notifications"
+      >
+        Notifications
+      </h2>
+
+      <button
+        type="button"
+        class="notif-close-btn"
+        id="notifCloseBtn"
+        aria-label="Close notifications"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M3 3L13 13M13 3L3 13"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+
     </div>
 
     <div class="notif-panel-body">
-      <p class="notif-group-label">Recent</p>
 
-      <a href="customer_makepayment.html" class="notif-item notif-item-unread">
+      <p
+        class="notif-group-label"
+        data-i18n="today"
+      >
+        Recent
+      </p>
+
+      <a
+        href="customer_makepayment.html"
+        class="notif-item notif-item-unread"
+      >
+
         <div class="notif-item-content">
-          <p class="notif-item-title">Payment Reminder</p>
-          <p class="notif-item-desc">Your next installment of &#8369;1,700.00 is due Oct 15, 2025.</p>
+
+          <p class="notif-item-title">
+            Payment Reminder
+          </p>
+
+          <p class="notif-item-desc">
+            Your next installment of ₱1,700.00 is due Oct 15, 2025.
+          </p>
+
         </div>
+
         <span class="notif-dot"></span>
+
       </a>
 
-      <a href="customer_application.html" class="notif-item notif-item-unread">
+      <a
+        href="customer_application.html"
+        class="notif-item notif-item-unread"
+      >
+
         <div class="notif-item-content">
-          <p class="notif-item-title"><span class="notif-warning-icon"><svg width="14" height="12" viewBox="0 0 14 12" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M7 1L13 11H1L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" /><path d="M7 5V7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" /><circle cx="7" cy="9.3" r="0.6" fill="currentColor" /></svg></span> Application Approved</p>
-          <p class="notif-item-desc">Your installment application for iPhone 11 has been approved.</p>
+
+          <p class="notif-item-title">
+
+            <span class="notif-warning-icon">
+
+              <svg
+                width="14"
+                height="12"
+                viewBox="0 0 14 12"
+                fill="none"
+              >
+                <path
+                  d="M7 1L13 11H1L7 1Z"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linejoin="round"
+                />
+
+                <path
+                  d="M7 5V7.5"
+                  stroke="currentColor"
+                  stroke-width="1.3"
+                  stroke-linecap="round"
+                />
+
+                <circle
+                  cx="7"
+                  cy="9.3"
+                  r="0.6"
+                  fill="currentColor"
+                />
+              </svg>
+
+            </span>
+
+            Application Approved
+
+          </p>
+
+          <p class="notif-item-desc">
+            Your installment application for iPhone 11 has been approved.
+          </p>
+
         </div>
+
         <span class="notif-dot"></span>
+
       </a>
 
-      <a href="customer_dashboard.html" class="notif-item">
+      <a
+        href="customer_dashboard.html"
+        class="notif-item"
+      >
+
         <div class="notif-item-content">
-          <p class="notif-item-title">Welcome to M.O.S</p>
-          <p class="notif-item-desc">Your account is ready. Explore your dashboard to get started.</p>
+
+          <p class="notif-item-title">
+            Welcome to M.O.S
+          </p>
+
+          <p class="notif-item-desc">
+            Your account is ready. Explore your dashboard to get started.
+          </p>
+
         </div>
-        
+
       </a>
 
     </div>
+
   </aside>
 
   <div class="logout-modal" id="logoutModal">
-    <div class="logout-modal-overlay" id="logoutModalOverlay"></div>
+
+    <div
+      class="logout-modal-overlay"
+      id="logoutModalOverlay"
+    ></div>
 
     <div class="logout-modal-card">
+
       <div class="logout-modal-icon">
-        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-          <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-          <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-          <path d="M21 19V5C21 3.89543 20.105 3 19 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+        <svg
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+
+          <path
+            d="M10 17L15 12L10 7"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          />
+
+          <path
+            d="M15 12H3"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+
+          <path
+            d="M21 19V5C21 3.89543 20.105 3 19 3H14"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+          />
+
         </svg>
+
       </div>
-      <h3>Log out?</h3>
-      <p>Are you sure you want to log out of your account?</p>
+
+      <h3 data-i18n="logoutTitle">
+        Log out?
+      </h3>
+
+      <p data-i18n="logoutDescription">
+        Are you sure you want to log out of your account?
+      </p>
+
       <div class="logout-modal-actions">
-        <button type="button" class="logout-cancel-btn" id="cancelLogout">Cancel</button>
-        <button type="button" class="logout-confirm-btn" id="confirmLogout">Log Out</button>
+
+        <button
+          type="button"
+          class="logout-cancel-btn"
+          id="cancelLogout"
+          data-i18n="cancel"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="logout-confirm-btn"
+          id="confirmLogout"
+          data-i18n="logOut"
+        >
+          Log Out
+        </button>
+
       </div>
+
     </div>
+
+  </div>
+
+  <div
+    class="password-modal-overlay"
+    id="passwordModalOverlay"
+  ></div>
+
+  <div
+    class="password-modal"
+    id="passwordModal"
+  >
+
+    <div class="password-modal-header">
+
+      <div class="password-modal-icon">
+
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M12 15.5C14.4853 15.5 16.5 13.4853 16.5 11C16.5 8.51472 14.4853 6.5 12 6.5C9.51472 6.5 7.5 8.51472 7.5 11C7.5 13.4853 9.51472 15.5 12 15.5Z"
+            stroke="currentColor"
+            stroke-width="1.6"
+          />
+          <path
+            d="M12 6.5V4.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M12 15.5V19.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M7.5 11H5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+          <path
+            d="M19 11H16.5"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+          />
+        </svg>
+
+      </div>
+
+      <div class="password-modal-heading">
+
+        <h3 data-i18n="changePassword">
+          Change Password
+        </h3>
+
+        <p data-i18n="passwordModalDescription">
+          Ensure your account is using a long, random password to stay secure.
+        </p>
+
+      </div>
+
+      <button
+        type="button"
+        class="password-close-btn"
+        id="passwordCloseBtn"
+        aria-label="Close"
+      >
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+          <path
+            d="M3 3L13 13M13 3L3 13"
+            stroke="currentColor"
+            stroke-width="1.5"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+
+    </div>
+
+    <div class="password-modal-body">
+
+      <div class="form-group">
+
+        <label
+          for="currentPassword"
+          data-i18n="currentPassword"
+        >
+          Current Password
+        </label>
+
+        <div class="password-input-wrap">
+
+          <input
+            type="password"
+            id="currentPassword"
+            placeholder="Enter current password"
+            data-i18n-placeholder="currentPasswordPlaceholder"
+          />
+
+          <button
+            type="button"
+            class="password-toggle-btn"
+            data-target="currentPassword"
+            aria-label="Show password"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M2.5 12C4.3 7.8 7.7 5.5 12 5.5C16.3 5.5 19.7 7.8 21.5 12C19.7 16.2 16.3 18.5 12 18.5C7.7 18.5 4.3 16.2 2.5 12Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label
+          for="newPassword"
+          data-i18n="newPassword"
+        >
+          New Password
+        </label>
+
+        <div class="password-input-wrap">
+
+          <input
+            type="password"
+            id="newPassword"
+            placeholder="Create new password"
+            data-i18n-placeholder="newPasswordPlaceholder"
+          />
+
+          <button
+            type="button"
+            class="password-toggle-btn"
+            data-target="newPassword"
+            aria-label="Show password"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M2.5 12C4.3 7.8 7.7 5.5 12 5.5C16.3 5.5 19.7 7.8 21.5 12C19.7 18.5 16.3 18.5 12 18.5C7.7 18.5 4.3 16.2 2.5 12Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="password-requirements">
+
+        <p
+          class="password-requirements-title"
+          data-i18n="passwordRequirements"
+        >
+          Password Requirements
+        </p>
+
+        <div class="password-requirement">
+
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <circle
+              cx="7"
+              cy="7"
+              r="5.5"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M4.5 7L6 8.5L9.5 5"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span data-i18n="minimumCharacters">
+            Minimum 8 characters
+          </span>
+
+        </div>
+
+        <div class="password-requirement">
+
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <circle
+              cx="7"
+              cy="7"
+              r="5.5"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M4.5 7L6 8.5L9.5 5"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span data-i18n="uppercaseLetter">
+            At least one uppercase letter
+          </span>
+
+        </div>
+
+        <div class="password-requirement">
+
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 14 14"
+            fill="none"
+          >
+            <circle
+              cx="7"
+              cy="7"
+              r="5.5"
+              stroke="currentColor"
+              stroke-width="1"
+            />
+            <path
+              d="M4.5 7L6 8.5L9.5 5"
+              stroke="currentColor"
+              stroke-width="1"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+
+          <span data-i18n="numberOrSymbol">
+            At least one number or symbol
+          </span>
+
+        </div>
+
+      </div>
+
+      <div class="form-group">
+
+        <label
+          for="confirmPassword"
+          data-i18n="confirmNewPassword"
+        >
+          Confirm New Password
+        </label>
+
+        <div class="password-input-wrap">
+
+          <input
+            type="password"
+            id="confirmPassword"
+            placeholder="Confirm new password"
+            data-i18n-placeholder="confirmPasswordPlaceholder"
+          />
+
+          <button
+            type="button"
+            class="password-toggle-btn"
+            data-target="confirmPassword"
+            aria-label="Show password"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+            >
+              <path
+                d="M2.5 12C4.3 7.8 7.7 5.5 12 5.5C16.3 5.5 19.7 7.8 21.5 12C19.7 16.2 16.3 18.5 12 18.5C7.7 18.5 4.3 16.2 2.5 12Z"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+              <circle
+                cx="12"
+                cy="12"
+                r="3"
+                stroke="currentColor"
+                stroke-width="1.5"
+              />
+            </svg>
+          </button>
+
+        </div>
+
+      </div>
+
+      <div
+        class="password-error"
+        id="passwordError"
+      ></div>
+
+      <div class="password-modal-actions">
+
+        <button
+          type="button"
+          class="password-cancel-btn"
+          id="passwordCancelBtn"
+          data-i18n="cancel"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="password-save-btn"
+          id="passwordSaveBtn"
+          data-i18n="updatePassword"
+        >
+          Update Password
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div
+    class="success-modal-overlay"
+    id="successModalOverlay"
+  ></div>
+
+  <div
+    class="success-modal"
+    id="successModal"
+  >
+
+    <div class="success-modal-icon">
+
+      <svg
+        width="42"
+        height="42"
+        viewBox="0 0 42 42"
+        fill="none"
+      >
+
+        <circle
+          cx="21"
+          cy="21"
+          r="18"
+          stroke="#ff6b00"
+          stroke-width="2"
+        />
+
+        <path
+          d="M12.5 21L18 26.5L29.5 14.5"
+          stroke="#ff6b00"
+          stroke-width="2.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+
+      </svg>
+
+    </div>
+
+    <h3 data-i18n="passwordUpdated">
+      Password Updated Successfully
+    </h3>
+
+    <p>
+
+      <span data-i18n="passwordUpdatedDescription">
+        Your account security has been updated.
+      </span>
+
+      <br>
+
+      <span data-i18n="passwordUpdatedDescription2">
+        You can now use your new password to log in.
+      </span>
+
+    </p>
+
+    <button
+      type="button"
+      class="success-done-btn"
+      id="successDoneBtn"
+      data-i18n="done"
+    >
+      Done
+    </button>
+
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
   <script src="../js/script.js"></script>
+
+  <script>
+    const editProfileBtn = document.getElementById("editProfileBtn");
+    const profileInputs = document.querySelectorAll(".profile-input");
+    const profileSuccessMessage = document.getElementById("profileSuccessMessage");
+
+    const passwordModal = document.getElementById("passwordModal");
+    const passwordModalOverlay = document.getElementById("passwordModalOverlay");
+    const changePasswordBtn = document.getElementById("changePasswordBtn");
+    const passwordCloseBtn = document.getElementById("passwordCloseBtn");
+    const passwordCancelBtn = document.getElementById("passwordCancelBtn");
+    const passwordSaveBtn = document.getElementById("passwordSaveBtn");
+    const passwordError = document.getElementById("passwordError");
+
+    const successModal = document.getElementById("successModal");
+    const successModalOverlay = document.getElementById("successModalOverlay");
+    const successDoneBtn = document.getElementById("successDoneBtn");
+
+    let profileEditing = false;
+
+    editProfileBtn.addEventListener("click", function () {
+
+      if (!profileEditing) {
+
+        profileEditing = true;
+
+        profileInputs.forEach(function (input) {
+          input.disabled = false;
+          input.classList.add("editable");
+        });
+
+        editProfileBtn.textContent = "Save Changes";
+        editProfileBtn.classList.add("editing");
+
+        profileSuccessMessage.classList.remove("show");
+
+      } else {
+
+        profileInputs.forEach(function (input) {
+          input.disabled = true;
+          input.classList.remove("editable");
+        });
+
+        profileEditing = false;
+
+        editProfileBtn.textContent = "Edit";
+        editProfileBtn.classList.remove("editing");
+
+        profileSuccessMessage.classList.add("show");
+
+        setTimeout(function () {
+          profileSuccessMessage.classList.remove("show");
+        }, 4000);
+
+      }
+
+    });
+
+    function openPasswordModal() {
+      passwordModal.classList.add("active");
+      passwordModalOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+      passwordError.classList.remove("show");
+      passwordError.textContent = "";
+    }
+
+    function closePasswordModal() {
+      passwordModal.classList.remove("active");
+      passwordModalOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    function openSuccessModal() {
+      successModal.classList.add("active");
+      successModalOverlay.classList.add("active");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeSuccessModal() {
+      successModal.classList.remove("active");
+      successModalOverlay.classList.remove("active");
+      document.body.style.overflow = "";
+    }
+
+    changePasswordBtn.addEventListener("click", openPasswordModal);
+
+    passwordCloseBtn.addEventListener("click", closePasswordModal);
+
+    passwordCancelBtn.addEventListener("click", closePasswordModal);
+
+    passwordModalOverlay.addEventListener("click", closePasswordModal);
+
+    successDoneBtn.addEventListener("click", closeSuccessModal);
+
+    document.querySelectorAll(".password-toggle-btn").forEach(function (button) {
+
+      button.addEventListener("click", function () {
+
+        const targetId = button.getAttribute("data-target");
+        const input = document.getElementById(targetId);
+
+        if (input.type === "password") {
+
+          input.type = "text";
+
+          button.setAttribute("aria-label", "Hide password");
+
+        } else {
+
+          input.type = "password";
+
+          button.setAttribute("aria-label", "Show password");
+
+        }
+
+      });
+
+    });
+
+    passwordSaveBtn.addEventListener("click", function () {
+
+      const currentPassword =
+        document.getElementById("currentPassword").value.trim();
+
+      const newPassword =
+        document.getElementById("newPassword").value.trim();
+
+      const confirmPassword =
+        document.getElementById("confirmPassword").value.trim();
+
+      passwordError.classList.remove("show");
+      passwordError.textContent = "";
+
+      if (!currentPassword || !newPassword || !confirmPassword) {
+        passwordError.textContent =
+          "Please fill in all password fields.";
+        passwordError.classList.add("show");
+        return;
+      }
+
+      if (newPassword !== confirmPassword) {
+        passwordError.textContent =
+          "New password and confirmation password do not match.";
+        passwordError.classList.add("show");
+        return;
+      }
+
+      if (newPassword.length < 8) {
+        passwordError.textContent =
+          "Password must be at least 8 characters.";
+        passwordError.classList.add("show");
+        return;
+      }
+
+      if (!/[A-Z]/.test(newPassword)) {
+        passwordError.textContent =
+          "Password must contain at least one uppercase letter.";
+        passwordError.classList.add("show");
+        return;
+      }
+
+      if (!/[0-9!@#$%^&*]/.test(newPassword)) {
+        passwordError.textContent =
+          "Password must contain at least one number or symbol.";
+        passwordError.classList.add("show");
+        return;
+      }
+
+      document.getElementById("currentPassword").value = "";
+      document.getElementById("newPassword").value = "";
+      document.getElementById("confirmPassword").value = "";
+
+      closePasswordModal();
+
+      setTimeout(function () {
+        openSuccessModal();
+      }, 250);
+
+    });
+  </script>
 
 </body>
 </html>
