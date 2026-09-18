@@ -57,7 +57,6 @@ Project Structure
 │   ├── installment-details.html
 │   ├── settings.html
 │   ├── change-password.html
-│   ├── profile.html
 │   ├── customer_welcome.html
 │   ├── customer_dashboard.html
 │   ├── customer_installment.html
