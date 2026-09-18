@@ -58,5 +58,11 @@ Project Structure
 │   ├── settings.html
 │   ├── change-password.html
 │   ├── profile.html
+│   ├── customer_welcome.html
+│   ├── customer_dashboard.html
+│   ├── customer_installment.html
+│   ├── customer_application.html
+│   ├── customer_settings.html
+│   └── customer_makepayment.html
 └── README.md
 ```
