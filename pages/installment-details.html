@@ -218,15 +218,6 @@
       background: #fffaf6;
     }
 
-    .history-row-clickable {
-      cursor: pointer;
-      transition: background 0.15s ease;
-    }
-
-    .history-row-clickable:hover {
-      background: #f8f9fa;
-    }
-
     .history-status-badge {
       display: inline-flex;
       align-items: center;
@@ -234,6 +225,23 @@
       border-radius: 20px;
       font-size: 11px;
       font-weight: 700;
+    }
+
+    .history-status-btn {
+      border: 0;
+      font-family: inherit;
+      cursor: pointer;
+      transition: box-shadow 0.15s ease, filter 0.15s ease;
+    }
+
+    .history-status-btn:hover {
+      filter: brightness(0.97);
+      box-shadow: 0 0 0 2px rgba(21, 28, 39, 0.08);
+    }
+
+    .history-status-btn:focus-visible {
+      outline: 2px solid #ff6b00;
+      outline-offset: 2px;
     }
 
     .history-status-paid {
@@ -450,76 +458,303 @@
     }
 
     .payment-modal {
-      padding: 28px;
+      --pm-ink: #3b2a23;
+      --pm-muted: #7d6357;
+      --pm-line: #dcc3b3;
+      --pm-brand: #9a4508;
+      --pm-brand-hover: #82390a;
+      --pm-pending-bg: #fbe4d6;
+      --pm-pending-ink: #8a4a1c;
+      --pm-paid-bg: #d6f3df;
+      --pm-paid-ink: #1f9d4d;
+      --pm-preview-bg: #e1f1fb;
+      --pm-preview-border: #b9d9ee;
+      --pm-paid-border: #f1b9ae;
+
+      width: min(720px, calc(100% - 32px));
+      padding: 40px 36px 28px;
+      display: grid;
+      grid-template-columns: 182px minmax(0, 1fr);
+      gap: 44px;
+      color: var(--pm-ink);
+      font-family: "Hanken Grotesk", "Inter", system-ui, sans-serif;
     }
 
-    .payment-header {
-      font-size: 19px;
-      font-weight: 700;
-      color: #151c27;
-      margin-bottom: 8px;
+    .pm-close {
+      position: absolute;
+      top: 22px;
+      right: 24px;
+      width: 32px;
+      height: 32px;
+      display: grid;
+      place-items: center;
+      background: none;
+      border: 0;
+      border-radius: 6px;
+      color: var(--pm-ink);
+      cursor: pointer;
     }
 
-    .payment-desc {
-      color: #7a8088;
-      font-size: 13px;
-      line-height: 1.5;
-      margin-bottom: 22px;
+    .pm-close:hover {
+      background: #f4ece7;
     }
 
-    .payment-badge {
-      display: inline-flex;
-      padding: 6px 10px;
-      border-radius: 20px;
-      background: #e8f7ef;
-      color: #16834b;
-      font-size: 11px;
-      font-weight: 700;
-      margin-bottom: 18px;
+    .pm-preview {
+      align-self: start;
+      background: var(--pm-preview-bg);
+      border: 1px solid var(--pm-preview-border);
+      border-radius: 6px;
+      padding: 18px;
+      aspect-ratio: 182 / 220;
     }
 
-    .payment-divider {
-      height: 1px;
-      background: #e9ebed;
-      margin: 18px 0;
+    .payment-modal.is-done .pm-preview {
+      border-color: var(--pm-paid-border);
     }
 
-    .payment-field {
+    .pm-preview-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 3px;
+      display: block;
+    }
+
+    .pm-receipt {
+      height: 100%;
+      background: #0b57e0;
+      border-radius: 3px;
+      padding: 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      filter: blur(1.4px);
+      overflow: hidden;
+    }
+
+    .pm-receipt-bar {
+      height: 5px;
+      width: 34%;
+      background: rgba(255, 255, 255, 0.35);
+      border-radius: 3px;
+      align-self: center;
+    }
+
+    .pm-receipt-sheet {
+      flex: 1;
+      background: #ffffff;
+      border-radius: 3px;
+      padding: 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .pm-receipt-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #0b57e0;
+      align-self: center;
+    }
+
+    .pm-receipt-ln {
+      height: 4px;
+      background: #b9c6dd;
+      border-radius: 2px;
+    }
+
+    .pm-receipt-ln.c {
+      width: 60%;
+      align-self: center;
+    }
+
+    .pm-receipt-ln.dark {
+      background: #3d4a66;
+    }
+
+    .pm-receipt-row {
       display: flex;
       justify-content: space-between;
-      gap: 15px;
-      margin-bottom: 13px;
+      gap: 8px;
     }
 
-    .payment-field-label {
-      color: #7b8189;
-      font-size: 12px;
+    .pm-receipt-row .pm-receipt-ln {
+      flex: 1;
     }
 
-    .payment-field-value {
-      color: #151c27;
-      font-size: 13px;
+    .pm-receipt-row .pm-receipt-ln.s {
+      flex: 0.45;
+    }
+
+    .pm-receipt-ok {
+      margin-top: auto;
+      background: #b7ecc6;
+      border-radius: 3px;
+      padding: 8px 6px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .pm-receipt-ok .pm-receipt-ln {
+      background: #5fa878;
+    }
+
+    .pm-title {
+      margin: 0 44px 10px 0;
+      font-size: 26px;
       font-weight: 600;
-      text-align: right;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      color: var(--pm-ink);
     }
 
-    .payment-amount {
-      color: #16834b;
-      font-size: 20px;
-      font-weight: 800;
+    .pm-desc {
+      margin: 0 0 18px;
+      max-width: 34ch;
+      color: var(--pm-muted);
+      font-size: 15px;
+      line-height: 1.45;
     }
 
-    .payment-back-btn {
-      width: 100%;
-      height: 42px;
-      margin-top: 12px;
-      border: 0;
-      border-radius: 8px;
-      background: #151c27;
-      color: #ffffff;
-      font-size: 13px;
+    .pm-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .pm-pill svg {
+      flex: none;
+    }
+
+    .pm-pill-pending {
+      background: var(--pm-pending-bg);
+      color: var(--pm-pending-ink);
+    }
+
+    .pm-pill-paid {
+      background: var(--pm-paid-bg);
+      color: var(--pm-paid-ink);
+      min-width: 186px;
+    }
+
+    .pm-rule {
+      border: 0;
+      border-top: 1px solid var(--pm-line);
+      margin: 20px 0 0;
+      opacity: 1;
+    }
+
+    .pm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px 24px;
+      padding: 20px 0;
+      margin: 0;
+    }
+
+    .pm-grid dt {
+      margin-bottom: 6px;
+      color: var(--pm-muted);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .pm-grid dd {
+      margin: 0;
+    }
+
+    .pm-v-name {
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .pm-v-inst {
+      font-size: 20px;
+      font-weight: 500;
+    }
+
+    .pm-v-amt {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+    }
+
+    .pm-v-method {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 15px;
+      font-weight: 500;
+    }
+
+    .pm-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      padding-top: 18px;
+    }
+
+    .pm-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 42px;
+      padding: 0 22px;
+      border: 1px solid var(--pm-line);
+      border-radius: 6px;
+      background: #ffffff;
+      color: var(--pm-ink);
+      font-family: inherit;
+      font-size: 14px;
+      font-weight: 600;
       cursor: pointer;
+      transition: background 0.12s ease, border-color 0.12s ease;
+    }
+
+    .pm-btn:hover {
+      background: #faf5f2;
+      border-color: #c9a793;
+    }
+
+    .pm-btn-primary {
+      background: var(--pm-brand);
+      border-color: var(--pm-brand);
+      color: #ffffff;
+    }
+
+    .pm-btn-primary:hover {
+      background: var(--pm-brand-hover);
+      border-color: var(--pm-brand-hover);
+    }
+
+    .pm-btn-wide {
+      padding: 0 44px;
+    }
+
+    .pm-btn:focus-visible,
+    .pm-close:focus-visible {
+      outline: 3px solid #e2a274;
+      outline-offset: 2px;
+    }
+
+    .pm-btn:disabled {
+      opacity: 0.6;
+      cursor: progress;
+    }
+
+    .payment-modal [hidden] {
+      display: none !important;
     }
 
     .verify-modal {
@@ -612,6 +847,14 @@
       cursor: pointer;
     }
 
+    .side-nav-avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      display: block;
+    }
+
     @media (max-width: 992px) {
       .details-grid {
         grid-template-columns: 1fr;
@@ -654,6 +897,31 @@
       }
     }
 
+    @media (max-width: 640px) {
+      .payment-modal {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        padding: 28px 22px 22px;
+      }
+
+      .pm-preview {
+        width: 150px;
+      }
+
+      .pm-actions {
+        flex-direction: column-reverse;
+      }
+
+      .pm-btn,
+      .pm-btn-wide {
+        width: 100%;
+      }
+
+      .pm-grid {
+        gap: 18px 16px;
+      }
+    }
+
     @media (max-width: 480px) {
       .details-card {
         padding: 18px;
@@ -663,9 +931,16 @@
         grid-template-columns: 1fr;
       }
 
-      .payment-modal,
       .verify-modal {
         padding: 22px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .payment-modal,
+      .verify-modal,
+      .details-modal-overlay {
+        transition: none;
       }
     }
   </style>
@@ -679,10 +954,10 @@
 
       <div class="side-nav-brand">
         <div class="side-nav-avatar">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-            <rect width="24" height="24" rx="12" fill="#FF6B00"/>
-            <path d="M12 6L18 10V18H6V10L12 6Z" fill="white"/>
-          </svg>
+          <img
+            src="../images/mos_logo.png"
+            alt="Maryanne's Online Shop Logo"
+          >
         </div>
 
         <div class="side-nav-brand-text">
@@ -902,7 +1177,7 @@
                   <div class="id-doc-thumb">
                     <img
                       id="idThumbImage"
-                      src="../images/sample-id.jpg"
+                      src="../images/gov_id_front.png"
                       alt="Government ID"
                     >
                   </div>
@@ -914,7 +1189,7 @@
                   <div class="id-doc-thumb">
                     <img
                       id="selfieThumbImage"
-                      src="../images/sample-selfie.jpg"
+                      src="../images/gov_id_back.png"
                       alt="Customer selfie"
                     >
                   </div>
@@ -1084,58 +1359,158 @@
   <div
     class="payment-modal"
     id="paymentModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pmConfirmTitle"
   >
 
     <button
       type="button"
-      class="details-modal-close"
+      class="pm-close"
       id="paymentModalCloseBtn"
       aria-label="Close"
     >
-      &times;
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round">
+        <path d="M5 5l14 14M19 5L5 19"/>
+      </svg>
     </button>
 
-    <h2 class="payment-header">Payment Confirmed</h2>
+    <div class="pm-preview" aria-label="Payment receipt">
 
-    <p class="payment-desc">
-      This installment payment has been recorded in the payment history.
-    </p>
+      <img
+        class="pm-preview-img"
+        id="pmReceiptImg"
+        alt="Payment receipt"
+        hidden
+      >
 
-    <span class="payment-badge">Paid</span>
+      <div class="pm-receipt" id="pmReceiptMock">
+        <div class="pm-receipt-bar"></div>
 
-    <div class="payment-divider"></div>
+        <div class="pm-receipt-sheet">
+          <div class="pm-receipt-dot"></div>
+          <div class="pm-receipt-ln c"></div>
+          <div class="pm-receipt-ln c" style="width:40%"></div>
 
-    <div class="payment-field">
-      <span class="payment-field-label">Customer</span>
-      <span
-        class="payment-field-value"
-        id="paymentModalCustomer"
-      ></span>
+          <div class="pm-receipt-row">
+            <div class="pm-receipt-ln s"></div>
+            <div class="pm-receipt-ln s"></div>
+          </div>
+
+          <div class="pm-receipt-row">
+            <div class="pm-receipt-ln dark s"></div>
+            <div class="pm-receipt-ln dark s"></div>
+          </div>
+
+          <div class="pm-receipt-row">
+            <div class="pm-receipt-ln s"></div>
+            <div class="pm-receipt-ln"></div>
+          </div>
+
+          <div class="pm-receipt-ok">
+            <div class="pm-receipt-ln"></div>
+            <div class="pm-receipt-ln" style="width:70%"></div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="payment-field">
-      <span class="payment-field-label">Installment</span>
-      <span
-        class="payment-field-value"
-        id="paymentModalInstallment"
-      ></span>
-    </div>
+    <div>
 
-    <div class="payment-field">
-      <span class="payment-field-label">Amount Paid</span>
-      <span
-        class="payment-field-value payment-amount"
-        id="paymentModalAmount"
-      ></span>
-    </div>
+      <section id="pmStateConfirm">
+        <h2 class="pm-title" id="pmConfirmTitle">Confirm Payment</h2>
 
-    <button
-      type="button"
-      class="payment-back-btn"
-      id="paymentModalBackBtn"
-    >
-      Back to Details
-    </button>
+        <p class="pm-desc">
+          Please verify the details below before confirming the payment.
+        </p>
+
+        <span class="pm-pill pm-pill-pending">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          Pending verification
+        </span>
+      </section>
+
+      <section id="pmStateDone" hidden>
+        <h2 class="pm-title">Payment Confirmed</h2>
+
+        <p class="pm-desc">
+          Payment has been verified and confirmed successfully.
+        </p>
+
+        <span class="pm-pill pm-pill-paid">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12h.01M12 12h.01M16 12h.01" stroke-width="3" stroke-linecap="round"/>
+          </svg>
+          Paid
+        </span>
+      </section>
+
+      <hr class="pm-rule">
+
+      <dl class="pm-grid">
+
+        <div>
+          <dt>Customer</dt>
+          <dd class="pm-v-name" id="pmCustomer"></dd>
+        </div>
+
+        <div>
+          <dt>Installment</dt>
+          <dd class="pm-v-inst" id="pmInstallment"></dd>
+        </div>
+
+        <div>
+          <dt>Amount submitted</dt>
+          <dd class="pm-v-amt" id="pmAmount"></dd>
+        </div>
+
+        <div>
+          <dt>Payment method</dt>
+          <dd class="pm-v-method">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round">
+              <rect x="3" y="6" width="18" height="13" rx="2"/>
+              <path d="M3 10h18M16 14.5h2"/>
+            </svg>
+            <span id="pmMethod"></span>
+          </dd>
+        </div>
+
+      </dl>
+
+      <hr class="pm-rule" style="margin-top:0">
+
+      <div class="pm-actions" id="pmActionsConfirm">
+
+        <button type="button" class="pm-btn" id="pmRejectBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M9 9l6 6M15 9l-6 6" stroke-linecap="round"/>
+          </svg>
+          Reject
+        </button>
+
+        <button type="button" class="pm-btn pm-btn-primary" id="pmConfirmBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="9"/>
+            <path d="M8 12.5l3 3 5-6" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          Confirm Payment
+        </button>
+
+      </div>
+
+      <div class="pm-actions" id="pmActionsDone" hidden>
+        <button type="button" class="pm-btn pm-btn-wide" id="paymentModalBackBtn">
+          Back
+        </button>
+      </div>
+
+    </div>
 
   </div>
 
@@ -1174,7 +1549,7 @@
         <img
           id="verifyIdImage"
           class="verify-modal-image"
-          src="../images/sample-id.jpg"
+          src="../images/gov_id_front.png"
           alt="Government ID"
         >
       </div>
@@ -1185,7 +1560,7 @@
         <img
           id="verifySelfieImage"
           class="verify-modal-image"
-          src="../images/sample-selfie.jpg"
+          src="../images/gov_id_back.png"
           alt="Customer selfie"
         >
       </div>
@@ -1247,8 +1622,8 @@
         balance: 17000,
         paidCount: 2,
         totalCount: 12,
-        idImage: "../images/sample-id.jpg",
-        selfieImage: "../images/sample-selfie.jpg",
+        idImage: "../images/gov_id_front.png",
+        selfieImage: "../images/gov_id_back.png",
         idNumber: "1234-5678-9012-3456",
         dob: "January 3, 2007",
         history: [
@@ -1283,8 +1658,8 @@
         balance: 15300,
         paidCount: 3,
         totalCount: 4,
-        idImage: "../images/sample-id.jpg",
-        selfieImage: "../images/sample-selfie.jpg",
+        idImage: "../images/gov_id_front.png",
+        selfieImage: "../images/gov_id_back.png",
         idNumber: "2345-6789-0123-4567",
         dob: "March 14, 2004",
         history: [
@@ -1311,8 +1686,8 @@
         balance: 1700,
         paidCount: 11,
         totalCount: 12,
-        idImage: "../images/sample-id.jpg",
-        selfieImage: "../images/sample-selfie.jpg",
+        idImage: "../images/gov_id_front.png",
+        selfieImage: "../images/gov_id_back.png",
         idNumber: "3456-7890-1234-5678",
         dob: "July 2, 2003",
         history: [
@@ -1347,8 +1722,8 @@
         balance: 13600,
         paidCount: 4,
         totalCount: 12,
-        idImage: "../images/sample-id.jpg",
-        selfieImage: "../images/sample-selfie.jpg",
+        idImage: "../images/gov_id_front.png",
+        selfieImage: "../images/gov_id_back.png",
         idNumber: "4567-8901-2345-6789",
         dob: "November 9, 2001",
         history: [
@@ -1376,8 +1751,8 @@
         balance: 17000,
         paidCount: 2,
         totalCount: 12,
-        idImage: "../images/sample-id.jpg",
-        selfieImage: "../images/sample-selfie.jpg",
+        idImage: "../images/gov_id_front.png",
+        selfieImage: "../images/gov_id_back.png",
         idNumber: "5678-9012-3456-7890",
         dob: "February 20, 2005",
         history: [
@@ -1412,25 +1787,30 @@
 
     document.getElementById("planStatus").textContent = plan.status;
 
-    document.getElementById("planTotal").textContent =
-      formatPeso(plan.total);
+    function renderPlanSummary() {
 
-    document.getElementById("planPaid").textContent =
-      formatPeso(plan.paid);
+      document.getElementById("planTotal").textContent =
+        formatPeso(plan.total);
 
-    document.getElementById("planBalance").textContent =
-      formatPeso(plan.balance);
+      document.getElementById("planPaid").textContent =
+        formatPeso(plan.paid);
 
-    document.getElementById("planPaidLabel").textContent =
-      "Amount Paid (" +
-      plan.paidCount +
-      "/" +
-      plan.totalCount +
-      ") | Frequency: " +
-      plan.frequencyLabel;
+      document.getElementById("planBalance").textContent =
+        formatPeso(plan.balance);
 
-    document.getElementById("planProgressFill").style.width =
-      Math.round((plan.paidCount / plan.totalCount) * 100) + "%";
+      document.getElementById("planPaidLabel").textContent =
+        "Amount Paid (" +
+        plan.paidCount +
+        "/" +
+        plan.totalCount +
+        ") | Frequency: " +
+        plan.frequencyLabel;
+
+      document.getElementById("planProgressFill").style.width =
+        Math.round((plan.paidCount / plan.totalCount) * 100) + "%";
+    }
+
+    renderPlanSummary();
 
     document.getElementById("historyProductTitle").textContent =
       plan.product;
@@ -1495,18 +1875,25 @@
             ? "history-row-pending"
             : "";
 
-        if (row.status === "paid") {
-          tr.classList.add(
-            "history-row-clickable"
-          );
+        const isClickable =
+          row.status === "paid" ||
+          row.status === "pending";
 
-          tr.addEventListener(
-            "click",
-            function() {
-              openPaymentModal(row);
-            }
-          );
-        }
+        const badge = isClickable
+          ? "<button type=\"button\" class=\"history-status-badge history-status-btn history-status-" +
+            row.status +
+            "\" aria-label=\"" +
+            statusLabels[row.status] +
+            " payment, installment " +
+            row.num +
+            "\">" +
+            statusLabels[row.status] +
+            "</button>"
+          : "<span class=\"history-status-badge history-status-" +
+            row.status +
+            "\">" +
+            statusLabels[row.status] +
+            "</span>";
 
         tr.innerHTML =
           "<td>#" +
@@ -1521,11 +1908,17 @@
           formatPeso(row.amount) +
           "</td>" +
 
-          "<td><span class=\"history-status-badge history-status-" +
-          row.status +
-          "\">" +
-          statusLabels[row.status] +
-          "</span></td>";
+          "<td>" + badge + "</td>";
+
+        if (isClickable) {
+          tr.querySelector(".history-status-btn")
+            .addEventListener(
+              "click",
+              function() {
+                openPaymentModal(row);
+              }
+            );
+        }
 
         tbody.appendChild(tr);
       });
@@ -1580,22 +1973,68 @@
         "paymentModalOverlay"
       );
 
+    let activeRow = null;
+
+    function setPaymentModalState(state) {
+
+      const isDone = state === "done";
+
+      document.getElementById("pmStateConfirm").hidden = isDone;
+      document.getElementById("pmActionsConfirm").hidden = isDone;
+      document.getElementById("pmStateDone").hidden = !isDone;
+      document.getElementById("pmActionsDone").hidden = !isDone;
+
+      paymentModal.classList.toggle("is-done", isDone);
+
+      paymentModal.setAttribute(
+        "aria-labelledby",
+        isDone ? "pmDoneTitle" : "pmConfirmTitle"
+      );
+
+      (isDone
+        ? document.getElementById("paymentModalBackBtn")
+        : document.getElementById("pmConfirmBtn")
+      ).focus();
+    }
+
     function openPaymentModal(row) {
 
+      activeRow = row;
+
       document.getElementById(
-        "paymentModalCustomer"
+        "pmCustomer"
       ).textContent =
         plan.customerNameShort;
 
       document.getElementById(
-        "paymentModalInstallment"
+        "pmInstallment"
       ).textContent =
         "Installment #" + row.num;
 
       document.getElementById(
-        "paymentModalAmount"
+        "pmAmount"
       ).textContent =
         formatPeso(row.amount);
+
+      document.getElementById(
+        "pmMethod"
+      ).textContent =
+        row.method || plan.method || "GCASH";
+
+      const receiptImg =
+        document.getElementById("pmReceiptImg");
+
+      const receiptMock =
+        document.getElementById("pmReceiptMock");
+
+      if (row.receiptImage) {
+        receiptImg.src = row.receiptImage;
+        receiptImg.hidden = false;
+        receiptMock.hidden = true;
+      } else {
+        receiptImg.hidden = true;
+        receiptMock.hidden = false;
+      }
 
       paymentModal.classList.add(
         "active"
@@ -1603,6 +2042,10 @@
 
       paymentModalOverlay.classList.add(
         "active"
+      );
+
+      setPaymentModalState(
+        row.status === "paid" ? "done" : "confirm"
       );
     }
 
@@ -1615,7 +2058,45 @@
       paymentModalOverlay.classList.remove(
         "active"
       );
+
+      activeRow = null;
     }
+
+    function confirmPayment() {
+
+      if (!activeRow || activeRow.status !== "pending") {
+        return;
+      }
+
+      activeRow.status = "paid";
+
+      plan.paid += activeRow.amount;
+      plan.balance = Math.max(0, plan.balance - activeRow.amount);
+      plan.paidCount += 1;
+
+      renderPlanSummary();
+      renderHistoryTable();
+
+      setPaymentModalState("done");
+    }
+
+    function rejectPayment() {
+      closePaymentModal();
+    }
+
+    document.getElementById(
+      "pmConfirmBtn"
+    ).addEventListener(
+      "click",
+      confirmPayment
+    );
+
+    document.getElementById(
+      "pmRejectBtn"
+    ).addEventListener(
+      "click",
+      rejectPayment
+    );
 
     document.getElementById(
       "paymentModalCloseBtn"
@@ -1635,6 +2116,20 @@
       "click",
       closePaymentModal
     );
+
+    document.addEventListener(
+      "keydown",
+      function(e) {
+        if (
+          e.key === "Escape" &&
+          paymentModal.classList.contains("active")
+        ) {
+          closePaymentModal();
+        }
+      }
+    );
+
+    document.querySelector("#pmStateDone .pm-title").id = "pmDoneTitle";
 
     const verifyModal =
       document.getElementById(
