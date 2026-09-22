@@ -30,6 +30,14 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .customer-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 3px;
         }
 
         .customer-page-icon {
@@ -129,27 +137,12 @@
 
             <div class="side-nav-brand">
 
-                <div class="side-nav-avatar">
+                <div class="side-nav-avatar customer-brand-icon">
 
-                    <svg
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
+                    <img
+                        src="../images/mos_logo.png"
+                        alt="M.O.S Logo"
                     >
-                        <rect
-                            width="24"
-                            height="24"
-                            rx="12"
-                            fill="#FF6B00"
-                        />
-
-                        <path
-                            d="M12 6L18 10V18H6V10L12 6Z"
-                            fill="white"
-                        />
-                    </svg>
 
                 </div>
 
@@ -577,7 +570,7 @@
 
 
                             <a
-                                href="customer_makepayment.html"
+                                href="customer_installment.html"
                                 style="
                                     display: inline-flex;
                                     align-items: center;
@@ -616,7 +609,7 @@
                                     />
                                 </svg>
 
-                                Make Payment
+                                Pay Installments
 
                             </a>
 
@@ -947,7 +940,7 @@
 
 
                             <a
-                                href="customer_makepayment.html"
+                                href="customer_installment.html"
                                 class="quick-action"
                             >
 
@@ -990,7 +983,7 @@
                                 <span class="quick-action-text">
 
                                     <span class="quick-action-title">
-                                        Make Payment
+                                        Pay Installments
                                     </span>
 
                                     <span class="quick-action-desc">

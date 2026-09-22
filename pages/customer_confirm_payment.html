@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Scan / Pay — Maryanne's Online Shop</title>
+
+<link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+    href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
+    rel="stylesheet"
+>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+
+    .customer-brand-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 12px;
+        background: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        overflow: hidden;
+    }
+
+    .customer-brand-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        padding: 3px;
+        display: block;
+    }
+
+    .confirm-page-title {
+        margin: 0 0 6px;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 26px;
+        font-weight: 700;
+        color: #151c27;
+    }
+
+    .confirm-page-subtitle {
+        margin: 0 0 24px;
+        font-size: 14px;
+        color: #718096;
+    }
+
+    .confirm-panel {
+        padding: 28px;
+    }
+
+    .confirm-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 36px;
+    }
+
+    .amount-box {
+        background: #f6f7f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 22px;
+    }
+
+    .amount-label {
+        margin: 0 0 6px;
+        font-size: 11.5px;
+        font-weight: 700;
+        letter-spacing: .06em;
+        color: #767c85;
+        text-transform: uppercase;
+    }
+
+    .amount-value {
+        margin: 0;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 28px;
+        font-weight: 800;
+        color: #e85d00;
+    }
+
+    .qr-frame {
+        width: 190px;
+        height: 190px;
+        margin: 0 auto 20px;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #fff;
+    }
+
+    .qr-frame svg {
+        width: 100%;
+        height: 100%;
+    }
+
+    .qr-instruction-title {
+        margin: 0 0 8px;
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        color: #151c27;
+    }
+
+    .qr-instruction-desc {
+        max-width: 390px;
+        margin: 0 auto;
+        text-align: center;
+        font-size: 13px;
+        line-height: 1.55;
+        color: #767c85;
+    }
+
+    .section-heading {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 16px;
+    }
+
+    .section-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 10px;
+        background: #fff0e6;
+        color: #ff6b00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .section-heading-text {
+        margin: 0;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 16px;
+        font-weight: 700;
+        color: #151c27;
+    }
+
+    .section-heading-desc {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #767c85;
+    }
+
+    .dropzone {
+        border: 1.5px dashed #ff6b00;
+        background: #fff1e6;
+        border-radius: 12px;
+        padding: 36px 20px;
+        text-align: center;
+        cursor: pointer;
+        transition: background .15s ease, border-color .15s ease;
+    }
+
+    .dropzone:hover,
+    .dropzone.dragover {
+        background: #ffe6d2;
+        border-color: #e85d00;
+    }
+
+    .dropzone-icon {
+        width: 42px;
+        height: 42px;
+        margin: 0 auto 12px;
+        color: #ff6b00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .dropzone-text {
+        margin: 0;
+        font-size: 14px;
+        font-weight: 600;
+        color: #151c27;
+    }
+
+    .dropzone-sub {
+        margin: 4px 0 0;
+        font-size: 13px;
+        color: #767c85;
+    }
+
+    .choose-link {
+        color: #e85d00;
+        font-weight: 700;
+    }
+
+    .file-row {
+        display: none;
+        align-items: center;
+        gap: 12px;
+        background: #f6f7f9;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 12px 14px;
+        margin-top: 14px;
+    }
+
+    .file-row.visible {
+        display: flex;
+    }
+
+    .file-thumb {
+        width: 38px;
+        height: 38px;
+        border-radius: 8px;
+        background: #fff0e6;
+        color: #e85d00;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+    }
+
+    .file-meta {
+        flex: 1;
+        min-width: 0;
+    }
+
+    .file-name {
+        margin: 0;
+        font-size: 13px;
+        font-weight: 600;
+        color: #151c27;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
+
+    .file-size {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #767c85;
+    }
+
+    .file-delete {
+        width: 32px;
+        height: 32px;
+        border: none;
+        border-radius: 8px;
+        background: transparent;
+        color: #d64545;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        flex-shrink: 0;
+    }
+
+    .file-delete:hover {
+        background: #fdeaea;
+    }
+
+    .payment-note {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        margin-top: 16px;
+        padding: 13px 14px;
+        border-radius: 9px;
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+    }
+
+    .payment-note-icon {
+        width: 18px;
+        height: 18px;
+        color: #718096;
+        flex-shrink: 0;
+        margin-top: 1px;
+    }
+
+    .payment-note-text {
+        margin: 0;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #718096;
+    }
+
+    .upload-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 22px 0;
+    }
+
+    .form-actions {
+        display: flex;
+        gap: 12px;
+    }
+
+    .btn-back {
+        flex: 1;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: 1px solid #e2e8f0;
+        background: #fff;
+        color: #151c27;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+    }
+
+    .btn-back:hover {
+        background: #f8fafb;
+    }
+
+    .btn-submit {
+        flex: 1.4;
+        padding: 12px 16px;
+        border-radius: 8px;
+        border: none;
+        background: #ff6b00;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .btn-submit:hover {
+        background: #e85d00;
+    }
+
+    .btn-submit:disabled {
+        background: #f0b487;
+        cursor: not-allowed;
+    }
+
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(21, 28, 39, 0.55);
+        display: none;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        z-index: 1000;
+    }
+
+    .modal-overlay.open {
+        display: flex;
+    }
+
+    .modal-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 32px;
+        background: #fff;
+        border-radius: 16px;
+        text-align: center;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, .25);
+    }
+
+    .modal-check {
+        width: 56px;
+        height: 56px;
+        margin: 0 auto 18px;
+        border-radius: 50%;
+        background: #1fa855;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-title {
+        margin: 0 0 8px;
+        font-family: "Hanken Grotesk", sans-serif;
+        font-size: 20px;
+        font-weight: 800;
+        color: #151c27;
+    }
+
+    .modal-desc {
+        margin: 0 0 22px;
+        font-size: 14px;
+        line-height: 1.55;
+        color: #767c85;
+    }
+
+    .modal-details {
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 4px 16px;
+        text-align: left;
+        margin-bottom: 22px;
+    }
+
+    .modal-detail-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 15px;
+        padding: 12px 0;
+        border-bottom: 1px solid #e2e8f0;
+        font-size: 13px;
+    }
+
+    .modal-detail-row:last-child {
+        border-bottom: none;
+    }
+
+    .modal-detail-label {
+        color: #767c85;
+    }
+
+    .modal-detail-value {
+        color: #151c27;
+        font-weight: 700;
+    }
+
+    .status-chip {
+        background: #fff3d6;
+        color: #a9740a;
+        font-size: 11px;
+        font-weight: 700;
+        padding: 5px 10px;
+        border-radius: 999px;
+    }
+
+    .modal-btn {
+        width: 100%;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 8px;
+        background: #ff6b00;
+        color: #fff;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+    }
+
+    .modal-btn:hover {
+        background: #e85d00;
+    }
+
+    @media (max-width: 1000px) {
+
+        .confirm-grid {
+            grid-template-columns: 1fr;
+            gap: 30px;
+        }
+
+    }
+
+    @media (max-width: 899.98px) {
+
+        .page-confirm-payment .side-nav {
+            display: none;
+        }
+
+    }
+
+    @media (max-width: 576px) {
+
+        .confirm-page-title {
+            font-size: 23px;
+        }
+
+        .confirm-panel {
+            padding: 20px;
+        }
+
+        .form-actions {
+            flex-direction: column;
+        }
+
+        .qr-frame {
+            width: 175px;
+            height: 175px;
+        }
+
+    }
+
+</style>
+
+</head>
+
+
+<body class="page-dashboard page-confirm-payment">
+
+
+<div class="dashboard-shell">
+
+
+    <aside class="side-nav">
+
+
+        <div class="side-nav-brand">
+
+            <div class="side-nav-avatar customer-brand-icon">
+
+                <img
+                    src="../images/mos_logo.png"
+                    alt="M.O.S Logo"
+                >
+
+            </div>
+
+
+            <div class="side-nav-brand-text">
+
+                <p class="side-nav-title">
+                    M.O.S
+                </p>
+
+                <p class="side-nav-subtitle">
+                    Installment System
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <nav class="side-nav-list">
+
+
+            <a
+                href="customer_dashboard.html"
+                class="side-nav-item"
+            >
+
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                >
+
+                    <rect
+                        x="2"
+                        y="2"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                    <rect
+                        x="10"
+                        y="2"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                    <rect
+                        x="2"
+                        y="10"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                    <rect
+                        x="10"
+                        y="10"
+                        width="6"
+                        height="6"
+                        rx="1"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                </svg>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </a>
+
+
+            <a
+                href="customer_installment.html"
+                class="side-nav-item active"
+            >
+
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                >
+
+                    <rect
+                        x="3"
+                        y="2"
+                        width="12"
+                        height="14"
+                        rx="1.5"
+                        stroke="white"
+                        stroke-width="1.4"
+                    />
+
+                    <path
+                        d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5"
+                        stroke="white"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+                <span>
+                    My Installment
+                </span>
+
+            </a>
+
+
+            <a
+                href="customer_application.html"
+                class="side-nav-item"
+            >
+
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                >
+
+                    <rect
+                        x="2"
+                        y="4"
+                        width="14"
+                        height="10"
+                        rx="1.5"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                    <path
+                        d="M2 7.5H16"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                </svg>
+
+                <span>
+                    Application
+                </span>
+
+            </a>
+
+
+            <a
+                href="customer_settings.html"
+                class="side-nav-item"
+            >
+
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                >
+
+                    <circle
+                        cx="9"
+                        cy="9"
+                        r="2.5"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                    />
+
+                    <path
+                        d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+                <span>
+                    Settings
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <div class="side-nav-footer">
+
+            <button
+                type="button"
+                class="side-nav-logout"
+                id="logoutBtn"
+            >
+
+                <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 18 18"
+                    fill="none"
+                >
+
+                    <path
+                        d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                    />
+
+                    <path
+                        d="M11.5 12.5L15 9L11.5 5.5"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+
+                    <path
+                        d="M15 9H6.5"
+                        stroke="rgba(207,230,242,0.7)"
+                        stroke-width="1.4"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+                <span>
+                    Logout
+                </span>
+
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <div class="dashboard-main">
+
+
+        <header class="dashboard-header">
+
+            <h1 class="dashboard-title">
+
+                My Installment
+
+                <span style="color:#ff6b00; opacity:.6; margin:0 8px;">
+                    &gt;
+                </span>
+
+                Make Payment
+
+            </h1>
+
+        </header>
+
+
+        <main class="dashboard-content">
+
+
+            <h2 class="confirm-page-title">
+                Scan / Pay
+            </h2>
+
+
+            <p class="confirm-page-subtitle">
+                Complete your installment payment securely.
+            </p>
+
+
+            <div class="panel confirm-panel">
+
+
+                <div class="confirm-grid">
+
+
+                    <section>
+
+
+                        <div class="amount-box">
+
+                            <p class="amount-label">
+                                Total Amount Due
+                            </p>
+
+                            <p class="amount-value">
+                                ₱1,700.00
+                            </p>
+
+                        </div>
+
+
+                        <div class="qr-frame">
+
+                            <svg
+                                viewBox="0 0 100 100"
+                                xmlns="http://www.w3.org/2000/svg"
+                                aria-label="Payment QR code"
+                            >
+
+                                <rect
+                                    width="100"
+                                    height="100"
+                                    fill="#ffffff"
+                                />
+
+
+                                <g fill="#151c27">
+
+                                    <rect x="6" y="6" width="22" height="22"/>
+                                    <rect x="10" y="10" width="14" height="14" fill="#ffffff"/>
+                                    <rect x="14" y="14" width="6" height="6"/>
+
+                                    <rect x="72" y="6" width="22" height="22"/>
+                                    <rect x="76" y="10" width="14" height="14" fill="#ffffff"/>
+                                    <rect x="80" y="14" width="6" height="6"/>
+
+                                    <rect x="6" y="72" width="22" height="22"/>
+                                    <rect x="10" y="76" width="14" height="14" fill="#ffffff"/>
+                                    <rect x="14" y="80" width="6" height="6"/>
+
+                                    <rect x="34" y="6" width="4" height="4"/>
+                                    <rect x="42" y="6" width="4" height="4"/>
+                                    <rect x="54" y="6" width="4" height="4"/>
+                                    <rect x="62" y="6" width="4" height="4"/>
+
+                                    <rect x="34" y="14" width="4" height="4"/>
+                                    <rect x="50" y="14" width="4" height="4"/>
+                                    <rect x="62" y="14" width="4" height="4"/>
+
+                                    <rect x="34" y="22" width="4" height="4"/>
+                                    <rect x="46" y="22" width="4" height="4"/>
+                                    <rect x="58" y="22" width="4" height="4"/>
+
+                                    <rect x="6" y="34" width="4" height="4"/>
+                                    <rect x="14" y="34" width="4" height="4"/>
+                                    <rect x="22" y="34" width="4" height="4"/>
+                                    <rect x="34" y="34" width="4" height="4"/>
+                                    <rect x="42" y="34" width="4" height="4"/>
+                                    <rect x="54" y="34" width="4" height="4"/>
+                                    <rect x="72" y="34" width="4" height="4"/>
+                                    <rect x="84" y="34" width="4" height="4"/>
+
+                                    <rect x="10" y="42" width="4" height="4"/>
+                                    <rect x="34" y="42" width="4" height="4"/>
+                                    <rect x="50" y="42" width="4" height="4"/>
+                                    <rect x="66" y="42" width="4" height="4"/>
+                                    <rect x="78" y="42" width="4" height="4"/>
+                                    <rect x="90" y="42" width="4" height="4"/>
+
+                                    <rect x="6" y="50" width="4" height="4"/>
+                                    <rect x="18" y="50" width="4" height="4"/>
+                                    <rect x="42" y="50" width="4" height="4"/>
+                                    <rect x="58" y="50" width="4" height="4"/>
+                                    <rect x="72" y="50" width="4" height="4"/>
+
+                                    <rect x="14" y="58" width="4" height="4"/>
+                                    <rect x="26" y="58" width="4" height="4"/>
+                                    <rect x="38" y="58" width="4" height="4"/>
+                                    <rect x="62" y="58" width="4" height="4"/>
+                                    <rect x="84" y="58" width="4" height="4"/>
+
+                                    <rect x="6" y="66" width="4" height="4"/>
+                                    <rect x="22" y="66" width="4" height="4"/>
+                                    <rect x="46" y="66" width="4" height="4"/>
+                                    <rect x="54" y="66" width="4" height="4"/>
+                                    <rect x="78" y="66" width="4" height="4"/>
+                                    <rect x="90" y="66" width="4" height="4"/>
+
+                                    <rect x="34" y="74" width="4" height="4"/>
+                                    <rect x="42" y="74" width="4" height="4"/>
+                                    <rect x="58" y="74" width="4" height="4"/>
+                                    <rect x="70" y="74" width="4" height="4"/>
+                                    <rect x="82" y="74" width="4" height="4"/>
+
+                                    <rect x="38" y="82" width="4" height="4"/>
+                                    <rect x="50" y="82" width="4" height="4"/>
+                                    <rect x="62" y="82" width="4" height="4"/>
+                                    <rect x="74" y="82" width="4" height="4"/>
+                                    <rect x="86" y="82" width="4" height="4"/>
+
+                                    <rect x="34" y="90" width="4" height="4"/>
+                                    <rect x="46" y="90" width="4" height="4"/>
+                                    <rect x="58" y="90" width="4" height="4"/>
+                                    <rect x="70" y="90" width="4" height="4"/>
+                                    <rect x="82" y="90" width="4" height="4"/>
+
+                                </g>
+
+
+                                <rect
+                                    x="38"
+                                    y="42"
+                                    width="24"
+                                    height="16"
+                                    rx="2"
+                                    fill="#ffffff"
+                                    stroke="#e2e8f0"
+                                />
+
+
+                                <text
+                                    x="50"
+                                    y="52.5"
+                                    text-anchor="middle"
+                                    font-family="Inter, sans-serif"
+                                    font-size="6.5"
+                                    font-weight="700"
+                                    fill="#151c27"
+                                >
+                                    Pay
+                                </text>
+
+                            </svg>
+
+                        </div>
+
+
+                        <p class="qr-instruction-title">
+                            Scan the QR code to complete your payment.
+                        </p>
+
+
+                        <p class="qr-instruction-desc">
+                            Open your preferred banking or e-wallet app, scan the code above, and input the exact amount.
+                        </p>
+
+
+                    </section>
+
+
+                    <section>
+
+
+                        <div class="section-heading">
+
+
+                            <div class="section-icon">
+
+                                <svg
+                                    width="19"
+                                    height="19"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+
+                                    <polyline points="17 8 12 3 7 8"/>
+
+                                    <line
+                                        x1="12"
+                                        y1="3"
+                                        x2="12"
+                                        y2="15"
+                                    />
+
+                                </svg>
+
+                            </div>
+
+
+                            <div>
+
+                                <h3 class="section-heading-text">
+                                    Upload Proof of Payment
+                                </h3>
+
+                                <p class="section-heading-desc">
+                                    Upload a screenshot or receipt after paying.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div
+                            class="dropzone"
+                            id="dropzone"
+                        >
+
+                            <div class="dropzone-icon">
+
+                                <svg
+                                    width="34"
+                                    height="34"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="1.8"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path d="M7 18a4.5 4.5 0 0 1-1-8.9A5 5 0 0 1 16 8h.5a3.5 3.5 0 0 1 0 7H16"/>
+
+                                    <path d="M12 12v9"/>
+
+                                    <path d="m9 15 3-3 3 3"/>
+
+                                </svg>
+
+                            </div>
+
+
+                            <p class="dropzone-text">
+                                Drag and drop your receipt here
+                            </p>
+
+
+                            <p class="dropzone-sub">
+
+                                or
+
+                                <span class="choose-link">
+                                    Choose File
+                                </span>
+
+                            </p>
+
+
+                            <input
+                                type="file"
+                                id="fileInput"
+                                accept="image/*,.pdf"
+                                hidden
+                            >
+
+                        </div>
+
+
+                        <div
+                            class="file-row"
+                            id="fileRow"
+                        >
+
+                            <div class="file-thumb">
+
+                                <svg
+                                    width="18"
+                                    height="18"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <rect
+                                        x="3"
+                                        y="3"
+                                        width="18"
+                                        height="18"
+                                        rx="2"
+                                    />
+
+                                    <circle
+                                        cx="9"
+                                        cy="9"
+                                        r="2"
+                                    />
+
+                                    <path d="m21 15-5-5L5 21"/>
+
+                                </svg>
+
+                            </div>
+
+
+                            <div class="file-meta">
+
+                                <p
+                                    class="file-name"
+                                    id="fileName"
+                                >
+                                    uploaded_receipt.png
+                                </p>
+
+                                <p
+                                    class="file-size"
+                                    id="fileSize"
+                                >
+                                    1.2 MB
+                                </p>
+
+                            </div>
+
+
+                            <button
+                                type="button"
+                                class="file-delete"
+                                id="fileDelete"
+                                aria-label="Remove file"
+                            >
+
+                                <svg
+                                    width="17"
+                                    height="17"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path d="M3 6h18"/>
+
+                                    <path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/>
+
+                                    <path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>
+
+                                    <path d="M10 11v6M14 11v6"/>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+
+                        <div class="payment-note">
+
+                            <svg
+                                class="payment-note-icon"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="currentColor"
+                                stroke-width="1.8"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            >
+
+                                <circle
+                                    cx="12"
+                                    cy="12"
+                                    r="9"
+                                />
+
+                                <line
+                                    x1="12"
+                                    y1="10"
+                                    x2="12"
+                                    y2="16"
+                                />
+
+                                <line
+                                    x1="12"
+                                    y1="7"
+                                    x2="12"
+                                    y2="7"
+                                />
+
+                            </svg>
+
+
+                            <p class="payment-note-text">
+                                Make sure the uploaded receipt clearly shows the payment amount and transaction details.
+                            </p>
+
+                        </div>
+
+
+                        <div class="upload-divider"></div>
+
+
+                        <div class="form-actions">
+
+
+                            <button
+                                type="button"
+                                class="btn-back"
+                                id="backBtn"
+                            >
+
+                                <svg
+                                    width="15"
+                                    height="15"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path d="M19 12H5"/>
+
+                                    <path d="m12 19-7-7 7-7"/>
+
+                                </svg>
+
+                                Back
+
+                            </button>
+
+
+                            <button
+                                type="button"
+                                class="btn-submit"
+                                id="submitBtn"
+                                disabled
+                            >
+
+                                Submit Payment
+
+                                <svg
+                                    width="16"
+                                    height="16"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2.2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+
+                                    <path d="M20 6 9 17l-5-5"/>
+
+                                </svg>
+
+                            </button>
+
+                        </div>
+
+                    </section>
+
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+<div
+    class="modal-overlay"
+    id="modalOverlay"
+>
+
+    <div class="modal-card">
+
+
+        <div class="modal-check">
+
+            <svg
+                width="26"
+                height="26"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+
+                <path d="M20 6 9 17l-5-5"/>
+
+            </svg>
+
+        </div>
+
+
+        <h3 class="modal-title">
+            Payment Submitted
+        </h3>
+
+
+        <p class="modal-desc">
+            Your payment proof has been submitted and is waiting for verification.
+        </p>
+
+
+        <div class="modal-details">
+
+
+            <div class="modal-detail-row">
+
+                <span class="modal-detail-label">
+                    Amount
+                </span>
+
+                <span class="modal-detail-value">
+                    ₱1,700.00
+                </span>
+
+            </div>
+
+
+            <div class="modal-detail-row">
+
+                <span class="modal-detail-label">
+                    Installments
+                </span>
+
+                <span class="modal-detail-value">
+                    #3
+                </span>
+
+            </div>
+
+
+            <div class="modal-detail-row">
+
+                <span class="modal-detail-label">
+                    Status
+                </span>
+
+                <span class="status-chip">
+                    For Verification
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            type="button"
+            class="modal-btn"
+            id="modalBackBtn"
+        >
+
+            <svg
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2.4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            >
+
+                <path d="m12 19-7-7 7-7"/>
+
+                <path d="M19 12H5"/>
+
+            </svg>
+
+            Back to My Installments
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    const dropzone =
+        document.getElementById("dropzone");
+
+    const fileInput =
+        document.getElementById("fileInput");
+
+    const fileRow =
+        document.getElementById("fileRow");
+
+    const fileName =
+        document.getElementById("fileName");
+
+    const fileSize =
+        document.getElementById("fileSize");
+
+    const fileDelete =
+        document.getElementById("fileDelete");
+
+    const submitBtn =
+        document.getElementById("submitBtn");
+
+    const backBtn =
+        document.getElementById("backBtn");
+
+    const modalOverlay =
+        document.getElementById("modalOverlay");
+
+    const modalBackBtn =
+        document.getElementById("modalBackBtn");
+
+
+    function formatSize(bytes) {
+
+        if (bytes < 1024) {
+            return bytes + " B";
+        }
+
+        if (bytes < 1024 * 1024) {
+            return (bytes / 1024).toFixed(0) + " KB";
+        }
+
+        return (bytes / (1024 * 1024)).toFixed(1) + " MB";
+
+    }
+
+
+    function showFile(file) {
+
+        fileName.textContent =
+            file.name;
+
+        fileSize.textContent =
+            formatSize(file.size);
+
+        fileRow.classList.add(
+            "visible"
+        );
+
+        submitBtn.disabled = false;
+
+    }
+
+
+    dropzone.addEventListener(
+        "click",
+        function() {
+
+            fileInput.click();
+
+        }
+    );
+
+
+    fileInput.addEventListener(
+        "change",
+        function() {
+
+            if (
+                fileInput.files &&
+                fileInput.files[0]
+            ) {
+
+                showFile(
+                    fileInput.files[0]
+                );
+
+            }
+
+        }
+    );
+
+
+    ["dragenter", "dragover"].forEach(
+        function(eventName) {
+
+            dropzone.addEventListener(
+                eventName,
+                function(event) {
+
+                    event.preventDefault();
+
+                    dropzone.classList.add(
+                        "dragover"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    ["dragleave", "drop"].forEach(
+        function(eventName) {
+
+            dropzone.addEventListener(
+                eventName,
+                function(event) {
+
+                    event.preventDefault();
+
+                    dropzone.classList.remove(
+                        "dragover"
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+    dropzone.addEventListener(
+        "drop",
+        function(event) {
+
+            const file =
+                event.dataTransfer.files &&
+                event.dataTransfer.files[0];
+
+            if (!file) {
+                return;
+            }
+
+            try {
+
+                fileInput.files =
+                    event.dataTransfer.files;
+
+            } catch (error) {
+
+            }
+
+            showFile(file);
+
+        }
+    );
+
+
+    fileDelete.addEventListener(
+        "click",
+        function(event) {
+
+            event.stopPropagation();
+
+            fileInput.value = "";
+
+            fileRow.classList.remove(
+                "visible"
+            );
+
+            submitBtn.disabled = true;
+
+        }
+    );
+
+
+    submitBtn.addEventListener(
+        "click",
+        function() {
+
+            if (submitBtn.disabled) {
+                return;
+            }
+
+            modalOverlay.classList.add(
+                "open"
+            );
+
+        }
+    );
+
+
+    modalBackBtn.addEventListener(
+        "click",
+        function() {
+
+            modalOverlay.classList.remove(
+                "open"
+            );
+
+            window.location.href =
+                "customer_installment.html";
+
+        }
+    );
+
+
+    backBtn.addEventListener(
+        "click",
+        function() {
+
+            window.location.href =
+                "customer_makepayment.html";
+
+        }
+    );
+
+</script>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+<script src="../js/script.js"></script>
+
+</body>
+
+</html>

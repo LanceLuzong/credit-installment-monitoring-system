@@ -1,0 +1,886 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account — Maryanne's Online Shop</title>
+
+  <link
+    href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@700&display=swap"
+    rel="stylesheet"
+  />
+
+  <link rel="stylesheet" href="../css/style.css" />
+
+  <style>
+    .brand-logo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .create-account-wrap {
+      width: 100%;
+      max-width: 430px;
+    }
+
+    .create-account-head {
+      margin-bottom: 28px;
+    }
+
+    .create-account-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin: 0 0 8px;
+    }
+
+    .create-account-subtitle {
+      color: #6b7280;
+      font-size: 15px;
+      margin: 0;
+    }
+
+    .create-form-group {
+      margin-bottom: 18px;
+    }
+
+    .create-field-label {
+      display: block;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #8a8fa3;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+    }
+
+    .create-input-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .create-input-wrapper > svg {
+      position: absolute;
+      left: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 18px;
+      height: 18px;
+      color: #9aa0b4;
+      pointer-events: none;
+      z-index: 2;
+    }
+
+    .create-input {
+      width: 100%;
+      min-height: 48px;
+      padding: 13px 16px 13px 46px;
+      border: 1px solid #e4e4ee;
+      border-radius: 10px;
+      background: #ffffff;
+      color: #0b0c10;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+      box-sizing: border-box;
+    }
+
+    .create-input::placeholder {
+      color: #b3b7c4;
+    }
+
+    .create-input:focus {
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.15);
+    }
+
+    .password-create-wrapper {
+      position: relative;
+      width: 100%;
+    }
+
+    .password-create-wrapper .create-input {
+      padding-right: 52px;
+    }
+
+    .password-toggle-create {
+      position: absolute;
+      top: 50%;
+      right: 8px;
+      width: 36px;
+      height: 36px;
+      transform: translateY(-50%);
+      border: none;
+      outline: none;
+      background: transparent;
+      color: #9aa0b4;
+      padding: 0;
+      margin: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3;
+    }
+
+    .password-toggle-create svg {
+      position: static !important;
+      left: auto !important;
+      top: auto !important;
+      transform: none !important;
+      width: 19px;
+      height: 19px;
+      pointer-events: none;
+    }
+
+    .password-toggle-create:hover {
+      color: #ff6b00;
+    }
+
+    .create-error {
+      color: #d64545;
+      font-size: 12px;
+      margin-top: 6px;
+      min-height: 16px;
+    }
+
+    .create-account-btn {
+      width: 100%;
+      min-height: 48px;
+      margin-top: 4px;
+      border: none;
+      border-radius: 10px;
+      background: #ff6b00;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: background 0.15s ease, transform 0.05s ease;
+    }
+
+    .create-account-btn:hover {
+      background: #e85f00;
+    }
+
+    .create-account-btn:active {
+      transform: translateY(1px);
+    }
+
+    .login-existing-line {
+      text-align: center;
+      margin: 20px 0 0;
+      color: #6b7280;
+      font-size: 14px;
+    }
+
+    .login-existing-line a {
+      color: #ff6b00;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .login-existing-line a:hover {
+      text-decoration: underline;
+    }
+
+    .create-form-error {
+      background: #fff1f1;
+      border: 1px solid #ffd1d1;
+      color: #c53030;
+      border-radius: 8px;
+      padding: 10px 12px;
+      font-size: 13px;
+      margin-bottom: 18px;
+      display: none;
+    }
+
+    .success-modal .modal-content {
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+    }
+
+    .success-modal .modal-body {
+      padding: 36px 30px 30px;
+      text-align: center;
+    }
+
+    .success-icon {
+      width: 62px;
+      height: 62px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      background: #fff3e8;
+      color: #ff6b00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .success-icon svg {
+      width: 31px;
+      height: 31px;
+    }
+
+    .success-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 23px;
+      font-weight: 700;
+      color: #111318;
+      margin: 0 0 9px;
+    }
+
+    .success-message {
+      color: #6b7280;
+      font-size: 14px;
+      line-height: 1.6;
+      margin: 0 auto 24px;
+      max-width: 330px;
+    }
+
+    .success-continue-btn {
+      width: 100%;
+      min-height: 46px;
+      border: none;
+      border-radius: 9px;
+      background: #ff6b00;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background 0.15s ease;
+    }
+
+    .success-continue-btn:hover {
+      background: #e85f00;
+    }
+
+    @media (max-width: 991.98px) {
+      .create-account-wrap {
+        max-width: 430px;
+      }
+    }
+
+    @media (max-width: 575.98px) {
+      .create-account-wrap {
+        max-width: 100%;
+      }
+
+      .create-account-title {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-login">
+
+  <div class="login-page">
+
+    <aside class="brand-panel d-none d-lg-flex flex-column justify-content-between">
+
+      <div class="brand-top">
+
+        <div class="brand-logo">
+          <img
+            src="../images/mos_logo.png"
+            alt="Maryanne's Online Shop Logo"
+          />
+        </div>
+
+        <h1 class="brand-title">
+          Maryanne&rsquo;s <span>Online Shop</span>
+        </h1>
+
+        <p class="brand-subtitle">
+          Management System
+        </p>
+
+      </div>
+
+      <div class="brand-bottom">
+
+        <h2 class="brand-welcome">
+          Get Started.
+        </h2>
+
+        <p class="brand-copy">
+          Create your account to access the system, submit applications, track installments, and manage your account with ease.
+        </p>
+
+      </div>
+
+    </aside>
+
+    <main class="form-panel d-flex align-items-center justify-content-center">
+
+      <div class="create-account-wrap">
+
+        <div class="create-account-head">
+
+          <h2 class="create-account-title">
+            Create Account
+          </h2>
+
+          <p class="create-account-subtitle">
+            Enter your details to register for the system.
+          </p>
+
+        </div>
+
+        <div
+          id="formError"
+          class="create-form-error"
+          role="alert"
+        ></div>
+
+        <form id="signupForm" novalidate>
+
+          <div class="create-form-group">
+
+            <label
+              for="fullName"
+              class="create-field-label"
+            >
+              Full Name
+            </label>
+
+            <div class="create-input-wrapper">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                <circle cx="12" cy="7" r="4" />
+              </svg>
+
+              <input
+                type="text"
+                class="create-input"
+                id="fullName"
+                name="fullName"
+                placeholder="John Doe"
+                autocomplete="name"
+                required
+              />
+
+            </div>
+
+            <div
+              class="create-error"
+              id="fullNameError"
+            ></div>
+
+          </div>
+
+          <div class="create-form-group">
+
+            <label
+              for="email"
+              class="create-field-label"
+            >
+              Email Address
+            </label>
+
+            <div class="create-input-wrapper">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="2" y="4" width="20" height="16" rx="2" />
+                <path d="m22 7-10 6L2 7" />
+              </svg>
+
+              <input
+                type="email"
+                class="create-input"
+                id="email"
+                name="email"
+                placeholder="name@example.com"
+                autocomplete="email"
+                required
+              />
+
+            </div>
+
+            <div
+              class="create-error"
+              id="emailError"
+            ></div>
+
+          </div>
+
+          <div class="create-form-group">
+
+            <label
+              for="password"
+              class="create-field-label"
+            >
+              Password
+            </label>
+
+            <div class="create-input-wrapper password-create-wrapper">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="4" y="10" width="16" height="11" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+              </svg>
+
+              <input
+                type="password"
+                class="create-input"
+                id="password"
+                name="password"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              />
+
+              <button
+                type="button"
+                class="password-toggle-create"
+                id="togglePassword"
+                aria-label="Show password"
+              >
+                <svg
+                  id="passwordEyeIcon"
+                  width="19"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.5 12C4.5 8.5 8 6.5 12 6.5C16 6.5 19.5 8.5 21.5 12C19.5 15.5 16 17.5 12 17.5C8 17.5 4.5 15.5 2.5 12Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                </svg>
+              </button>
+
+            </div>
+
+            <div
+              class="create-error"
+              id="passwordError"
+            ></div>
+
+          </div>
+
+          <div class="create-form-group">
+
+            <label
+              for="confirmPassword"
+              class="create-field-label"
+            >
+              Confirm Password
+            </label>
+
+            <div class="create-input-wrapper password-create-wrapper">
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <rect x="4" y="10" width="16" height="11" rx="2" />
+                <path d="M8 10V7a4 4 0 0 1 8 0v3" />
+                <path d="M9 15l2 2 4-4" />
+              </svg>
+
+              <input
+                type="password"
+                class="create-input"
+                id="confirmPassword"
+                name="confirmPassword"
+                placeholder="••••••••"
+                autocomplete="new-password"
+                minlength="8"
+                required
+              />
+
+              <button
+                type="button"
+                class="password-toggle-create"
+                id="toggleConfirmPassword"
+                aria-label="Show password"
+              >
+                <svg
+                  id="confirmPasswordEyeIcon"
+                  width="19"
+                  height="19"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M2.5 12C4.5 8.5 8 6.5 12 6.5C16 6.5 19.5 8.5 21.5 12C19.5 15.5 16 17.5 12 17.5C8 17.5 4.5 15.5 2.5 12Z"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+
+                  <circle
+                    cx="12"
+                    cy="12"
+                    r="3"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                  />
+                </svg>
+              </button>
+
+            </div>
+
+            <div
+              class="create-error"
+              id="confirmError"
+            ></div>
+
+          </div>
+
+          <button
+            type="submit"
+            class="create-account-btn"
+            id="signupBtn"
+          >
+
+            <span id="signupBtnText">
+              Create Account
+            </span>
+
+            <svg
+              id="signupBtnIcon"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M5 12h14" />
+              <path d="m12 5 7 7-7 7" />
+            </svg>
+
+            <span
+              id="signupBtnSpinner"
+              class="spinner-border spinner-border-sm d-none"
+              role="status"
+              aria-hidden="true"
+            ></span>
+
+          </button>
+
+        </form>
+
+        <p class="login-existing-line">
+          Already have an account?
+          <a href="login.html">
+            Login here
+          </a>
+        </p>
+
+      </div>
+
+    </main>
+
+  </div>
+
+  <div
+    class="modal fade success-modal"
+    id="accountCreatedModal"
+    tabindex="-1"
+    aria-labelledby="accountCreatedModalLabel"
+    aria-hidden="true"
+  >
+
+    <div class="modal-dialog modal-dialog-centered">
+
+      <div class="modal-content">
+
+        <div class="modal-body">
+
+          <div class="success-icon">
+
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M20 6L9 17l-5-5" />
+            </svg>
+
+          </div>
+
+          <h2
+            class="success-title"
+            id="accountCreatedModalLabel"
+          >
+            Account Created Successfully
+          </h2>
+
+          <p class="success-message">
+            Your account has been created successfully. You can now sign in using your account details.
+          </p>
+
+          <button
+            type="button"
+            class="success-continue-btn"
+            id="continueToLoginBtn"
+          >
+            Continue to Login
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    const signupForm = document.getElementById("signupForm");
+
+    const passwordInput = document.getElementById("password");
+    const confirmPasswordInput = document.getElementById("confirmPassword");
+
+    const togglePassword = document.getElementById("togglePassword");
+    const toggleConfirmPassword = document.getElementById("toggleConfirmPassword");
+
+    const passwordEyeIcon = document.getElementById("passwordEyeIcon");
+    const confirmPasswordEyeIcon = document.getElementById("confirmPasswordEyeIcon");
+
+    const confirmError = document.getElementById("confirmError");
+    const formError = document.getElementById("formError");
+
+    const accountCreatedModalElement = document.getElementById("accountCreatedModal");
+    const accountCreatedModal = new bootstrap.Modal(accountCreatedModalElement);
+
+    const continueToLoginBtn = document.getElementById("continueToLoginBtn");
+
+    function eyeOpenIcon() {
+      return `
+        <path
+          d="M2.5 12C4.5 8.5 8 6.5 12 6.5C16 6.5 19.5 8.5 21.5 12C19.5 15.5 16 17.5 12 17.5C8 17.5 4.5 15.5 2.5 12Z"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        />
+        <circle
+          cx="12"
+          cy="12"
+          r="3"
+          stroke="currentColor"
+          stroke-width="1.8"
+        />
+      `;
+    }
+
+    function eyeClosedIcon() {
+      return `
+        <path
+          d="M3 3L21 21"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M10.6 10.6a2 2 0 0 0 2.8 2.8"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M9.9 5.2A10.8 10.8 0 0 1 12 5c4 0 7.5 2 9.5 7a14.8 14.8 0 0 1-2.7 4.2"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+        <path
+          d="M6.2 6.2C4.6 7.3 3.3 9 2.5 12c2 5 5.5 7 9.5 7 1.5 0 2.8-.3 4-.9"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+        />
+      `;
+    }
+
+    togglePassword.addEventListener("click", function () {
+      const isPassword = passwordInput.type === "password";
+
+      passwordInput.type = isPassword ? "text" : "password";
+
+      passwordEyeIcon.innerHTML = isPassword
+        ? eyeClosedIcon()
+        : eyeOpenIcon();
+
+      togglePassword.setAttribute(
+        "aria-label",
+        isPassword ? "Hide password" : "Show password"
+      );
+    });
+
+    toggleConfirmPassword.addEventListener("click", function () {
+      const isPassword = confirmPasswordInput.type === "password";
+
+      confirmPasswordInput.type = isPassword ? "text" : "password";
+
+      confirmPasswordEyeIcon.innerHTML = isPassword
+        ? eyeClosedIcon()
+        : eyeOpenIcon();
+
+      toggleConfirmPassword.setAttribute(
+        "aria-label",
+        isPassword ? "Hide password" : "Show password"
+      );
+    });
+
+    confirmPasswordInput.addEventListener("input", function () {
+      if (
+        confirmPasswordInput.value &&
+        passwordInput.value !== confirmPasswordInput.value
+      ) {
+        confirmError.textContent = "Passwords do not match.";
+      } else {
+        confirmError.textContent = "";
+      }
+    });
+
+    signupForm.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      formError.style.display = "none";
+      formError.textContent = "";
+
+      const fullName = document.getElementById("fullName").value.trim();
+      const email = document.getElementById("email").value.trim();
+      const password = passwordInput.value;
+      const confirmPassword = confirmPasswordInput.value;
+
+      document.getElementById("fullNameError").textContent = "";
+      document.getElementById("emailError").textContent = "";
+      document.getElementById("passwordError").textContent = "";
+      confirmError.textContent = "";
+
+      let valid = true;
+
+      if (!fullName) {
+        document.getElementById("fullNameError").textContent =
+          "Please enter your full name.";
+        valid = false;
+      }
+
+      if (!email) {
+        document.getElementById("emailError").textContent =
+          "Please enter your email address.";
+        valid = false;
+      } else if (!email.includes("@")) {
+        document.getElementById("emailError").textContent =
+          "Please enter a valid email address.";
+        valid = false;
+      }
+
+      if (!password) {
+        document.getElementById("passwordError").textContent =
+          "Please enter a password.";
+        valid = false;
+      } else if (password.length < 8) {
+        document.getElementById("passwordError").textContent =
+          "Password must be at least 8 characters.";
+        valid = false;
+      }
+
+      if (!confirmPassword) {
+        confirmError.textContent =
+          "Please confirm your password.";
+        valid = false;
+      } else if (password !== confirmPassword) {
+        confirmError.textContent =
+          "Passwords do not match.";
+        valid = false;
+      }
+
+      if (!valid) {
+        return;
+      }
+
+      accountCreatedModal.show();
+    });
+
+    continueToLoginBtn.addEventListener("click", function () {
+      window.location.href = "login.html";
+    });
+  </script>
+
+</body>
+</html>

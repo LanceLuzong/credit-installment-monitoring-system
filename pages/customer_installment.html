@@ -30,6 +30,15 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            overflow: hidden;
+        }
+
+        .customer-brand-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            display: block;
+            padding: 3px;
         }
 
         .customer-page-icon {
@@ -115,6 +124,7 @@
             color: #767c85;
             font-size: 18px;
             text-decoration: none;
+            cursor: pointer;
         }
 
         .installment-tab-add:hover {
@@ -430,25 +440,11 @@
 
                 <div class="side-nav-brand">
 
-                    <div class="side-nav-avatar">
-                        <svg
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            xmlns="http://www.w3.org/2000/svg"
+                    <div class="side-nav-avatar customer-brand-icon">
+                        <img
+                            src="../images/mos_logo.png"
+                            alt="Maryanne's Online Shop Logo"
                         >
-                            <rect
-                                width="24"
-                                height="24"
-                                rx="12"
-                                fill="#FF6B00"
-                            />
-                            <path
-                                d="M12 6L18 10V18H6V10L12 6Z"
-                                fill="white"
-                            />
-                        </svg>
                     </div>
 
                     <div class="side-nav-brand-text">
@@ -700,7 +696,7 @@
                         </a>
 
                         <a
-                            href="#"
+                            href="customer_application_guide.html"
                             class="installment-tab-add"
                             aria-label="Add installment"
                         >

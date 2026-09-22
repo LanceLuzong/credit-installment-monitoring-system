@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>New Installment Application — Maryanne's Online Shop</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link
+  href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+>
+
+<link rel="stylesheet" href="../css/style.css">
+
+<style>
+  :root{
+    --text-dark:#151c27;
+    --muted:#6b7280;
+    --border:#e5e7eb;
+    --orange:#ff6b00;
+    --orange-deep:#e85d00;
+    --peach:#fde8da;
+    --cyan:#dff7f7;
+    --cyan-icon:#0e8f8f;
+    --green:#1fa855;
+    --green-bg:#dcf3e4;
+    --bg:#ffffff;
+    box-sizing:border-box;
+    padding-top:env(safe-area-inset-top,0px);
+    padding-bottom:env(safe-area-inset-bottom,0px);
+  }
+
+  *{
+    box-sizing:border-box;
+  }
+
+  html,
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text-dark);
+    font-family:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  }
+
+  a{
+    text-decoration:none;
+    color:inherit;
+  }
+
+  button{
+    font-family:inherit;
+  }
+
+  input,
+  select,
+  textarea{
+    font-family:inherit;
+  }
+
+  .page-wrap{
+    max-width:1160px;
+    margin:0 auto;
+    padding:28px 24px 64px;
+  }
+
+  .back-link{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;
+    height:36px;
+    border-radius:9px;
+    border:1px solid var(--border);
+    margin-bottom:18px;
+    color:var(--text-dark);
+    background:#fff;
+  }
+
+  .back-link:hover{
+    background:#f8fafb;
+  }
+
+  .page-title{
+    margin:0 0 6px;
+    font-family:"Hanken Grotesk",sans-serif;
+    font-weight:800;
+    font-size:30px;
+    color:var(--text-dark);
+  }
+
+  .page-subtitle{
+    margin:0 0 26px;
+    font-size:14.5px;
+    color:var(--muted);
+  }
+
+  .app-grid{
+    display:grid;
+    grid-template-columns:1.6fr 1fr;
+    gap:22px;
+    align-items:start;
+  }
+
+  .left-col,
+  .right-col{
+    display:flex;
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .panel{
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:22px 24px;
+    background:#fff;
+  }
+
+  .panel-heading{
+    display:flex;
+    align-items:center;
+    gap:9px;
+    padding-bottom:14px;
+    margin-bottom:18px;
+    border-bottom:1px solid var(--border);
+  }
+
+  .panel-heading svg{
+    color:var(--orange-deep);
+    flex-shrink:0;
+  }
+
+  .panel-heading h2{
+    margin:0;
+    font-size:16.5px;
+    font-weight:700;
+    color:var(--orange-deep);
+  }
+
+  .field-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  .field{
+    margin-bottom:16px;
+  }
+
+  .field:last-child{
+    margin-bottom:0;
+  }
+
+  .field label{
+    display:block;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-dark);
+    margin-bottom:7px;
+  }
+
+  .field label .req{
+    color:var(--orange-deep);
+  }
+
+  .field input,
+  .field select{
+    width:100%;
+    padding:11px 13px;
+    border:1px solid var(--border);
+    border-radius:9px;
+    font-size:14px;
+    color:var(--text-dark);
+    outline:none;
+    background:#fff;
+    transition:border-color .15s ease,box-shadow .15s ease;
+  }
+
+  .field select{
+    appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'><path d='m6 9 6 6 6-6'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+    padding-right:34px;
+  }
+
+  .field input::placeholder{
+    color:#9ca3af;
+  }
+
+  .field input:focus,
+  .field select:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(255,107,0,0.12);
+  }
+
+  .upload-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:16px;
+  }
+
+  .upload-label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-size:13.5px;
+    font-weight:600;
+    color:var(--text-dark);
+    margin-bottom:7px;
+  }
+
+  .upload-box{
+    border:1.5px dashed var(--border);
+    border-radius:10px;
+    padding:22px 12px;
+    text-align:center;
+    cursor:pointer;
+    color:var(--muted);
+    transition:border-color .15s ease,background .15s ease;
+  }
+
+  .upload-box:hover,
+  .upload-box.dragover{
+    border-color:var(--orange);
+    background:#fff8f2;
+  }
+
+  .upload-box.has-file{
+    border-color:var(--orange);
+    background:#fff8f2;
+    color:var(--text-dark);
+  }
+
+  .upload-box svg{
+    margin-bottom:8px;
+    color:#9ca3af;
+  }
+
+  .upload-box.has-file svg{
+    color:var(--orange-deep);
+  }
+
+  .upload-box-text{
+    margin:0;
+    font-size:13.5px;
+    font-weight:600;
+  }
+
+  .upload-box-sub{
+    margin:3px 0 0;
+    font-size:12px;
+    color:var(--muted);
+  }
+
+  .additional-panel textarea{
+    width:100%;
+    min-height:280px;
+    resize:vertical;
+    padding:14px;
+    border:1px solid var(--border);
+    border-radius:10px;
+    font-size:14px;
+    color:var(--text-dark);
+    outline:none;
+    line-height:1.6;
+    background:#fff;
+  }
+
+  .additional-panel textarea::placeholder{
+    color:#9ca3af;
+  }
+
+  .additional-panel textarea:focus{
+    border-color:var(--orange);
+    box-shadow:0 0 0 3px rgba(255,107,0,0.12);
+  }
+
+  .notice-box{
+    display:flex;
+    gap:12px;
+    background:var(--cyan);
+    border-radius:12px;
+    padding:16px 18px;
+  }
+
+  .notice-icon{
+    color:var(--cyan-icon);
+    flex-shrink:0;
+    margin-top:1px;
+  }
+
+  .notice-text{
+    margin:0;
+    font-size:13px;
+    line-height:1.6;
+    color:#0f4a4a;
+  }
+
+  .submit-btn{
+    width:100%;
+    border:none;
+    border-radius:10px;
+    background:var(--orange);
+    color:#fff;
+    font-size:15px;
+    font-weight:700;
+    padding:15px 16px;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+  }
+
+  .submit-btn:hover{
+    background:var(--orange-deep);
+  }
+
+  /* ---------- MODALS ---------- */
+
+  .modal-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(21,28,39,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:50;
+  }
+
+  .modal-overlay.open{
+    display:flex;
+  }
+
+  .confirm-card{
+    background:#fff;
+    border-radius:16px;
+    padding:26px;
+    width:100%;
+    max-width:420px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    display:flex;
+    gap:16px;
+    align-items:flex-start;
+  }
+
+  .confirm-icon{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:var(--peach);
+    color:var(--orange-deep);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+
+  .confirm-title{
+    margin:0 0 8px;
+    font-size:16.5px;
+    font-weight:700;
+    color:var(--text-dark);
+  }
+
+  .confirm-desc{
+    margin:0 0 18px;
+    font-size:13.5px;
+    line-height:1.6;
+    color:var(--muted);
+  }
+
+  .confirm-actions{
+    display:flex;
+    justify-content:flex-end;
+    gap:12px;
+  }
+
+  .btn-cancel{
+    padding:10px 18px;
+    border-radius:9px;
+    border:1px solid var(--border);
+    background:#fff;
+    font-size:14px;
+    font-weight:600;
+    color:var(--text-dark);
+    cursor:pointer;
+  }
+
+  .btn-cancel:hover{
+    background:#f8fafb;
+  }
+
+  .btn-confirm{
+    padding:10px 18px;
+    border-radius:9px;
+    border:none;
+    background:var(--orange);
+    color:#fff;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  .btn-confirm:hover{
+    background:var(--orange-deep);
+  }
+
+  .success-card{
+    background:#fff;
+    border-radius:16px;
+    padding:32px;
+    width:100%;
+    max-width:400px;
+    text-align:center;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+  }
+
+  .success-icon{
+    width:56px;
+    height:56px;
+    border-radius:14px;
+    background:var(--green-bg);
+    color:var(--green);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 18px;
+  }
+
+  .success-title{
+    margin:0 0 8px;
+    font-family:"Hanken Grotesk",sans-serif;
+    font-size:19px;
+    font-weight:800;
+    color:var(--text-dark);
+  }
+
+  .success-desc{
+    margin:0 0 22px;
+    font-size:14px;
+    line-height:1.6;
+    color:var(--muted);
+  }
+
+  .success-btn{
+    width:100%;
+    padding:13px 16px;
+    border-radius:10px;
+    border:none;
+    background:var(--orange);
+    color:#fff;
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+    margin-bottom:10px;
+  }
+
+  .success-btn:hover{
+    background:var(--orange-deep);
+  }
+
+  .success-btn-outline{
+    width:100%;
+    padding:13px 16px;
+    border-radius:10px;
+    border:1px solid var(--border);
+    background:#fff;
+    color:var(--text-dark);
+    font-size:14.5px;
+    font-weight:700;
+    cursor:pointer;
+  }
+
+  .success-btn-outline:hover{
+    background:#f8fafb;
+  }
+
+
+  /* ---------- DARK MODE ---------- */
+
+  body.dark-mode{
+    background:#0f172a;
+    color:#e2e8f0;
+  }
+
+  body.dark-mode .page-wrap{
+    background:#0f172a;
+  }
+
+  body.dark-mode .back-link{
+    background:#111827;
+    border-color:#334155;
+    color:#f8fafc;
+  }
+
+  body.dark-mode .back-link:hover{
+    background:#1e293b;
+  }
+
+  body.dark-mode .page-title{
+    color:#f8fafc;
+  }
+
+  body.dark-mode .page-subtitle{
+    color:#a8b1bd;
+  }
+
+  body.dark-mode .panel{
+    background:#111827;
+    border-color:#334155;
+  }
+
+  body.dark-mode .panel-heading{
+    border-color:#334155;
+  }
+
+  body.dark-mode .field label,
+  body.dark-mode .upload-label{
+    color:#f8fafc;
+  }
+
+  body.dark-mode .field input,
+  body.dark-mode .field select,
+  body.dark-mode .additional-panel textarea{
+    background:#1e293b;
+    border-color:#475569;
+    color:#f8fafc;
+  }
+
+  body.dark-mode .field input::placeholder,
+  body.dark-mode .additional-panel textarea::placeholder{
+    color:#94a3b8;
+  }
+
+  body.dark-mode .field select{
+    background-color:#1e293b;
+  }
+
+  body.dark-mode .upload-box{
+    border-color:#475569;
+    background:#1e293b;
+    color:#a8b1bd;
+  }
+
+  body.dark-mode .upload-box:hover,
+  body.dark-mode .upload-box.dragover{
+    border-color:var(--orange);
+    background:#24170d;
+  }
+
+  body.dark-mode .upload-box.has-file{
+    border-color:var(--orange);
+    background:#24170d;
+    color:#f8fafc;
+  }
+
+  body.dark-mode .upload-box-sub{
+    color:#94a3b8;
+  }
+
+  body.dark-mode .notice-box{
+    background:#123333;
+  }
+
+  body.dark-mode .notice-text{
+    color:#b8eeee;
+  }
+
+  body.dark-mode .confirm-card,
+  body.dark-mode .success-card{
+    background:#111827;
+  }
+
+  body.dark-mode .confirm-title,
+  body.dark-mode .success-title{
+    color:#f8fafc;
+  }
+
+  body.dark-mode .confirm-desc,
+  body.dark-mode .success-desc{
+    color:#a8b1bd;
+  }
+
+  body.dark-mode .btn-cancel,
+  body.dark-mode .success-btn-outline{
+    background:#1e293b;
+    border-color:#475569;
+    color:#f8fafc;
+  }
+
+  body.dark-mode .btn-cancel:hover,
+  body.dark-mode .success-btn-outline:hover{
+    background:#334155;
+  }
+
+  body.dark-mode .success-icon{
+    background:#183326;
+  }
+
+
+  @media (max-width:900px){
+    .app-grid{
+      grid-template-columns:1fr;
+    }
+
+    .additional-panel textarea{
+      min-height:160px;
+    }
+  }
+
+  @media (max-width:560px){
+    .page-wrap{
+      padding:20px 16px 48px;
+    }
+
+    .field-row,
+    .upload-row{
+      grid-template-columns:1fr;
+    }
+
+    .page-title{
+      font-size:24px;
+    }
+
+    .confirm-card{
+      flex-direction:column;
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *{
+      transition:none !important;
+    }
+  }
+
+</style>
+</head>
+
+<body>
+
+<div class="page-wrap">
+
+  <a href="customer_application_guide.html" class="back-link" aria-label="Back">
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+  </a>
+
+  <h1 class="page-title">New Installment Application</h1>
+
+  <p class="page-subtitle">
+    Please provide accurate information to expedite your application process. All fields marked with an asterisk (*) are required.
+  </p>
+
+  <form id="applicationForm">
+
+    <div class="app-grid">
+
+      <div class="left-col">
+
+        <div class="panel">
+
+          <div class="panel-heading">
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+              <circle cx="12" cy="7" r="4"/>
+            </svg>
+
+            <h2>Personal Information</h2>
+
+          </div>
+
+          <div class="field-row">
+
+            <div class="field">
+              <label>First Name <span class="req">*</span></label>
+              <input type="text" placeholder="e.g. John" required>
+            </div>
+
+            <div class="field">
+              <label>Last Name <span class="req">*</span></label>
+              <input type="text" placeholder="e.g. Doe" required>
+            </div>
+
+          </div>
+
+          <div class="field">
+
+            <label>Complete Address <span class="req">*</span></label>
+
+            <input
+              type="text"
+              placeholder="Street, City, State, ZIP"
+              required
+            >
+
+          </div>
+
+          <div class="field-row">
+
+            <div class="field">
+              <label>Phone Number <span class="req">*</span></label>
+              <input type="tel" placeholder="+1 (555) 000-0000" required>
+            </div>
+
+            <div class="field">
+              <label>Email Address <span class="req">*</span></label>
+              <input type="email" placeholder="john.doe@example.com" required>
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <div class="panel-heading">
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="13" rx="2"/>
+              <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>
+            </svg>
+
+            <h2>Identification Details</h2>
+
+          </div>
+
+          <div class="field-row">
+
+            <div class="field">
+
+              <label>ID Type <span class="req">*</span></label>
+
+              <select required>
+
+                <option value="" selected disabled>
+                  Select ID Type
+                </option>
+
+                <option>Driver's License</option>
+                <option>Passport</option>
+                <option>National ID</option>
+                <option>UMID</option>
+                <option>SSS ID</option>
+
+              </select>
+
+            </div>
+
+            <div class="field">
+
+              <label>ID Number <span class="req">*</span></label>
+
+              <input
+                type="text"
+                placeholder="Enter ID Number"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="upload-row">
+
+            <div>
+
+              <p class="upload-label">
+
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <rect x="2" y="5" width="20" height="14" rx="2"/>
+                  <circle cx="8" cy="12" r="2"/>
+                </svg>
+
+                Upload Valid ID <span class="req">*</span>
+
+              </p>
+
+              <div class="upload-box" id="idBox">
+
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 18a4.5 4.5 0 0 1-1-8.9A5 5 0 0 1 16 8h.5a3.5 3.5 0 0 1 0 7H16"/>
+                  <path d="M12 12v9"/>
+                  <path d="m9 15 3-3 3 3"/>
+                </svg>
+
+                <p class="upload-box-text" id="idBoxText">
+                  Drag &amp; Drop or Click
+                </p>
+
+                <p class="upload-box-sub" id="idBoxSub">
+                  Max 5MB (JPG, PNG, PDF)
+                </p>
+
+                <input
+                  type="file"
+                  id="idFileInput"
+                  accept="image/*,.pdf"
+                  hidden
+                >
+
+              </div>
+
+            </div>
+
+
+            <div>
+
+              <p class="upload-label">
+
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <circle cx="12" cy="12" r="9"/>
+                  <path d="M9 12a3 3 0 1 1 6 0c0 2-3 3-3 3"/>
+                </svg>
+
+                Selfie with ID <span class="req">*</span>
+
+              </p>
+
+              <div class="upload-box" id="selfieBox">
+
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2Z"/>
+                  <circle cx="12" cy="13" r="4"/>
+                  <path d="M19 8h.01"/>
+                </svg>
+
+                <p class="upload-box-text" id="selfieBoxText">
+                  Take Photo or Upload
+                </p>
+
+                <p class="upload-box-sub" id="selfieBoxSub">
+                  Ensure clear visibility
+                </p>
+
+                <input
+                  type="file"
+                  id="selfieFileInput"
+                  accept="image/*"
+                  hidden
+                >
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="right-col">
+
+        <div
+          class="panel additional-panel"
+          style="flex:1;"
+        >
+
+          <div class="panel-heading">
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 3a2.85 2.85 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"/>
+            </svg>
+
+            <h2>Additional Info</h2>
+
+          </div>
+
+          <textarea
+            placeholder="Provide any additional details, special requests, or context for your application here..."
+          ></textarea>
+
+        </div>
+
+
+        <div class="notice-box">
+
+          <span class="notice-icon">
+
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="9"/>
+              <path d="M12 11v5"/>
+              <path d="M12 8h.01"/>
+            </svg>
+
+          </span>
+
+          <p class="notice-text">
+            By submitting, you agree to our terms of service and confirm that all provided information is accurate.
+          </p>
+
+        </div>
+
+
+        <button
+          type="submit"
+          class="submit-btn"
+        >
+
+          Submit Application
+
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+            <path d="m5 12 14 0"/>
+            <path d="m13 6 6 6-6 6"/>
+          </svg>
+
+        </button>
+
+      </div>
+
+    </div>
+
+  </form>
+
+</div>
+
+
+<!-- Confirm Submission Modal -->
+
+<div class="modal-overlay" id="confirmOverlay">
+
+  <div class="confirm-card">
+
+    <span class="confirm-icon">
+
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="12" cy="12" r="9"/>
+        <path d="M12 17v.01"/>
+        <path d="M9.5 9a2.5 2.5 0 0 1 5 0c0 1.5-2.5 2-2.5 4"/>
+      </svg>
+
+    </span>
+
+    <div>
+
+      <h3 class="confirm-title">
+        Confirm Submission
+      </h3>
+
+      <p class="confirm-desc">
+        Are you sure you want to submit your application? Please review your details carefully, as this action cannot be undone once processed.
+      </p>
+
+      <div class="confirm-actions">
+
+        <button
+          type="button"
+          class="btn-cancel"
+          id="cancelConfirm"
+        >
+          Cancel
+        </button>
+
+        <button
+          type="button"
+          class="btn-confirm"
+          id="confirmSubmit"
+        >
+          Confirm &amp; Submit
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+
+<!-- Success Modal -->
+
+<div class="modal-overlay" id="successOverlay">
+
+  <div class="success-card">
+
+    <div class="success-icon">
+
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 6 9 17l-5-5"/>
+      </svg>
+
+    </div>
+
+    <h3 class="success-title">
+      Application Submitted Successfully!
+    </h3>
+
+    <p class="success-desc">
+      Your application is now being reviewed by our admin team. We will notify you once the review is complete.
+    </p>
+
+    <a href="customer_dashboard.html">
+      <button
+        type="button"
+        class="success-btn"
+      >
+        Back to Dashboard
+      </button>
+    </a>
+
+    <a href="customer_application.html">
+      <button
+        type="button"
+        class="success-btn-outline"
+      >
+        View Application Details
+      </button>
+    </a>
+
+  </div>
+
+</div>
+
+
+<script>
+
+  function wireUpload(
+    boxId,
+    inputId,
+    textId,
+    subId,
+    defaultText,
+    defaultSub
+  ){
+
+    const box = document.getElementById(boxId);
+    const input = document.getElementById(inputId);
+    const text = document.getElementById(textId);
+    const sub = document.getElementById(subId);
+
+    function setFile(file){
+
+      box.classList.add("has-file");
+
+      text.textContent = file.name;
+
+      sub.textContent =
+        (file.size / (1024 * 1024)).toFixed(2) +
+        " MB — click to replace";
+
+    }
+
+    box.addEventListener("click", () => input.click());
+
+    input.addEventListener("change", () => {
+
+      if(input.files && input.files[0]){
+        setFile(input.files[0]);
+      }
+
+    });
+
+    ["dragenter","dragover"].forEach(evt => {
+
+      box.addEventListener(evt, e => {
+
+        e.preventDefault();
+
+        box.classList.add("dragover");
+
+      });
+
+    });
+
+    ["dragleave","drop"].forEach(evt => {
+
+      box.addEventListener(evt, e => {
+
+        e.preventDefault();
+
+        box.classList.remove("dragover");
+
+      });
+
+    });
+
+    box.addEventListener("drop", e => {
+
+      const file =
+        e.dataTransfer.files &&
+        e.dataTransfer.files[0];
+
+      if(file){
+
+        input.files = e.dataTransfer.files;
+
+        setFile(file);
+
+      }
+
+    });
+
+  }
+
+
+  wireUpload(
+    "idBox",
+    "idFileInput",
+    "idBoxText",
+    "idBoxSub",
+    "Drag & Drop or Click",
+    "Max 5MB (JPG, PNG, PDF)"
+  );
+
+
+  wireUpload(
+    "selfieBox",
+    "selfieFileInput",
+    "selfieBoxText",
+    "selfieBoxSub",
+    "Take Photo or Upload",
+    "Ensure clear visibility"
+  );
+
+
+  const form =
+    document.getElementById("applicationForm");
+
+  const confirmOverlay =
+    document.getElementById("confirmOverlay");
+
+  const successOverlay =
+    document.getElementById("successOverlay");
+
+
+  form.addEventListener("submit", e => {
+
+    e.preventDefault();
+
+    confirmOverlay.classList.add("open");
+
+  });
+
+
+  document
+    .getElementById("cancelConfirm")
+    .addEventListener("click", () => {
+
+      confirmOverlay.classList.remove("open");
+
+    });
+
+
+  document
+    .getElementById("confirmSubmit")
+    .addEventListener("click", () => {
+
+      confirmOverlay.classList.remove("open");
+
+      successOverlay.classList.add("open");
+
+    });
+
+</script>
+
+<script src="../js/script.js"></script>
+
+</body>
+</html>

@@ -2625,3 +2625,28 @@ body.dark-mode .logout-modal-card h3 {
 body.dark-mode .logout-modal-card p {
   color: #94a3b8;
 }
+body.dark-mode .applications-header h3 {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .applications-header p {
+    color: #a8b1bd !important;
+}
+/* Customer Dashboard - Welcome Text Dark Mode */
+
+body.dark-mode .customer-welcome-title {
+    color: #f8fafc !important;
+}
+
+body.dark-mode .dashboard-content > div:first-child p {
+    color: #a8b1bd !important;
+}
+body.dark-mode .dashboard-content > .metric-label[style*="#151c27"] {
+    color: #f8fafc !important;
+}
+body.dark-mode .review-page-title {
+    color: #f8fafc !important;
+}
+body.dark-mode .confirm-page-title {
+    color: #f8fafc !important;
+}

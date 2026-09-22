@@ -1324,51 +1324,27 @@
           <div class="payment-form-field">
 
             <label for="paymentDay">
-              Payment Day
+              Payment Schedule
             </label>
 
             <select id="paymentDay">
 
               <option value="">
-                Select day
+                Select payment schedule
               </option>
 
-              <option value="1">1st of every month</option>
-              <option value="2">2nd of every month</option>
-              <option value="3">3rd of every month</option>
-              <option value="4">4th of every month</option>
-              <option value="5">5th of every month</option>
-              <option value="6">6th of every month</option>
-              <option value="7">7th of every month</option>
-              <option value="8">8th of every month</option>
-              <option value="9">9th of every month</option>
-              <option value="10">10th of every month</option>
-              <option value="11">11th of every month</option>
-              <option value="12">12th of every month</option>
-              <option value="13">13th of every month</option>
-              <option value="14">14th of every month</option>
-              <option value="15">15th of every month</option>
-              <option value="16">16th of every month</option>
-              <option value="17">17th of every month</option>
-              <option value="18">18th of every month</option>
-              <option value="19">19th of every month</option>
-              <option value="20">20th of every month</option>
-              <option value="21">21st of every month</option>
-              <option value="22">22nd of every month</option>
-              <option value="23">23rd of every month</option>
-              <option value="24">24th of every month</option>
-              <option value="25">25th of every month</option>
-              <option value="26">26th of every month</option>
-              <option value="27">27th of every month</option>
-              <option value="28">28th of every month</option>
-              <option value="29">29th of every month</option>
-              <option value="30">30th of every month</option>
-              <option value="31">31st of every month</option>
+              <option value="15_30">
+                Every 15th & 30th of the month
+              </option>
+
+              <option value="monthly">
+                Monthly Payment
+              </option>
 
             </select>
 
             <div class="field-error-message" id="paymentDayError">
-              Please select the payment day.
+              Please select the payment schedule.
             </div>
 
           </div>
@@ -1385,28 +1361,16 @@
                 Select duration
               </option>
 
-              <option value="3">
-                3 months
-              </option>
-
               <option value="6">
                 6 months
               </option>
 
-              <option value="9">
-                9 months
+              <option value="8">
+                8 months
               </option>
 
               <option value="12">
                 12 months
-              </option>
-
-              <option value="18">
-                18 months
-              </option>
-
-              <option value="24">
-                24 months
               </option>
 
             </select>
@@ -1583,12 +1547,14 @@
     const paymentSchedule = document.getElementById("paymentSchedule");
 
     function formatCurrency(value) {
+
       const amount = Number(value) || 0;
 
       return "₱" + amount.toLocaleString("en-PH", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
+
     }
 
     function updatePaymentCalculation() {
@@ -1602,10 +1568,15 @@
       remainingBalance.textContent = formatCurrency(balance);
 
       if (duration > 0) {
+
         const monthly = balance / duration;
+
         monthlyPayment.textContent = formatCurrency(monthly);
+
       } else {
+
         monthlyPayment.textContent = "₱0.00";
+
       }
 
       if (paymentDayInput.value) {
@@ -1621,6 +1592,7 @@
         paymentSchedule.textContent = "Not set";
 
       }
+
     }
 
     function setFieldError(input, errorElement, message) {
@@ -1667,7 +1639,11 @@
 
       const value = Number(productPriceInput.value);
 
-      if (!productPriceInput.value.trim() || !Number.isFinite(value) || value <= 0) {
+      if (
+        !productPriceInput.value.trim() ||
+        !Number.isFinite(value) ||
+        value <= 0
+      ) {
 
         setFieldError(
           productPriceInput,
@@ -1727,7 +1703,7 @@
         setFieldError(
           paymentDayInput,
           paymentDayError,
-          "Please select the payment day."
+          "Please select the payment schedule."
         );
 
         return false;
@@ -1794,57 +1770,80 @@
       }
 
       return true;
+
     }
 
     productNameInput.addEventListener("input", validateProductName);
 
     productPriceInput.addEventListener("input", function() {
+
       validateProductPrice();
       validateDownPayment();
       updatePaymentCalculation();
+
     });
 
     downPaymentInput.addEventListener("input", function() {
+
       validateDownPayment();
       updatePaymentCalculation();
+
     });
 
     paymentDayInput.addEventListener("change", function() {
+
       validatePaymentDay();
       updatePaymentCalculation();
+
     });
 
     durationMonthsInput.addEventListener("change", function() {
+
       validateDuration();
       updatePaymentCalculation();
+
     });
 
     document.getElementById("backApplicationBtn").addEventListener("click", function() {
+
       window.location.href = "applications.html";
+
     });
 
     document.getElementById("approveApplicationBtn").addEventListener("click", function() {
+
       approveModal.classList.add("show");
+
     });
 
     document.getElementById("rejectApplicationBtn").addEventListener("click", function() {
+
       rejectModal.classList.add("show");
+
     });
 
     document.getElementById("cancelApproveBtn").addEventListener("click", function() {
+
       approveModal.classList.remove("show");
+
     });
 
     document.getElementById("cancelRejectBtn").addEventListener("click", function() {
+
       rejectModal.classList.remove("show");
+
     });
 
     document.querySelector("#approveModal .application-confirm-overlay").addEventListener("click", function() {
+
       approveModal.classList.remove("show");
+
     });
 
     document.querySelector("#rejectModal .application-confirm-overlay").addEventListener("click", function() {
+
       rejectModal.classList.remove("show");
+
     });
 
     document.getElementById("confirmApproveBtn").addEventListener("click", function() {
@@ -1860,11 +1859,15 @@
     });
 
     document.getElementById("cancelPaymentFormBtn").addEventListener("click", function() {
+
       paymentFormModal.classList.remove("show");
+
     });
 
     document.getElementById("paymentFormOverlay").addEventListener("click", function() {
+
       paymentFormModal.classList.remove("show");
+
     });
 
     document.getElementById("confirmPaymentTermsBtn").addEventListener("click", function() {
@@ -1876,13 +1879,13 @@
       const productName = productNameInput.value.trim();
       const productPrice = Number(productPriceInput.value);
       const downPayment = Number(downPaymentInput.value) || 0;
-      const paymentDay = Number(paymentDayInput.value);
+      const paymentScheduleValue = paymentDayInput.value;
       const durationMonths = Number(durationMonthsInput.value);
 
       const balance = productPrice - downPayment;
       const monthlyPaymentAmount = balance / durationMonths;
 
-      const paymentDayText =
+      const paymentScheduleText =
         paymentDayInput.options[paymentDayInput.selectedIndex].textContent;
 
       const approvedApplication = {
@@ -1907,8 +1910,8 @@
         downPayment: downPayment,
         remainingBalance: balance,
 
-        paymentDay: paymentDay,
-        paymentDayText: paymentDayText,
+        paymentSchedule: paymentScheduleValue,
+        paymentScheduleText: paymentScheduleText,
 
         durationMonths: durationMonths,
         monthlyPayment: monthlyPaymentAmount,
@@ -1939,11 +1942,15 @@
     });
 
     document.getElementById("successDoneBtn").addEventListener("click", function() {
+
       successModal.classList.remove("show");
+
     });
 
     document.querySelector(".success-modal-overlay").addEventListener("click", function() {
+
       successModal.classList.remove("show");
+
     });
 
     document.getElementById("confirmRejectBtn").addEventListener("click", function() {
@@ -1985,8 +1992,6 @@
       document.getElementById("rejectApplicationBtn").style.display = "none";
 
       rejectModal.classList.remove("show");
-
-      alert("Application rejected.");
 
     });
 
