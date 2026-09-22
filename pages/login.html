@@ -37,6 +37,281 @@
       border-radius: 50%;
       display: block;
     }
+
+    .forgot-modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 6, 12, 0.55);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .forgot-modal-overlay.show {
+      display: flex;
+    }
+
+    .forgot-modal {
+      width: 100%;
+      max-width: 430px;
+      background: #ffffff;
+      border-radius: 18px;
+      padding: 30px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+      position: relative;
+      animation: forgotModalShow 0.2s ease;
+    }
+
+    @keyframes forgotModalShow {
+      from {
+        opacity: 0;
+        transform: translateY(10px) scale(0.98);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .forgot-modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 34px;
+      height: 34px;
+      border: none;
+      background: transparent;
+      border-radius: 8px;
+      color: #718096;
+      font-size: 24px;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    .forgot-modal-close:hover {
+      background: #f3f4f6;
+      color: #151c27;
+    }
+
+    .forgot-modal-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      background: #fff1e8;
+      color: #ff6b00;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+    }
+
+    .forgot-modal-icon svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .forgot-modal-title {
+      margin: 0 0 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #151c27;
+    }
+
+    .forgot-modal-description {
+      margin: 0 0 22px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #718096;
+    }
+
+    .forgot-modal-label {
+      display: block;
+      margin-bottom: 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #151c27;
+    }
+
+    .forgot-modal-input {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #d9dee7;
+      border-radius: 9px;
+      padding: 0 13px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      color: #151c27;
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .forgot-modal-input:focus {
+      border-color: #ff6b00;
+      box-shadow: 0 0 0 3px rgba(255, 107, 0, 0.1);
+    }
+
+    .forgot-modal-error {
+      display: none;
+      margin-top: 8px;
+      font-family: "Manrope", sans-serif;
+      font-size: 12px;
+      color: #ba1a1a;
+    }
+
+    .forgot-modal-error.show {
+      display: block;
+    }
+
+    .forgot-modal-actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .forgot-cancel-btn,
+    .forgot-submit-btn {
+      flex: 1;
+      height: 44px;
+      border-radius: 9px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .forgot-cancel-btn {
+      border: 1px solid #d9dee7;
+      background: #ffffff;
+      color: #45474b;
+    }
+
+    .forgot-cancel-btn:hover {
+      background: #f7f8fa;
+    }
+
+    .forgot-submit-btn {
+      border: 1px solid #ff6b00;
+      background: #ff6b00;
+      color: #ffffff;
+    }
+
+    .forgot-submit-btn:hover {
+      background: #e85f00;
+      border-color: #e85f00;
+    }
+
+    .forgot-success {
+      display: none;
+      text-align: center;
+    }
+
+    .forgot-success.show {
+      display: block;
+    }
+
+    .forgot-success-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #eaf8ef;
+      color: #198754;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 18px;
+    }
+
+    .forgot-success-icon svg {
+      width: 27px;
+      height: 27px;
+    }
+
+    .forgot-success-title {
+      margin: 0 0 8px;
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      color: #151c27;
+    }
+
+    .forgot-success-description {
+      margin: 0 0 22px;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      line-height: 1.6;
+      color: #718096;
+    }
+
+    .forgot-done-btn {
+      width: 100%;
+      height: 44px;
+      border: none;
+      border-radius: 9px;
+      background: #ff6b00;
+      color: #ffffff;
+      font-family: "Manrope", sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .forgot-done-btn:hover {
+      background: #e85f00;
+    }
+
+    body.dark-mode .forgot-modal {
+      background: #111827;
+    }
+
+    body.dark-mode .forgot-modal-title,
+    body.dark-mode .forgot-modal-label,
+    body.dark-mode .forgot-success-title {
+      color: #f8fafc;
+    }
+
+    body.dark-mode .forgot-modal-description,
+    body.dark-mode .forgot-success-description {
+      color: #a8b1bd;
+    }
+
+    body.dark-mode .forgot-modal-input {
+      background: #1e293b;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .forgot-modal-input::placeholder {
+      color: #94a3b8;
+    }
+
+    body.dark-mode .forgot-modal-close {
+      color: #94a3b8;
+    }
+
+    body.dark-mode .forgot-modal-close:hover {
+      background: #1e293b;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .forgot-cancel-btn {
+      background: #1e293b;
+      border-color: #475569;
+      color: #f8fafc;
+    }
+
+    body.dark-mode .forgot-cancel-btn:hover {
+      background: #334155;
+    }
   </style>
 </head>
 
@@ -133,6 +408,7 @@
                 <a
                   href="#forgot-password"
                   class="forgot-link"
+                  id="forgotPasswordLink"
                 >
                   Forgot Password?
                 </a>
@@ -255,16 +531,258 @@
 
         </div>
 
-         
-
-        </div>
-
       </div>
     </main>
 
   </div>
 
+  <div
+    class="forgot-modal-overlay"
+    id="forgotPasswordModal"
+    aria-hidden="true"
+  >
+    <div
+      class="forgot-modal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="forgotModalTitle"
+    >
+
+      <button
+        type="button"
+        class="forgot-modal-close"
+        id="forgotModalClose"
+        aria-label="Close"
+      >
+        &times;
+      </button>
+
+      <div id="forgotFormContent">
+
+        <div class="forgot-modal-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M4 7.5C4 6.67 4.67 6 5.5 6H18.5C19.33 6 20 6.67 20 7.5V16.5C20 17.33 19.33 18 18.5 18H5.5C4.67 18 4 17.33 4 16.5V7.5Z"
+              stroke="currentColor"
+              stroke-width="1.6"
+            />
+            <path
+              d="M5 7L12 12.5L19 7"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <h2
+          class="forgot-modal-title"
+          id="forgotModalTitle"
+        >
+          Forgot Password?
+        </h2>
+
+        <p class="forgot-modal-description">
+          Enter the email address associated with your account and we'll help you reset your password.
+        </p>
+
+        <label
+          for="forgotEmail"
+          class="forgot-modal-label"
+        >
+          Email Address
+        </label>
+
+        <input
+          type="email"
+          class="forgot-modal-input"
+          id="forgotEmail"
+          placeholder="name@example.com"
+          autocomplete="email"
+        />
+
+        <div
+          class="forgot-modal-error"
+          id="forgotEmailError"
+        >
+          Please enter a valid email address.
+        </div>
+
+        <div class="forgot-modal-actions">
+
+          <button
+            type="button"
+            class="forgot-cancel-btn"
+            id="forgotCancelBtn"
+          >
+            Cancel
+          </button>
+
+          <button
+            type="button"
+            class="forgot-submit-btn"
+            id="forgotSubmitBtn"
+          >
+            Send Reset Link
+          </button>
+
+        </div>
+
+      </div>
+
+      <div
+        class="forgot-success"
+        id="forgotSuccess"
+      >
+
+        <div class="forgot-success-icon">
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M5 12.5L9.5 17L19 7.5"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </div>
+
+        <h2 class="forgot-success-title">
+          Request Submitted
+        </h2>
+
+        <p class="forgot-success-description">
+          If an account exists with that email address, password reset instructions will be sent to it.
+        </p>
+
+        <button
+          type="button"
+          class="forgot-done-btn"
+          id="forgotDoneBtn"
+        >
+          Done
+        </button>
+
+      </div>
+
+    </div>
+  </div>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
   <script src="../js/script.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const forgotLink = document.getElementById("forgotPasswordLink");
+      const forgotModal = document.getElementById("forgotPasswordModal");
+      const forgotClose = document.getElementById("forgotModalClose");
+      const forgotCancel = document.getElementById("forgotCancelBtn");
+      const forgotSubmit = document.getElementById("forgotSubmitBtn");
+      const forgotDone = document.getElementById("forgotDoneBtn");
+      const forgotEmail = document.getElementById("forgotEmail");
+      const forgotEmailError = document.getElementById("forgotEmailError");
+      const forgotFormContent = document.getElementById("forgotFormContent");
+      const forgotSuccess = document.getElementById("forgotSuccess");
+
+      function openForgotModal() {
+        forgotModal.classList.add("show");
+        forgotModal.setAttribute("aria-hidden", "false");
+
+        forgotFormContent.style.display = "block";
+        forgotSuccess.classList.remove("show");
+        forgotEmailError.classList.remove("show");
+
+        const loginEmail = document.getElementById("email");
+
+        if (loginEmail && loginEmail.value.trim() !== "") {
+          forgotEmail.value = loginEmail.value.trim();
+        }
+
+        setTimeout(function () {
+          forgotEmail.focus();
+        }, 100);
+      }
+
+      function closeForgotModal() {
+        forgotModal.classList.remove("show");
+        forgotModal.setAttribute("aria-hidden", "true");
+        forgotEmailError.classList.remove("show");
+      }
+
+      if (forgotLink) {
+        forgotLink.addEventListener("click", function (event) {
+          event.preventDefault();
+          openForgotModal();
+        });
+      }
+
+      if (forgotClose) {
+        forgotClose.addEventListener("click", closeForgotModal);
+      }
+
+      if (forgotCancel) {
+        forgotCancel.addEventListener("click", closeForgotModal);
+      }
+
+      if (forgotModal) {
+        forgotModal.addEventListener("click", function (event) {
+          if (event.target === forgotModal) {
+            closeForgotModal();
+          }
+        });
+      }
+
+      if (forgotSubmit) {
+        forgotSubmit.addEventListener("click", function () {
+          const email = forgotEmail.value.trim();
+
+          if (!email || !forgotEmail.checkValidity()) {
+            forgotEmailError.classList.add("show");
+            forgotEmail.focus();
+            return;
+          }
+
+          forgotEmailError.classList.remove("show");
+
+          forgotFormContent.style.display = "none";
+          forgotSuccess.classList.add("show");
+        });
+      }
+
+      if (forgotDone) {
+        forgotDone.addEventListener("click", closeForgotModal);
+      }
+
+      if (forgotEmail) {
+        forgotEmail.addEventListener("input", function () {
+          if (forgotEmail.checkValidity()) {
+            forgotEmailError.classList.remove("show");
+          }
+        });
+
+        forgotEmail.addEventListener("keydown", function (event) {
+          if (event.key === "Enter") {
+            event.preventDefault();
+            forgotSubmit.click();
+          }
+        });
+      }
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && forgotModal.classList.contains("show")) {
+          closeForgotModal();
+        }
+      });
+    });
+  </script>
 </body>
 </html>
