@@ -8,11 +8,8 @@
   <title>Application Details — Maryanne's Online Shop</title>
 
   <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-
   <link rel="stylesheet" href="../css/style.css">
 
   <style>
@@ -227,6 +224,19 @@
       background: #fff5f5;
     }
 
+    .dashboard-header-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .dashboard-header-actions .messages-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+    }
+
     .application-confirm-modal {
       position: fixed;
       inset: 0;
@@ -341,6 +351,57 @@
 
     .application-confirm-reject:hover {
       background: #bb2d3b;
+    }
+
+    .rejection-reason-field {
+      margin-top: 16px;
+      text-align: left;
+    }
+
+    .rejection-reason-field label {
+      display: block;
+      margin-bottom: 6px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      color: #687382;
+    }
+
+    .rejection-reason-field textarea {
+      width: 100%;
+      min-height: 90px;
+      padding: 10px 12px;
+      border: 1px solid #dbe3e8;
+      border-radius: 8px;
+      background: #ffffff;
+      color: #151c27;
+      font-family: "Inter", sans-serif;
+      font-size: 14px;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .rejection-reason-field textarea:focus {
+      border-color: #d9480f;
+      box-shadow: 0 0 0 3px rgba(217, 72, 15, 0.08);
+    }
+
+    .rejection-reason-field textarea.field-error {
+      border-color: #dc3545 !important;
+      box-shadow: 0 0 0 3px rgba(220, 53, 69, 0.08) !important;
+    }
+
+    .rejection-reason-error {
+      display: none;
+      margin-top: 6px;
+      font-family: "Inter", sans-serif;
+      font-size: 12px;
+      line-height: 1.4;
+      color: #dc3545;
+    }
+
+    .rejection-reason-error.show {
+      display: block;
     }
 
     .payment-form-modal {
@@ -725,67 +786,50 @@
       <nav class="side-nav-list">
 
         <a href="dashboard.html" class="side-nav-item">
-
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <rect x="2" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
             <rect x="10" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
             <rect x="2" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
             <rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
           </svg>
-
           <span>Dashboard</span>
-
         </a>
 
         <a href="applications.html" class="side-nav-item active">
-
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="white" stroke-width="1.4" />
             <path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5" stroke="white" stroke-width="1.4" stroke-linecap="round" />
           </svg>
-
           <span>Applications</span>
-
         </a>
 
         <a href="installment.html" class="side-nav-item">
-
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
             <path d="M2 7.5H16" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
           </svg>
-
           <span>Installments</span>
-
         </a>
 
         <a href="settings.html" class="side-nav-item">
-
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <circle cx="9" cy="9" r="2.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" />
             <path d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
           </svg>
-
           <span>Settings</span>
-
         </a>
 
       </nav>
 
       <div class="side-nav-footer">
-
         <button type="button" class="side-nav-logout" id="logoutBtn">
-
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <path d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
             <path d="M11.5 12.5L15 9L11.5 5.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
             <path d="M15 9H6.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" />
           </svg>
-
           <span>Logout</span>
-
         </button>
-
       </div>
 
     </aside>
@@ -798,22 +842,29 @@
           Applications
         </h1>
 
-        <button type="button" class="notif-btn" id="notifBtn" aria-label="Notifications">
+        <div class="dashboard-header-actions">
 
-          <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
-            <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z" stroke="#151C27" stroke-width="1.3" stroke-linejoin="round" />
-            <path d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5" stroke="#151C27" stroke-width="1.3" stroke-linecap="round" />
-          </svg>
+          <a href="messages.html" class="notif-btn messages-btn" id="messagesBtn" aria-label="Messages" title="Messages">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M21 11.5C21 16.194 17.194 20 12.5 20C11.25 20 10.05 19.73 9 19.2L3 21L4.8 15C4.27 13.95 4 12.75 4 11.5C4 6.806 7.806 3 12.5 3C17.194 3 21 6.806 21 11.5Z" stroke="#151C27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+              <path d="M8 10H17M8 13.5H14" stroke="#151C27" stroke-width="1.6" stroke-linecap="round" />
+            </svg>
+          </a>
 
-        </button>
+          <button type="button" class="notif-btn" id="notifBtn" aria-label="Notifications">
+            <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+              <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z" stroke="#151C27" stroke-width="1.3" stroke-linejoin="round" />
+              <path d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5" stroke="#151C27" stroke-width="1.3" stroke-linecap="round" />
+            </svg>
+          </button>
+
+        </div>
 
       </header>
 
       <main class="dashboard-content create-app-content">
 
-        <h2 class="create-app-heading">
-          Application Details
-        </h2>
+        <h2 class="create-app-heading">Application Details</h2>
 
         <p class="create-app-subheading">
           Review the submitted information and verification documents for this application.
@@ -824,76 +875,38 @@
           <div class="create-app-section">
 
             <h3 class="create-app-section-title">
-
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="6" r="3" stroke="currentColor" stroke-width="1.4" />
                 <path d="M3 15.5C3 12.5 5.5 10.5 9 10.5C12.5 10.5 15 12.5 15 15.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
               </svg>
-
               Customer Details
-
             </h3>
 
             <div class="create-app-row">
 
               <div class="create-app-field">
-
-                <label>
-                  Customer Name
-                </label>
-
-                <div class="application-detail-value" id="customerName">
-                  Jea Mae Dela Cruz
-                </div>
-
+                <label>Customer Name</label>
+                <div class="application-detail-value" id="customerName">Jea Mae Dela Cruz</div>
               </div>
 
               <div class="create-app-field">
-
-                <label>
-                  Email Address
-                </label>
-
-                <div class="application-detail-value" id="customerEmail">
-                  jea_delacruz@example.com
-                </div>
-
+                <label>Email Address</label>
+                <div class="application-detail-value" id="customerEmail">jea_delacruz@example.com</div>
               </div>
 
               <div class="create-app-field">
-
-                <label>
-                  Phone Number
-                </label>
-
-                <div class="application-detail-value" id="customerPhone">
-                  +63 9243936 444
-                </div>
-
+                <label>Phone Number</label>
+                <div class="application-detail-value" id="customerPhone">+63 9243936 444</div>
               </div>
 
               <div class="create-app-field">
-
-                <label>
-                  Date of Birth
-                </label>
-
-                <div class="application-detail-value" id="customerDob">
-                  Jan 3, 2007
-                </div>
-
+                <label>Date of Birth</label>
+                <div class="application-detail-value" id="customerDob">Jan 3, 2007</div>
               </div>
 
               <div class="create-app-field application-detail-full">
-
-                <label>
-                  Address
-                </label>
-
-                <div class="application-detail-value" id="customerAddress">
-                  Carmenchu Bel Air Block1 Lot 2 Pinagbarilan, Baliuag, Bulacan.
-                </div>
-
+                <label>Address</label>
+                <div class="application-detail-value" id="customerAddress">Carmenchu Bel Air Block1 Lot 2 Pinagbarilan, Baliuag, Bulacan.</div>
               </div>
 
             </div>
@@ -903,74 +916,40 @@
           <div class="create-app-section">
 
             <h3 class="create-app-section-title">
-
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <rect x="2" y="2.5" width="14" height="13" rx="1.5" stroke="currentColor" stroke-width="1.4" />
                 <path d="M5 6H13M5 9H13M5 12H10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
               </svg>
-
               Application Note
-
             </h3>
 
-            <div class="application-note" id="customerNote">
-              Ma'am ako po yung sa iphone.
-            </div>
+            <div class="application-note" id="customerNote">Ma'am ako po yung sa iphone.</div>
 
           </div>
 
           <div class="create-app-section">
 
             <h3 class="create-app-section-title">
-
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <rect x="2" y="4" width="14" height="11" rx="1.5" stroke="currentColor" stroke-width="1.4" />
                 <path d="M6 4V2.5H12V4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
                 <path d="M5 8H13M5 11H10" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
               </svg>
-
               Verification Documents
-
             </h3>
 
             <div class="verification-grid">
 
               <div class="verification-box">
-
-                <div class="verification-box-title">
-                  Government ID
-                </div>
-
-                <img
-                  id="governmentIdImage"
-                  class="verification-image"
-                  src="../images/gov_id_front.png"
-                  alt="Government ID"
-                >
-
-                <div class="verification-status" id="governmentIdStatus">
-                  ✓ Clear Image
-                </div>
-
+                <div class="verification-box-title">Government ID</div>
+                <img id="governmentIdImage" class="verification-image" src="../images/gov_id_front.png" alt="Government ID">
+                <div class="verification-status" id="governmentIdStatus">✓ Clear Image</div>
               </div>
 
               <div class="verification-box">
-
-                <div class="verification-box-title">
-                  Selfie Verification
-                </div>
-
-                <img
-                  id="selfieImage"
-                  class="verification-image"
-                  src="../images/gov_id_back.png"
-                  alt="Selfie Verification"
-                >
-
-                <div class="verification-status" id="selfieStatus">
-                  ✓ Face Match: 98%
-                </div>
-
+                <div class="verification-box-title">Selfie Verification</div>
+                <img id="selfieImage" class="verification-image" src="../images/gov_id_back.png" alt="Selfie Verification">
+                <div class="verification-status" id="selfieStatus">✓ Face Match: 98%</div>
               </div>
 
             </div>
@@ -980,43 +959,25 @@
           <div class="create-app-section" style="margin-bottom: 0;">
 
             <h3 class="create-app-section-title">
-
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <circle cx="9" cy="9" r="6.5" stroke="currentColor" stroke-width="1.4" />
                 <path d="M9 5.5V9L11.5 10.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
               </svg>
-
               Application Status
-
             </h3>
 
             <div class="create-app-field">
-
-              <label>
-                Status
-              </label>
-
-              <div class="application-status" id="applicationStatus">
-                Pending Review
-              </div>
-
+              <label>Status</label>
+              <div class="application-status" id="applicationStatus">Pending Review</div>
             </div>
 
           </div>
 
           <div class="create-app-actions">
 
-            <button type="button" class="create-app-cancel-btn" id="backApplicationBtn">
-              Back to Applications
-            </button>
-
-            <button type="button" class="create-app-reject-btn" id="rejectApplicationBtn">
-              Reject Application
-            </button>
-
-            <button type="button" class="create-app-submit-btn" id="approveApplicationBtn">
-              Approve Application
-            </button>
+            <button type="button" class="create-app-cancel-btn" id="backApplicationBtn">Back to Applications</button>
+            <button type="button" class="create-app-reject-btn" id="rejectApplicationBtn">Reject Application</button>
+            <button type="button" class="create-app-submit-btn" id="approveApplicationBtn">Approve Application</button>
 
           </div>
 
@@ -1033,69 +994,37 @@
   <aside class="notif-panel" id="notifPanel">
 
     <div class="notif-panel-header">
-
-      <h2 class="notif-panel-title">
-        Notifications
-      </h2>
-
-      <button type="button" class="notif-close-btn" id="notifCloseBtn" aria-label="Close notifications">
-        &times;
-      </button>
-
+      <h2 class="notif-panel-title">Notifications</h2>
+      <button type="button" class="notif-close-btn" id="notifCloseBtn" aria-label="Close notifications">&times;</button>
     </div>
 
     <div class="notif-panel-body">
 
-      <p class="notif-group-label">
-        Today
-      </p>
+      <p class="notif-group-label">Today</p>
 
       <a href="installment.html" class="notif-item notif-item-unread">
-
         <div class="notif-item-content">
-
-          <p class="notif-item-title">
-            New Payment Submitted
-          </p>
-
-          <p class="notif-item-desc">
-            Jea Mae Dela Cruz has submitted a payment. Please review and confirm the payment.
-          </p>
-
+          <p class="notif-item-title">New Payment Submitted</p>
+          <p class="notif-item-desc">Jea Mae Dela Cruz has submitted a payment. Please review and confirm the payment.</p>
         </div>
-
         <span class="notif-dot"></span>
-
       </a>
 
       <a href="installment.html" class="notif-item notif-item-unread">
-
         <div class="notif-item-content">
-
           <p class="notif-item-title">
-
             <span class="notif-warning-icon">
-
               <svg width="14" height="12" viewBox="0 0 14 12" fill="none">
                 <path d="M7 1L13 11H1L7 1Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round" />
                 <path d="M7 5V7.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" />
                 <circle cx="7" cy="9.3" r="0.6" fill="currentColor" />
               </svg>
-
             </span>
-
             Overdue Payment Alert
-
           </p>
-
-          <p class="notif-item-desc">
-            Pedro Garcia has an overdue installment payment. Please check the account and follow up.
-          </p>
-
+          <p class="notif-item-desc">Pedro Garcia has an overdue installment payment. Please check the account and follow up.</p>
         </div>
-
         <span class="notif-dot"></span>
-
       </a>
 
     </div>
@@ -1109,33 +1038,19 @@
     <div class="logout-modal-card">
 
       <div class="logout-modal-icon">
-
         <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
           <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
           <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
           <path d="M21 19V5C21 3.89543 20.105 3 19 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
         </svg>
-
       </div>
 
-      <h3>
-        Log out?
-      </h3>
-
-      <p>
-        Are you sure you want to log out of your account?
-      </p>
+      <h3>Log out?</h3>
+      <p>Are you sure you want to log out of your account?</p>
 
       <div class="logout-modal-actions">
-
-        <button type="button" class="logout-cancel-btn" id="cancelLogout">
-          Cancel
-        </button>
-
-        <button type="button" class="logout-confirm-btn" id="confirmLogout">
-          Log Out
-        </button>
-
+        <button type="button" class="logout-cancel-btn" id="cancelLogout">Cancel</button>
+        <button type="button" class="logout-confirm-btn" id="confirmLogout">Log Out</button>
       </div>
 
     </div>
@@ -1143,73 +1058,36 @@
   </div>
 
   <div class="application-confirm-modal" id="approveModal">
-
     <div class="application-confirm-overlay"></div>
-
     <div class="application-confirm-card">
-
-      <div class="application-confirm-icon approve-icon">
-        ✓
-      </div>
-
-      <h3>
-        Approve Application?
-      </h3>
-
-      <p>
-        Are you sure you want to approve
-        <strong id="approveApplicantName">this application</strong>?
-      </p>
-
+      <div class="application-confirm-icon approve-icon">✓</div>
+      <h3>Approve Application?</h3>
+      <p>Are you sure you want to approve <strong id="approveApplicantName">this application</strong>?</p>
       <div class="application-confirm-actions">
-
-        <button type="button" class="application-confirm-cancel" id="cancelApproveBtn">
-          Cancel
-        </button>
-
-        <button type="button" class="application-confirm-approve" id="confirmApproveBtn">
-          Continue
-        </button>
-
+        <button type="button" class="application-confirm-cancel" id="cancelApproveBtn">Cancel</button>
+        <button type="button" class="application-confirm-approve" id="confirmApproveBtn">Continue</button>
       </div>
-
     </div>
-
   </div>
 
   <div class="application-confirm-modal" id="rejectModal">
-
     <div class="application-confirm-overlay"></div>
-
     <div class="application-confirm-card">
+      <div class="application-confirm-icon reject-icon">!</div>
+      <h3>Reject Application?</h3>
+      <p>Are you sure you want to reject <strong id="rejectApplicantName">this application</strong>?</p>
 
-      <div class="application-confirm-icon reject-icon">
-        !
+      <div class="rejection-reason-field">
+        <label for="rejectionReasonInput">Reason for Rejection *</label>
+        <textarea id="rejectionReasonInput" placeholder="Explain why this application is being rejected..." maxlength="1000" required></textarea>
+        <div class="rejection-reason-error" id="rejectionReasonError">Please provide a reason for rejecting this application.</div>
       </div>
-
-      <h3>
-        Reject Application?
-      </h3>
-
-      <p>
-        Are you sure you want to reject
-        <strong id="rejectApplicantName">this application</strong>?
-      </p>
 
       <div class="application-confirm-actions">
-
-        <button type="button" class="application-confirm-cancel" id="cancelRejectBtn">
-          Cancel
-        </button>
-
-        <button type="button" class="application-confirm-reject" id="confirmRejectBtn">
-          Reject
-        </button>
-
+        <button type="button" class="application-confirm-cancel" id="cancelRejectBtn">Cancel</button>
+        <button type="button" class="application-confirm-reject" id="confirmRejectBtn">Reject</button>
       </div>
-
     </div>
-
   </div>
 
   <div class="payment-form-modal" id="paymentFormModal">
@@ -1218,167 +1096,69 @@
 
     <div class="payment-form-card">
 
-      <h3>
-        Set Product & Payment Terms
-      </h3>
-
-      <p class="payment-form-description">
-        Enter the product information and payment schedule for this approved application.
-      </p>
+      <h3>Set Product &amp; Payment Terms</h3>
+      <p class="payment-form-description">Enter the product information and payment schedule for this approved application.</p>
 
       <div class="payment-form-section">
 
-        <h4 class="payment-form-section-title">
-          Product Information
-        </h4>
+        <h4 class="payment-form-section-title">Product Information</h4>
 
         <div class="payment-form-grid">
 
           <div class="payment-form-field full">
-
-            <label for="productName">
-              Product Name
-            </label>
-
-            <input
-              type="text"
-              id="productName"
-              placeholder="Example: iPhone 15 128GB"
-            >
-
-            <div class="field-error-message" id="productNameError">
-              Please enter the product name.
-            </div>
-
+            <label for="productName">Product Name</label>
+            <input type="text" id="productName" placeholder="Example: iPhone 15 128GB">
+            <div class="field-error-message" id="productNameError">Please enter the product name.</div>
           </div>
 
           <div class="payment-form-field">
-
-            <label for="productPrice">
-              Product Price
-            </label>
-
-            <input
-              type="number"
-              id="productPrice"
-              min="0"
-              step="0.01"
-              placeholder="0.00"
-            >
-
-            <div class="field-error-message" id="productPriceError">
-              Please enter a valid product price.
-            </div>
-
+            <label for="productPrice">Product Price</label>
+            <input type="number" id="productPrice" min="0" step="0.01" placeholder="0.00">
+            <div class="field-error-message" id="productPriceError">Please enter a valid product price.</div>
           </div>
 
           <div class="payment-form-field">
-
-            <label for="downPayment">
-              Down Payment
-            </label>
-
-            <input
-              type="number"
-              id="downPayment"
-              min="0"
-              step="0.01"
-              value="0"
-              placeholder="0.00"
-            >
-
-            <div class="field-error-message" id="downPaymentError">
-              Down payment cannot be greater than the product price.
-            </div>
-
+            <label for="downPayment">Down Payment</label>
+            <input type="number" id="downPayment" min="0" step="0.01" value="0" placeholder="0.00">
+            <div class="field-error-message" id="downPaymentError">Down payment cannot be greater than the product price.</div>
           </div>
 
         </div>
 
         <div class="payment-summary">
-
           <div class="payment-summary-item">
-
-            <span class="payment-summary-label">
-              Remaining Balance
-            </span>
-
-            <span class="payment-summary-value" id="remainingBalance">
-              ₱0.00
-            </span>
-
+            <span class="payment-summary-label">Remaining Balance</span>
+            <span class="payment-summary-value" id="remainingBalance">₱0.00</span>
           </div>
-
         </div>
 
       </div>
 
       <div class="payment-form-section">
 
-        <h4 class="payment-form-section-title">
-          Payment Terms
-        </h4>
+        <h4 class="payment-form-section-title">Payment Terms</h4>
 
         <div class="payment-form-grid">
 
           <div class="payment-form-field">
-
-            <label for="paymentDay">
-              Payment Schedule
-            </label>
-
+            <label for="paymentDay">Payment Schedule</label>
             <select id="paymentDay">
-
-              <option value="">
-                Select payment schedule
-              </option>
-
-              <option value="15_30">
-                Every 15th & 30th of the month
-              </option>
-
-              <option value="monthly">
-                Monthly Payment
-              </option>
-
+              <option value="">Select payment schedule</option>
+              <option value="15_30">Every 15th &amp; 30th of the month</option>
+              <option value="monthly">Monthly Payment</option>
             </select>
-
-            <div class="field-error-message" id="paymentDayError">
-              Please select the payment schedule.
-            </div>
-
+            <div class="field-error-message" id="paymentDayError">Please select the payment schedule.</div>
           </div>
 
           <div class="payment-form-field">
-
-            <label for="durationMonths">
-              Payment Duration
-            </label>
-
+            <label for="durationMonths">Payment Duration</label>
             <select id="durationMonths">
-
-              <option value="">
-                Select duration
-              </option>
-
-              <option value="6">
-                6 months
-              </option>
-
-              <option value="8">
-                8 months
-              </option>
-
-              <option value="12">
-                12 months
-              </option>
-
+              <option value="">Select duration</option>
+              <option value="6">6 months</option>
+              <option value="8">8 months</option>
+              <option value="12">12 months</option>
             </select>
-
-            <div class="field-error-message" id="durationMonthsError">
-              Please select the payment duration.
-            </div>
-
+            <div class="field-error-message" id="durationMonthsError">Please select the payment duration.</div>
           </div>
 
         </div>
@@ -1386,27 +1166,13 @@
         <div class="payment-summary">
 
           <div class="payment-summary-item">
-
-            <span class="payment-summary-label">
-              Monthly Payment
-            </span>
-
-            <span class="payment-summary-value" id="monthlyPayment">
-              ₱0.00
-            </span>
-
+            <span class="payment-summary-label">Monthly Payment</span>
+            <span class="payment-summary-value" id="monthlyPayment">₱0.00</span>
           </div>
 
           <div class="payment-summary-item">
-
-            <span class="payment-summary-label">
-              Payment Schedule
-            </span>
-
-            <span class="payment-summary-value" id="paymentSchedule">
-              Not set
-            </span>
-
+            <span class="payment-summary-label">Payment Schedule</span>
+            <span class="payment-summary-value" id="paymentSchedule">Not set</span>
           </div>
 
         </div>
@@ -1414,15 +1180,8 @@
       </div>
 
       <div class="payment-form-actions">
-
-        <button type="button" class="payment-cancel-btn" id="cancelPaymentFormBtn">
-          Back
-        </button>
-
-        <button type="button" class="payment-confirm-btn" id="confirmPaymentTermsBtn">
-          Confirm & Approve
-        </button>
-
+        <button type="button" class="payment-cancel-btn" id="cancelPaymentFormBtn">Back</button>
+        <button type="button" class="payment-confirm-btn" id="confirmPaymentTermsBtn">Confirm &amp; Approve</button>
       </div>
 
     </div>
@@ -1434,35 +1193,18 @@
     <div class="success-modal-overlay"></div>
 
     <div class="success-modal-card">
-
-      <div class="success-modal-icon">
-        ✓
-      </div>
-
-      <h3>
-        Application Approved
-      </h3>
-
-      <p>
-        The application for
-        <strong id="successApplicantName">this customer</strong>
-        has been approved successfully.
-      </p>
-
-      <button type="button" class="success-modal-btn" id="successDoneBtn">
-        Done
-      </button>
-
+      <div class="success-modal-icon">✓</div>
+      <h3>Application Approved</h3>
+      <p>The application for <strong id="successApplicantName">this customer</strong> has been approved successfully.</p>
+      <button type="button" class="success-modal-btn" id="successDoneBtn">Done</button>
     </div>
 
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-
   <script src="../js/script.js"></script>
 
   <script>
-
     const applications = {
       "1": {
         name: "Jea Mae Dela Cruz",
@@ -1476,7 +1218,6 @@
         idStatus: "✓ Clear Image",
         selfieStatus: "✓ Face Match: 98%"
       },
-
       "2": {
         name: "Kenneth Abrera",
         email: "kenneth_abrera@example.com",
@@ -1489,7 +1230,6 @@
         idStatus: "✓ Clear Image",
         selfieStatus: "✓ Face Match: 97%"
       },
-
       "3": {
         name: "Rodrigo Jr. A. Castillo",
         email: "rodrigo_castillo@example.com",
@@ -1546,198 +1286,115 @@
     const monthlyPayment = document.getElementById("monthlyPayment");
     const paymentSchedule = document.getElementById("paymentSchedule");
 
-    function formatCurrency(value) {
+    const rejectionReasonInput = document.getElementById("rejectionReasonInput");
+    const rejectionReasonError = document.getElementById("rejectionReasonError");
 
+    function formatCurrency(value) {
       const amount = Number(value) || 0;
 
       return "₱" + amount.toLocaleString("en-PH", {
         minimumFractionDigits: 2,
         maximumFractionDigits: 2
       });
-
     }
 
     function updatePaymentCalculation() {
-
       const price = Number(productPriceInput.value) || 0;
       const downPayment = Number(downPaymentInput.value) || 0;
       const duration = Number(durationMonthsInput.value) || 0;
-
       const balance = Math.max(price - downPayment, 0);
 
       remainingBalance.textContent = formatCurrency(balance);
 
       if (duration > 0) {
-
-        const monthly = balance / duration;
-
-        monthlyPayment.textContent = formatCurrency(monthly);
-
+        monthlyPayment.textContent = formatCurrency(balance / duration);
       } else {
-
         monthlyPayment.textContent = "₱0.00";
-
       }
 
       if (paymentDayInput.value) {
-
-        const selectedOption =
-          paymentDayInput.options[paymentDayInput.selectedIndex];
-
-        paymentSchedule.textContent =
-          selectedOption.textContent;
-
+        const selectedOption = paymentDayInput.options[paymentDayInput.selectedIndex];
+        paymentSchedule.textContent = selectedOption.textContent;
       } else {
-
         paymentSchedule.textContent = "Not set";
-
       }
-
     }
 
     function setFieldError(input, errorElement, message) {
-
       input.classList.add("field-error");
-
       errorElement.textContent = message;
       errorElement.classList.add("show");
-
     }
 
     function clearFieldError(input, errorElement) {
-
       input.classList.remove("field-error");
-
       errorElement.textContent = "";
       errorElement.classList.remove("show");
-
     }
 
     function validateProductName() {
-
       const value = productNameInput.value.trim();
 
       if (!value) {
-
-        setFieldError(
-          productNameInput,
-          productNameError,
-          "Please enter the product name."
-        );
-
+        setFieldError(productNameInput, productNameError, "Please enter the product name.");
         return false;
-
       }
 
       clearFieldError(productNameInput, productNameError);
-
       return true;
-
     }
 
     function validateProductPrice() {
-
       const value = Number(productPriceInput.value);
 
-      if (
-        !productPriceInput.value.trim() ||
-        !Number.isFinite(value) ||
-        value <= 0
-      ) {
-
-        setFieldError(
-          productPriceInput,
-          productPriceError,
-          "Please enter a valid product price greater than ₱0."
-        );
-
+      if (!productPriceInput.value.trim() || !Number.isFinite(value) || value <= 0) {
+        setFieldError(productPriceInput, productPriceError, "Please enter a valid product price greater than ₱0.");
         return false;
-
       }
 
       clearFieldError(productPriceInput, productPriceError);
-
       return true;
-
     }
 
     function validateDownPayment() {
-
       const value = Number(downPaymentInput.value);
       const price = Number(productPriceInput.value);
 
       if (!Number.isFinite(value) || value < 0) {
-
-        setFieldError(
-          downPaymentInput,
-          downPaymentError,
-          "Down payment cannot be negative."
-        );
-
+        setFieldError(downPaymentInput, downPaymentError, "Down payment cannot be negative.");
         return false;
-
       }
 
       if (Number.isFinite(price) && price > 0 && value > price) {
-
-        setFieldError(
-          downPaymentInput,
-          downPaymentError,
-          "Down payment cannot be greater than the product price."
-        );
-
+        setFieldError(downPaymentInput, downPaymentError, "Down payment cannot be greater than the product price.");
         return false;
-
       }
 
       clearFieldError(downPaymentInput, downPaymentError);
-
       return true;
-
     }
 
     function validatePaymentDay() {
-
       if (!paymentDayInput.value) {
-
-        setFieldError(
-          paymentDayInput,
-          paymentDayError,
-          "Please select the payment schedule."
-        );
-
+        setFieldError(paymentDayInput, paymentDayError, "Please select the payment schedule.");
         return false;
-
       }
 
       clearFieldError(paymentDayInput, paymentDayError);
-
       return true;
-
     }
 
     function validateDuration() {
-
       if (!durationMonthsInput.value) {
-
-        setFieldError(
-          durationMonthsInput,
-          durationMonthsError,
-          "Please select the payment duration."
-        );
-
+        setFieldError(durationMonthsInput, durationMonthsError, "Please select the payment duration.");
         return false;
-
       }
 
       clearFieldError(durationMonthsInput, durationMonthsError);
-
       return true;
-
     }
 
     function validatePaymentForm() {
-
       const productNameValid = validateProductName();
       const productPriceValid = validateProductPrice();
       const downPaymentValid = validateDownPayment();
@@ -1770,108 +1427,73 @@
       }
 
       return true;
+    }
 
+    function clearRejectionReasonError() {
+      rejectionReasonInput.classList.remove("field-error");
+      rejectionReasonError.classList.remove("show");
+    }
+
+    function closeRejectModal() {
+      rejectModal.classList.remove("show");
+      clearRejectionReasonError();
     }
 
     productNameInput.addEventListener("input", validateProductName);
 
     productPriceInput.addEventListener("input", function() {
-
       validateProductPrice();
       validateDownPayment();
       updatePaymentCalculation();
-
     });
 
     downPaymentInput.addEventListener("input", function() {
-
       validateDownPayment();
       updatePaymentCalculation();
-
     });
 
     paymentDayInput.addEventListener("change", function() {
-
       validatePaymentDay();
       updatePaymentCalculation();
-
     });
 
     durationMonthsInput.addEventListener("change", function() {
-
       validateDuration();
       updatePaymentCalculation();
-
     });
 
     document.getElementById("backApplicationBtn").addEventListener("click", function() {
-
       window.location.href = "applications.html";
-
     });
 
     document.getElementById("approveApplicationBtn").addEventListener("click", function() {
-
       approveModal.classList.add("show");
-
-    });
-
-    document.getElementById("rejectApplicationBtn").addEventListener("click", function() {
-
-      rejectModal.classList.add("show");
-
     });
 
     document.getElementById("cancelApproveBtn").addEventListener("click", function() {
-
       approveModal.classList.remove("show");
-
-    });
-
-    document.getElementById("cancelRejectBtn").addEventListener("click", function() {
-
-      rejectModal.classList.remove("show");
-
     });
 
     document.querySelector("#approveModal .application-confirm-overlay").addEventListener("click", function() {
-
       approveModal.classList.remove("show");
-
-    });
-
-    document.querySelector("#rejectModal .application-confirm-overlay").addEventListener("click", function() {
-
-      rejectModal.classList.remove("show");
-
     });
 
     document.getElementById("confirmApproveBtn").addEventListener("click", function() {
-
       approveModal.classList.remove("show");
-
       paymentFormModal.classList.add("show");
-
       updatePaymentCalculation();
-
       productNameInput.focus();
-
     });
 
     document.getElementById("cancelPaymentFormBtn").addEventListener("click", function() {
-
       paymentFormModal.classList.remove("show");
-
     });
 
     document.getElementById("paymentFormOverlay").addEventListener("click", function() {
-
       paymentFormModal.classList.remove("show");
-
     });
 
     document.getElementById("confirmPaymentTermsBtn").addEventListener("click", function() {
-
       if (!validatePaymentForm()) {
         return;
       }
@@ -1885,49 +1507,35 @@
       const balance = productPrice - downPayment;
       const monthlyPaymentAmount = balance / durationMonths;
 
-      const paymentScheduleText =
-        paymentDayInput.options[paymentDayInput.selectedIndex].textContent;
+      const paymentScheduleText = paymentDayInput.options[paymentDayInput.selectedIndex].textContent;
 
       const approvedApplication = {
-
         id: applicationId,
-
         name: application.name,
         email: application.email,
         phone: application.phone,
         dob: application.dob,
         address: application.address,
         note: application.note,
-
         idImage: application.idImage,
         selfieImage: application.selfieImage,
-
         idStatus: application.idStatus,
         selfieStatus: application.selfieStatus,
-
         productName: productName,
         productPrice: productPrice,
         downPayment: downPayment,
         remainingBalance: balance,
-
         paymentSchedule: paymentScheduleValue,
         paymentScheduleText: paymentScheduleText,
-
         durationMonths: durationMonths,
         monthlyPayment: monthlyPaymentAmount,
-
         status: "Approved",
         approvedAt: new Date().toISOString()
-
       };
 
-      localStorage.setItem(
-        "valobloxApprovedApplication",
-        JSON.stringify(approvedApplication)
-      );
+      localStorage.setItem("valobloxApprovedApplication", JSON.stringify(approvedApplication));
 
       const status = document.getElementById("applicationStatus");
-
       status.textContent = "Approved";
       status.classList.remove("rejected");
       status.classList.add("approved");
@@ -1936,54 +1544,80 @@
       document.getElementById("rejectApplicationBtn").style.display = "none";
 
       paymentFormModal.classList.remove("show");
-
       successModal.classList.add("show");
-
     });
 
     document.getElementById("successDoneBtn").addEventListener("click", function() {
-
       successModal.classList.remove("show");
-
     });
 
     document.querySelector(".success-modal-overlay").addEventListener("click", function() {
-
       successModal.classList.remove("show");
-
     });
 
+    document.getElementById("rejectApplicationBtn").addEventListener("click", function() {
+      rejectionReasonInput.value = "";
+      clearRejectionReasonError();
+      rejectModal.classList.add("show");
+      rejectionReasonInput.focus();
+    });
+
+    rejectionReasonInput.addEventListener("input", function() {
+      if (rejectionReasonInput.value.trim()) {
+        clearRejectionReasonError();
+      }
+    });
+
+    document.getElementById("cancelRejectBtn").addEventListener("click", closeRejectModal);
+
+    document.querySelector("#rejectModal .application-confirm-overlay").addEventListener("click", closeRejectModal);
+
     document.getElementById("confirmRejectBtn").addEventListener("click", function() {
+      const reason = rejectionReasonInput.value.trim();
+
+      if (!reason) {
+        rejectionReasonInput.classList.add("field-error");
+        rejectionReasonError.textContent = "Please provide a reason for rejecting this application.";
+        rejectionReasonError.classList.add("show");
+        rejectionReasonInput.focus();
+        return;
+      }
 
       const rejectedApplication = {
-
         id: applicationId,
-
         name: application.name,
         email: application.email,
         phone: application.phone,
         dob: application.dob,
         address: application.address,
         note: application.note,
-
         idImage: application.idImage,
         selfieImage: application.selfieImage,
-
         idStatus: application.idStatus,
         selfieStatus: application.selfieStatus,
-
         status: "Rejected",
+        rejectionReason: reason,
         rejectedAt: new Date().toISOString()
-
       };
 
-      localStorage.setItem(
-        "valobloxRejectedApplication",
-        JSON.stringify(rejectedApplication)
-      );
+      let rejectionReasons = {};
+
+      try {
+        rejectionReasons = JSON.parse(localStorage.getItem("valobloxApplicationRejectionReasons") || "{}");
+
+        if (!rejectionReasons || typeof rejectionReasons !== "object" || Array.isArray(rejectionReasons)) {
+          rejectionReasons = {};
+        }
+      } catch (error) {
+        rejectionReasons = {};
+      }
+
+      rejectionReasons[applicationId] = rejectedApplication;
+
+      localStorage.setItem("valobloxApplicationRejectionReasons", JSON.stringify(rejectionReasons));
+      localStorage.setItem("valobloxRejectedApplication", JSON.stringify(rejectedApplication));
 
       const status = document.getElementById("applicationStatus");
-
       status.textContent = "Rejected";
       status.classList.remove("approved");
       status.classList.add("rejected");
@@ -1991,10 +1625,8 @@
       document.getElementById("approveApplicationBtn").style.display = "none";
       document.getElementById("rejectApplicationBtn").style.display = "none";
 
-      rejectModal.classList.remove("show");
-
+      closeRejectModal();
     });
-
   </script>
 
 </body>

@@ -204,11 +204,10 @@ function initLoginForm() {
             localStorage.removeItem("rememberLogin");
         }
 
-        if (account.role === "customer") {
-            window.location.href = "customer_welcome.html";
-        } else {
-            window.location.href = "dashboard.html";
-        }
+       window.location.href = account.role === "customer"
+    ? "customer_dashboard.html"
+    : "dashboard.html";
+        
     });
 }
 

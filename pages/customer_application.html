@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,17 +7,11 @@
 
     <title>Application — Maryanne's Online Shop</title>
 
-    <link
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css"
-        rel="stylesheet"
-    >
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css" rel="stylesheet">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../css/style.css">
 
@@ -38,6 +33,19 @@
             height: 100%;
             object-fit: contain;
             padding: 3px;
+        }
+
+        .dashboard-header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dashboard-header-actions .messages-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
         }
 
         .application-status-grid {
@@ -62,6 +70,18 @@
         .application-status-card:hover {
             box-shadow: 0 8px 24px rgba(21, 28, 39, 0.06);
             transform: translateY(-1px);
+        }
+
+        .application-status-card-button {
+            width: 100%;
+            text-align: left;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .application-status-card-button:focus-visible {
+            outline: 3px solid rgba(255, 107, 0, 0.35);
+            outline-offset: 3px;
         }
 
         .application-current-card {
@@ -273,6 +293,178 @@
             font-weight: 700;
         }
 
+        .rejected-modal .modal-content {
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(3, 6, 12, 0.2);
+        }
+
+        .rejected-modal .modal-header {
+            padding: 22px 24px;
+            border-bottom: 1px solid #edf0f4;
+        }
+
+        .rejected-modal-title-wrap {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .rejected-modal-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: #fff0f0;
+            color: #ba1a1a;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .rejected-modal-title {
+            margin: 0;
+            color: #151c27;
+            font-family: "Hanken Grotesk", sans-serif;
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .rejected-modal-subtitle {
+            margin: 3px 0 0;
+            color: #767c85;
+            font-size: 13px;
+        }
+
+        .rejected-modal .modal-body {
+            padding: 24px;
+            max-height: 65vh;
+            overflow-y: auto;
+        }
+
+        .rejected-application-item {
+            padding: 18px;
+            border: 1px solid #e2e8f0;
+            border-radius: 12px;
+            margin-bottom: 14px;
+        }
+
+        .rejected-application-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .rejected-application-top {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .rejected-application-name {
+            margin: 0 0 5px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #151c27;
+            overflow-wrap: anywhere;
+        }
+
+        .rejected-application-date {
+            margin: 0;
+            font-size: 12px;
+            color: #8a9099;
+        }
+
+        .rejected-status-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            flex-shrink: 0;
+            padding: 6px 9px;
+            border-radius: 20px;
+            background: #fff0f0;
+            color: #ba1a1a;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .rejected-reason-box {
+            padding: 13px 14px;
+            background: #fff8f8;
+            border: 1px solid #ffe3e3;
+            border-radius: 9px;
+        }
+
+        .rejected-reason-label {
+            display: block;
+            margin-bottom: 5px;
+            color: #ba1a1a;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .rejected-reason-text {
+            margin: 0;
+            color: #4b3030;
+            font-size: 13px;
+            line-height: 1.6;
+            overflow-wrap: anywhere;
+        }
+
+        .rejected-empty-state {
+            padding: 38px 20px;
+            text-align: center;
+        }
+
+        .rejected-empty-icon {
+            width: 58px;
+            height: 58px;
+            margin: 0 auto 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            color: #8a9099;
+        }
+
+        .rejected-empty-state h3 {
+            margin: 0 0 8px;
+            color: #151c27;
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .rejected-empty-state p {
+            max-width: 320px;
+            margin: 0 auto;
+            color: #767c85;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .rejected-modal .modal-footer {
+            padding: 16px 24px;
+            border-top: 1px solid #edf0f4;
+        }
+
+        .rejected-modal-close {
+            padding: 10px 22px;
+            border: none;
+            border-radius: 8px;
+            background: #151c27;
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .rejected-modal-close:hover {
+            background: #303947;
+        }
+
         @media (max-width: 1100px) {
             .application-current-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -327,6 +519,19 @@
             .application-new-panel .panel-body {
                 padding: 30px 20px;
             }
+
+            .rejected-modal .modal-header,
+            .rejected-modal .modal-body {
+                padding: 18px;
+            }
+
+            .rejected-modal .modal-footer {
+                padding: 14px 18px;
+            }
+
+            .rejected-application-top {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
@@ -338,7 +543,6 @@
         <aside class="side-nav">
 
             <div class="side-nav-brand">
-
                 <div class="side-nav-avatar customer-brand-icon">
                     <img src="../images/mos_logo.png" alt="M.O.S Logo">
                 </div>
@@ -347,55 +551,40 @@
                     <p class="side-nav-title">M.O.S</p>
                     <p class="side-nav-subtitle">Installment System</p>
                 </div>
-
             </div>
 
             <nav class="side-nav-list">
 
                 <a href="customer_dashboard.html" class="side-nav-item">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <rect x="2" y="2" width="6" height="6" rx="1"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
-                        <rect x="10" y="2" width="6" height="6" rx="1"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
-                        <rect x="2" y="10" width="6" height="6" rx="1"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
-                        <rect x="10" y="10" width="6" height="6" rx="1"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <rect x="2" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <rect x="10" y="2" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <rect x="2" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <rect x="10" y="10" width="6" height="6" rx="1" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
                     </svg>
                     <span>Dashboard</span>
                 </a>
 
                 <a href="customer_installment.html" class="side-nav-item">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <rect x="3" y="2" width="12" height="14" rx="1.5"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
-                        <path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5"
-                            stroke="rgba(207,230,242,0.7)"
-                            stroke-width="1.4"
-                            stroke-linecap="round"/>
+                        <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <path d="M6.5 6.5H11.5M6.5 9H11.5M6.5 11.5H9.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round"/>
                     </svg>
                     <span>My Installment</span>
                 </a>
 
                 <a href="customer_application.html" class="side-nav-item active">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <rect x="2" y="4" width="14" height="10" rx="1.5"
-                            stroke="#fff" stroke-width="1.4"/>
-                        <path d="M2 7.5H16"
-                            stroke="#fff" stroke-width="1.4"/>
+                        <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="#fff" stroke-width="1.4"/>
+                        <path d="M2 7.5H16" stroke="#fff" stroke-width="1.4"/>
                     </svg>
                     <span>Application</span>
                 </a>
 
                 <a href="customer_settings.html" class="side-nav-item">
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <circle cx="9" cy="9" r="2.5"
-                            stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
-                        <path d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6"
-                            stroke="rgba(207,230,242,0.7)"
-                            stroke-width="1.4"
-                            stroke-linecap="round"/>
+                        <circle cx="9" cy="9" r="2.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4"/>
+                        <path d="M9 2.5V4M9 14V15.5M15.5 9H14M4 9H2.5M13.4 4.6L12.3 5.7M5.7 12.3L4.6 13.4M13.4 13.4L12.3 12.3M5.7 5.7L4.6 4.6" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round"/>
                     </svg>
                     <span>Settings</span>
                 </a>
@@ -403,29 +592,14 @@
             </nav>
 
             <div class="side-nav-footer">
-
                 <button type="button" class="side-nav-logout" id="logoutBtn">
-
                     <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                        <path d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7"
-                            stroke="rgba(207,230,242,0.7)"
-                            stroke-width="1.4"
-                            stroke-linecap="round"/>
-                        <path d="M11.5 12.5L15 9L11.5 5.5"
-                            stroke="rgba(207,230,242,0.7)"
-                            stroke-width="1.4"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"/>
-                        <path d="M15 9H6.5"
-                            stroke="rgba(207,230,242,0.7)"
-                            stroke-width="1.4"
-                            stroke-linecap="round"/>
+                        <path d="M7 2.5H3.5C2.94772 2.5 2.5 2.94772 2.5 3.5V14.5C2.5 15.0523 2.94772 15.5 3.5 15.5H7" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round"/>
+                        <path d="M11.5 12.5L15 9L11.5 5.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M15 9H6.5" stroke="rgba(207,230,242,0.7)" stroke-width="1.4" stroke-linecap="round"/>
                     </svg>
-
                     <span>Logout</span>
-
                 </button>
-
             </div>
 
         </aside>
@@ -434,49 +608,43 @@
 
             <header class="dashboard-header">
 
-                <h1 class="dashboard-title">
-                    Application
-                </h1>
+                <h1 class="dashboard-title">Application</h1>
 
-                <button
-                    type="button"
-                    class="notif-btn"
-                    id="notifBtn"
-                    aria-label="Notifications"
-                >
+                <div class="dashboard-header-actions">
 
-                    <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
-                        <path
-                            d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z"
-                            stroke="#151C27"
-                            stroke-width="1.3"
-                            stroke-linejoin="round"
-                        />
-                        <path
-                            d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5"
-                            stroke="#151C27"
-                            stroke-width="1.3"
-                            stroke-linecap="round"
-                        />
-                    </svg>
+                    <a
+                        href="customer_messages.html"
+                        class="notif-btn messages-btn"
+                        id="messagesBtn"
+                        aria-label="Messages"
+                        title="Messages"
+                    >
+                        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M21 11.5C21 16.194 17.194 20 12.5 20C11.25 20 10.05 19.73 9 19.2L3 21L4.8 15C4.27 13.95 4 12.75 4 11.5C4 6.806 7.806 3 12.5 3C17.194 3 21 6.806 21 11.5Z" stroke="#151C27" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M8 10H17M8 13.5H14" stroke="#151C27" stroke-width="1.6" stroke-linecap="round"/>
+                        </svg>
+                    </a>
 
-                </button>
+                    <button type="button" class="notif-btn" id="notifBtn" aria-label="Notifications">
+                        <svg width="16" height="20" viewBox="0 0 16 20" fill="none">
+                            <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6V9.5L2 13H14L12.5 9.5V6C12.5 3.5 10.5 1.5 8 1.5Z" stroke="#151C27" stroke-width="1.3" stroke-linejoin="round"/>
+                            <path d="M6.5 15.5C6.5 16.6 7.2 17.5 8 17.5C8.8 17.5 9.5 16.6 9.5 15.5" stroke="#151C27" stroke-width="1.3" stroke-linecap="round"/>
+                        </svg>
+                    </button>
+
+                </div>
 
             </header>
 
             <main class="dashboard-content">
 
-                <p
-                    class="metric-label"
-                    style="font-size:15px;color:#151c27;margin-bottom:16px;"
-                >
+                <p class="metric-label" style="font-size:15px;color:#151c27;margin-bottom:16px;">
                     Application Status
                 </p>
 
                 <section class="application-status-grid">
 
                     <div class="application-status-card">
-
                         <div>
                             <p class="metric-label">TOTAL PENDING</p>
                             <p class="metric-value">0</p>
@@ -484,19 +652,13 @@
 
                         <span class="metric-icon metric-icon-amber">
                             <svg width="15" height="16" viewBox="0 0 15 16" fill="none">
-                                <rect x="2" y="2.5" width="11" height="12" rx="1.2"
-                                    stroke="#946F00" stroke-width="1.2"/>
-                                <path d="M5 6H10M5 8.5H10M5 11H8"
-                                    stroke="#946F00"
-                                    stroke-width="1.2"
-                                    stroke-linecap="round"/>
+                                <rect x="2" y="2.5" width="11" height="12" rx="1.2" stroke="#946F00" stroke-width="1.2"/>
+                                <path d="M5 6H10M5 8.5H10M5 11H8" stroke="#946F00" stroke-width="1.2" stroke-linecap="round"/>
                             </svg>
                         </span>
-
                     </div>
 
                     <div class="application-status-card">
-
                         <div>
                             <p class="metric-label">APPROVED</p>
                             <p class="metric-value" style="color:#1b6d24;">1</p>
@@ -504,45 +666,39 @@
 
                         <span class="metric-icon metric-icon-green">
                             <svg width="15" height="14" viewBox="0 0 15 14" fill="none">
-                                <path d="M1.5 7L5.5 11L13.5 2.5"
-                                    stroke="#1B6D24"
-                                    stroke-width="1.6"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"/>
+                                <path d="M1.5 7L5.5 11L13.5 2.5" stroke="#1B6D24" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
                         </span>
-
                     </div>
 
-                    <div class="application-status-card">
-
+                    <button
+                        type="button"
+                        class="application-status-card application-status-card-button"
+                        id="viewRejectedBtn"
+                        data-bs-toggle="modal"
+                        data-bs-target="#rejectedApplicationsModal"
+                        aria-label="View rejected applications"
+                    >
                         <div>
                             <p class="metric-label">REJECTED</p>
-                            <p class="metric-value" style="color:#ba1a1a;">0</p>
+                            <p class="metric-value" id="rejectedCount" style="color:#ba1a1a;">3</p>
+                            <span style="display:block;margin-top:5px;font-size:11px;color:#8a9099;">
+                                Click to view details
+                            </span>
                         </div>
 
                         <span class="metric-icon metric-icon-red">
                             <svg width="17" height="14" viewBox="0 0 17 14" fill="none">
-                                <path d="M8.5 1.5L16 13H1L8.5 1.5Z"
-                                    stroke="#BA1A1A"
-                                    stroke-width="1.2"
-                                    stroke-linejoin="round"/>
-                                <path d="M8.5 6V9"
-                                    stroke="#BA1A1A"
-                                    stroke-width="1.2"
-                                    stroke-linecap="round"/>
+                                <path d="M8.5 1.5L16 13H1L8.5 1.5Z" stroke="#BA1A1A" stroke-width="1.2" stroke-linejoin="round"/>
+                                <path d="M8.5 6V9" stroke="#BA1A1A" stroke-width="1.2" stroke-linecap="round"/>
                                 <circle cx="8.5" cy="11" r="0.6" fill="#BA1A1A"/>
                             </svg>
                         </span>
-
-                    </div>
+                    </button>
 
                 </section>
 
-                <section
-                    class="application-current-card"
-                    style="margin-bottom:20px;"
-                >
+                <section class="application-current-card" style="margin-bottom:20px;">
 
                     <div class="application-current-header">
 
@@ -550,66 +706,26 @@
 
                             <div class="application-product-icon">
                                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
-                                    <rect
-                                        x="7"
-                                        y="2.5"
-                                        width="10"
-                                        height="19"
-                                        rx="2"
-                                        stroke="currentColor"
-                                        stroke-width="1.7"
-                                    />
-                                    <path
-                                        d="M10 5H14"
-                                        stroke="currentColor"
-                                        stroke-width="1.5"
-                                        stroke-linecap="round"
-                                    />
-                                    <circle
-                                        cx="12"
-                                        cy="18.5"
-                                        r="1"
-                                        fill="currentColor"
-                                    />
+                                    <rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/>
+                                    <path d="M10 5H14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                    <circle cx="12" cy="18.5" r="1" fill="currentColor"/>
                                 </svg>
                             </div>
 
                             <div>
-
-                                <h3 class="application-current-title">
-                                    Current Installment
-                                </h3>
-
-                                <p class="application-current-product-name">
-                                    Iphone 11
-                                </p>
-
+                                <h3 class="application-current-title">Current Installment</h3>
+                                <p class="application-current-product-name">Iphone 11</p>
                             </div>
 
                         </div>
 
-                        <a
-                            href="customer_installment.html"
-                            class="btn-brand btn-brand-dark application-pay-button"
-                        >
+                        <a href="customer_installment.html" class="btn-brand btn-brand-dark application-pay-button">
                             Pay Installment
 
                             <svg width="15" height="15" viewBox="0 0 15 15" fill="none">
-                                <path
-                                    d="M3 7.5H12"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                />
-                                <path
-                                    d="M8.5 4L12 7.5L8.5 11"
-                                    stroke="currentColor"
-                                    stroke-width="1.5"
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                />
+                                <path d="M3 7.5H12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                <path d="M8.5 4L12 7.5L8.5 11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                             </svg>
-
                         </a>
 
                     </div>
@@ -619,43 +735,23 @@
                         <div class="application-current-grid">
 
                             <div class="application-info-box">
-                                <p class="application-info-label">
-                                    Total Installment
-                                </p>
-
-                                <p class="application-info-value">
-                                    ₱20,400
-                                </p>
+                                <p class="application-info-label">Total Installment</p>
+                                <p class="application-info-value">₱20,400</p>
                             </div>
 
                             <div class="application-info-box">
-                                <p class="application-info-label">
-                                    Monthly Payment
-                                </p>
-
-                                <p class="application-info-value">
-                                    ₱1,700
-                                </p>
+                                <p class="application-info-label">Monthly Payment</p>
+                                <p class="application-info-value">₱1,700</p>
                             </div>
 
                             <div class="application-info-box">
-                                <p class="application-info-label">
-                                    Remaining Balance
-                                </p>
-
-                                <p class="application-info-value">
-                                    ₱20,400
-                                </p>
+                                <p class="application-info-label">Remaining Balance</p>
+                                <p class="application-info-value">₱20,400</p>
                             </div>
 
                             <div class="application-info-box">
-                                <p class="application-info-label">
-                                    Next Due Date
-                                </p>
-
-                                <p class="application-info-value">
-                                    Oct 15, 2025
-                                </p>
+                                <p class="application-info-label">Next Due Date</p>
+                                <p class="application-info-value">Oct 15, 2025</p>
                             </div>
 
                         </div>
@@ -663,15 +759,8 @@
                         <div class="application-progress-section">
 
                             <div class="application-progress-header">
-
-                                <span class="application-progress-paid">
-                                    0% Paid
-                                </span>
-
-                                <span class="application-progress-amount">
-                                    ₱0.00 of ₱20,400.00
-                                </span>
-
+                                <span class="application-progress-paid">0% Paid</span>
+                                <span class="application-progress-amount">₱0.00 of ₱20,400.00</span>
                             </div>
 
                             <div class="application-progress">
@@ -684,123 +773,43 @@
 
                 </section>
 
-                <div
-                    class="workspace-grid"
-                    style="
-                        display:grid;
-                        grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);
-                        gap:20px;
-                    "
-                >
+                <div class="workspace-grid" style="display:grid;grid-template-columns:minmax(0,1.5fr) minmax(280px,1fr);gap:20px;">
 
                     <div class="panel">
 
                         <div class="panel-header">
-
-                            <h2 class="panel-title">
-                                Installment Details
-                            </h2>
-
+                            <h2 class="panel-title">Installment Details</h2>
                         </div>
 
                         <table class="application-details-table">
-
                             <tbody>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Product
-                                    </td>
-
-                                    <td
-                                        style="
-                                            text-align:right;
-                                            font-weight:600;
-                                            color:#151c27;
-                                        "
-                                    >
-                                        Iphone 11
-                                    </td>
+                                    <td style="color:#767c85;">Product</td>
+                                    <td style="text-align:right;font-weight:600;color:#151c27;">Iphone 11</td>
                                 </tr>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Total Installment
-                                    </td>
-
-                                    <td
-                                        style="
-                                            text-align:right;
-                                            font-weight:600;
-                                            color:#151c27;
-                                        "
-                                    >
-                                        ₱20,400
-                                    </td>
+                                    <td style="color:#767c85;">Total Installment</td>
+                                    <td style="text-align:right;font-weight:600;color:#151c27;">₱20,400</td>
                                 </tr>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Monthly Payment
-                                    </td>
-
-                                    <td
-                                        style="
-                                            text-align:right;
-                                            font-weight:600;
-                                            color:#151c27;
-                                        "
-                                    >
-                                        ₱1,700
-                                    </td>
+                                    <td style="color:#767c85;">Monthly Payment</td>
+                                    <td style="text-align:right;font-weight:600;color:#151c27;">₱1,700</td>
                                 </tr>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Installment Term
-                                    </td>
-
-                                    <td
-                                        style="
-                                            text-align:right;
-                                            font-weight:600;
-                                            color:#151c27;
-                                        "
-                                    >
-                                        12 Months
-                                    </td>
+                                    <td style="color:#767c85;">Installment Term</td>
+                                    <td style="text-align:right;font-weight:600;color:#151c27;">12 Months</td>
                                 </tr>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Application Date
-                                    </td>
-
-                                    <td
-                                        style="
-                                            text-align:right;
-                                            font-weight:600;
-                                            color:#151c27;
-                                        "
-                                    >
-                                        Oct 10, 2025
-                                    </td>
+                                    <td style="color:#767c85;">Application Date</td>
+                                    <td style="text-align:right;font-weight:600;color:#151c27;">Oct 10, 2025</td>
                                 </tr>
-
                                 <tr>
-                                    <td style="color:#767c85;">
-                                        Status
-                                    </td>
-
+                                    <td style="color:#767c85;">Status</td>
                                     <td style="text-align:right;">
-                                        <span class="chip chip-green">
-                                            Approved
-                                        </span>
+                                        <span class="chip chip-green">Approved</span>
                                     </td>
                                 </tr>
-
                             </tbody>
-
                         </table>
 
                     </div>
@@ -809,22 +818,15 @@
 
                         <div class="panel-body">
 
-                            <div class="application-new-icon">
-                                +
-                            </div>
+                            <div class="application-new-icon">+</div>
 
-                            <h4>
-                                Apply For A New Installment?
-                            </h4>
+                            <h4>Apply For A New Installment?</h4>
 
                             <p>
                                 Apply for a new installment plan today. Fast approval for existing institutional clients.
                             </p>
 
-                            <a
-                                href="customer_application_guide.html"
-                                class="btn-brand btn-brand-dark application-apply-button"
-                            >
+                            <a href="customer_application_guide.html" class="btn-brand btn-brand-dark application-apply-button">
                                 + APPLY INSTALLMENT
                             </a>
 
@@ -840,92 +842,153 @@
 
     </div>
 
+    <div class="modal fade rejected-modal" id="rejectedApplicationsModal" tabindex="-1" aria-labelledby="rejectedApplicationsModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-centered modal-lg modal-dialog-scrollable">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <div class="rejected-modal-title-wrap">
+
+                        <div class="rejected-modal-icon">
+                            <svg width="21" height="21" viewBox="0 0 24 24" fill="none">
+                                <path d="M12 3L22 21H2L12 3Z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/>
+                                <path d="M12 9V13" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+                                <circle cx="12" cy="17" r="1" fill="currentColor"/>
+                            </svg>
+                        </div>
+
+                        <div>
+                            <h2 class="rejected-modal-title" id="rejectedApplicationsModalLabel">
+                                Rejected Applications
+                            </h2>
+                            <p class="rejected-modal-subtitle">
+                                Review your rejected applications and the reasons provided.
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div id="rejectedApplicationsList">
+
+                        <article class="rejected-application-item">
+                            <div class="rejected-application-top">
+                                <div>
+                                    <h3 class="rejected-application-name">Samsung Galaxy A55</h3>
+                                    <p class="rejected-application-date">Application #APP-2026-001 · Rejected: October 5, 2026</p>
+                                </div>
+                                <span class="rejected-status-badge">Rejected</span>
+                            </div>
+
+                            <div class="rejected-reason-box">
+                                <span class="rejected-reason-label">Reason for Rejection</span>
+                                <p class="rejected-reason-text">
+                                    Your application was rejected because the submitted proof of income was incomplete. Please provide a complete and updated proof of income when applying again.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="rejected-application-item">
+                            <div class="rejected-application-top">
+                                <div>
+                                    <h3 class="rejected-application-name">iPhone 13</h3>
+                                    <p class="rejected-application-date">Application #APP-2026-002 · Rejected: October 2, 2026</p>
+                                </div>
+                                <span class="rejected-status-badge">Rejected</span>
+                            </div>
+
+                            <div class="rejected-reason-box">
+                                <span class="rejected-reason-label">Reason for Rejection</span>
+                                <p class="rejected-reason-text">
+                                    Your application did not meet the installment eligibility requirements. Please contact the shop administrator for more information.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="rejected-application-item">
+                            <div class="rejected-application-top">
+                                <div>
+                                    <h3 class="rejected-application-name">Lenovo IdeaPad Laptop</h3>
+                                    <p class="rejected-application-date">Application #APP-2026-003 · Rejected: September 28, 2026</p>
+                                </div>
+                                <span class="rejected-status-badge">Rejected</span>
+                            </div>
+
+                            <div class="rejected-reason-box">
+                                <span class="rejected-reason-label">Reason for Rejection</span>
+                                <p class="rejected-reason-text">
+                                    The government ID submitted could not be verified. Please make sure your ID images are clear and your personal information is readable.
+                                </p>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="rejected-modal-close" data-bs-dismiss="modal">
+                        Close
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
     <div class="notif-overlay" id="notifOverlay"></div>
 
     <aside class="notif-panel" id="notifPanel">
 
         <div class="notif-panel-header">
+            <h2 class="notif-panel-title">Notifications</h2>
 
-            <h2 class="notif-panel-title">
-                Notifications
-            </h2>
-
-            <button
-                type="button"
-                class="notif-close-btn"
-                id="notifCloseBtn"
-                aria-label="Close notifications"
-            >
+            <button type="button" class="notif-close-btn" id="notifCloseBtn" aria-label="Close notifications">
                 &times;
             </button>
-
         </div>
 
         <div class="notif-panel-body">
 
-            <p class="notif-group-label">
-                Today
-            </p>
+            <p class="notif-group-label">Today</p>
 
-            <a
-                href="customer_installment.html"
-                class="notif-item notif-item-unread"
-            >
-
+            <a href="customer_installment.html" class="notif-item notif-item-unread">
                 <div class="notif-item-content">
-
-                    <p class="notif-item-title">
-                        Payment Reminder
-                    </p>
-
+                    <p class="notif-item-title">Payment Reminder</p>
                     <p class="notif-item-desc">
                         Your next installment payment is due soon. Please make your payment on time.
                     </p>
-
                 </div>
-
                 <span class="notif-dot"></span>
-
             </a>
 
-            <a
-                href="customer_application.html"
-                class="notif-item notif-item-unread"
-            >
-
+            <a href="customer_application.html" class="notif-item notif-item-unread">
                 <div class="notif-item-content">
-
-                    <p class="notif-item-title">
-                        Application Approved
-                    </p>
-
+                    <p class="notif-item-title">Application Approved</p>
                     <p class="notif-item-desc">
                         Your installment application has been approved successfully.
                     </p>
-
                 </div>
-
                 <span class="notif-dot"></span>
-
             </a>
 
-            <a
-                href="customer_dashboard.html"
-                class="notif-item"
-            >
-
+            <a href="customer_dashboard.html" class="notif-item">
                 <div class="notif-item-content">
-
-                    <p class="notif-item-title">
-                        Welcome to M.O.S
-                    </p>
-
+                    <p class="notif-item-title">Welcome to M.O.S</p>
                     <p class="notif-item-desc">
                         Welcome to Maryanne's Online Shop installment system.
                     </p>
-
                 </div>
-
             </a>
 
         </div>
@@ -939,61 +1002,24 @@
         <div class="logout-modal-card">
 
             <div class="logout-modal-icon">
-
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
-
-                    <path
-                        d="M10 17L15 12L10 7"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                    />
-
-                    <path
-                        d="M15 12H3"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
-                    <path
-                        d="M21 19V5C21 3.89543 20.105 3 19 3H14"
-                        stroke="currentColor"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
+                    <path d="M10 17L15 12L10 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M15 12H3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    <path d="M21 19V5C21 3.89543 20.105 3 19 3H14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                 </svg>
-
             </div>
 
-            <h3>
-                Log out?
-            </h3>
+            <h3>Log out?</h3>
 
-            <p>
-                Are you sure you want to log out of your account?
-            </p>
+            <p>Are you sure you want to log out of your account?</p>
 
             <div class="logout-modal-actions">
-
-                <button
-                    type="button"
-                    class="logout-cancel-btn"
-                    id="cancelLogout"
-                >
+                <button type="button" class="logout-cancel-btn" id="cancelLogout">
                     Cancel
                 </button>
-
-                <button
-                    type="button"
-                    class="logout-confirm-btn"
-                    id="confirmLogout"
-                >
+                <button type="button" class="logout-confirm-btn" id="confirmLogout">
                     Log Out
                 </button>
-
             </div>
 
         </div>
@@ -1001,11 +1027,105 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
-
     <script src="../js/script.js"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
+
+            const rejectedApplications = [
+                {
+                    applicationNumber: "APP-2026-001",
+                    productName: "Samsung Galaxy A55",
+                    status: "rejected",
+                    rejectedAt: "October 5, 2026",
+                    reason: "Your application was rejected because the submitted proof of income was incomplete. Please provide a complete and updated proof of income when applying again."
+                },
+                {
+                    applicationNumber: "APP-2026-002",
+                    productName: "iPhone 13",
+                    status: "rejected",
+                    rejectedAt: "October 2, 2026",
+                    reason: "Your application did not meet the installment eligibility requirements. Please contact the shop administrator for more information."
+                },
+                {
+                    applicationNumber: "APP-2026-003",
+                    productName: "Lenovo IdeaPad Laptop",
+                    status: "rejected",
+                    rejectedAt: "September 28, 2026",
+                    reason: "The government ID submitted could not be verified. Please make sure your ID images are clear and your personal information is readable."
+                }
+            ];
+
+            const rejectedList = document.getElementById("rejectedApplicationsList");
+            const rejectedCount = document.getElementById("rejectedCount");
+            const rejectedModal = document.getElementById("rejectedApplicationsModal");
+
+            function escapeHTML(value) {
+                return String(value ?? "").replace(/[&<>"']/g, function (character) {
+                    const characters = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return characters[character];
+                });
+            }
+
+            function renderRejectedApplications() {
+                const applications = rejectedApplications.filter(function (application) {
+                    return application.status.toLowerCase() === "rejected";
+                });
+
+                rejectedCount.textContent = applications.length;
+
+                if (applications.length === 0) {
+                    rejectedList.innerHTML = `
+                        <div class="rejected-empty-state">
+                            <div class="rejected-empty-icon">
+                                <svg width="25" height="25" viewBox="0 0 24 24" fill="none">
+                                    <rect x="4" y="3" width="16" height="18" rx="2"
+                                        stroke="currentColor" stroke-width="1.6"/>
+                                    <path d="M8 8H16M8 12H16M8 16H12"
+                                        stroke="currentColor"
+                                        stroke-width="1.6"
+                                        stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <h3>No rejected applications</h3>
+                            <p>You don't have any rejected applications to review right now.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                rejectedList.innerHTML = applications.map(function (application) {
+                    return `
+                        <article class="rejected-application-item">
+                            <div class="rejected-application-top">
+                                <div>
+                                    <h3 class="rejected-application-name">${escapeHTML(application.productName)}</h3>
+                                    <p class="rejected-application-date">
+                                        Application #${escapeHTML(application.applicationNumber)}
+                                        · Rejected: ${escapeHTML(application.rejectedAt)}
+                                    </p>
+                                </div>
+                                <span class="rejected-status-badge">Rejected</span>
+                            </div>
+
+                            <div class="rejected-reason-box">
+                                <span class="rejected-reason-label">Reason for Rejection</span>
+                                <p class="rejected-reason-text">${escapeHTML(application.reason)}</p>
+                            </div>
+                        </article>
+                    `;
+                }).join("");
+            }
+
+            rejectedModal.addEventListener("show.bs.modal", renderRejectedApplications);
+            renderRejectedApplications();
 
             const notifBtn = document.getElementById("notifBtn");
             const notifPanel = document.getElementById("notifPanel");
