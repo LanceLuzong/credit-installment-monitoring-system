@@ -34,12 +34,12 @@ Setup Instructions
 
 No additional installation or build process is required because VALOBLOX is a frontend project using HTML, CSS, and JavaScript.
 
-Project Structure
 
 
 ## Project Structure
 
 ```
+
 106_VALOBLOX/
 ├── index.html
 ├── css/
@@ -47,21 +47,28 @@ Project Structure
 ├── js/
 │   └── script.js
 ├── images/
+│   ├── mos_logo.png
+│   ├── gov_id_back.png
+│   └── gov_id_front.png
 ├── pages/
-│   ├── login.html
-│   ├── dashboard.html
 │   ├── applications.html
+│   ├── create-account.html
 │   ├── create-application.html
-│   ├── review-application.html
-│   ├── installment.html
-│   ├── installment-details.html
-│   ├── settings.html
-│   ├── change-password.html
-│   ├── customer_welcome.html
+│   ├── customer_application_guide.html
+│   ├── customer_application.html
+│   ├── customer_confirm_payment.html
 │   ├── customer_dashboard.html
 │   ├── customer_installment.html
-│   ├── customer_application.html
+│   ├── customer_makepayment.html
+│   ├── customer_messages.html
+│   ├── customer_new_application.html
 │   ├── customer_settings.html
-│   └── customer_makepayment.html
+│   ├── dashboard.html
+│   ├── installment-details.html
+│   ├── installment.html
+│   ├── login.html
+│   ├── messages.html
+│   └── settings.html
 └── README.md
+
 ```
