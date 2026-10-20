@@ -1127,8 +1127,20 @@
 
         <div class="payment-summary">
           <div class="payment-summary-item">
-            <span class="payment-summary-label">Remaining Balance</span>
+            <span class="payment-summary-label">Remaining Balance After Down Payment</span>
             <span class="payment-summary-value" id="remainingBalance">₱0.00</span>
+          </div>
+          <div class="payment-summary-item">
+            <span class="payment-summary-label">Fixed Monthly Interest (3%)</span>
+            <span class="payment-summary-value" id="monthlyInterest">₱0.00</span>
+          </div>
+          <div class="payment-summary-item">
+            <span class="payment-summary-label">Total Interest for Selected Term</span>
+            <span class="payment-summary-value" id="totalInterest">₱0.00</span>
+          </div>
+          <div class="payment-summary-item">
+            <span class="payment-summary-label">Total Installment Amount</span>
+            <span class="payment-summary-value" id="totalInstallment">₱0.00</span>
           </div>
         </div>
 
@@ -1283,8 +1295,12 @@
     const durationMonthsError = document.getElementById("durationMonthsError");
 
     const remainingBalance = document.getElementById("remainingBalance");
+    const monthlyInterest = document.getElementById("monthlyInterest");
+    const totalInterest = document.getElementById("totalInterest");
+    const totalInstallment = document.getElementById("totalInstallment");
     const monthlyPayment = document.getElementById("monthlyPayment");
     const paymentSchedule = document.getElementById("paymentSchedule");
+    const MONTHLY_INTEREST_RATE = 0.03;
 
     const rejectionReasonInput = document.getElementById("rejectionReasonInput");
     const rejectionReasonError = document.getElementById("rejectionReasonError");
@@ -1298,18 +1314,40 @@
       });
     }
 
+    function calculateInstallment(price, downPayment, durationMonths) {
+      const balance = Math.max(Number(price) - Number(downPayment), 0);
+      const months = Math.max(Number(durationMonths) || 0, 0);
+      const monthlyInterestAmount = balance * MONTHLY_INTEREST_RATE;
+      const totalInterestAmount = monthlyInterestAmount * months;
+      const totalInstallmentAmount = balance + totalInterestAmount;
+      const monthlyPaymentAmount = months > 0 ? totalInstallmentAmount / months : 0;
+
+      return {
+        balance,
+        monthlyInterest: monthlyInterestAmount,
+        totalInterest: totalInterestAmount,
+        totalInstallment: totalInstallmentAmount,
+        monthlyPayment: monthlyPaymentAmount
+      };
+    }
+
     function updatePaymentCalculation() {
       const price = Number(productPriceInput.value) || 0;
       const downPayment = Number(downPaymentInput.value) || 0;
       const duration = Number(durationMonthsInput.value) || 0;
-      const balance = Math.max(price - downPayment, 0);
+      const calculation = calculateInstallment(price, downPayment, duration);
 
-      remainingBalance.textContent = formatCurrency(balance);
+      remainingBalance.textContent = formatCurrency(calculation.balance);
+      monthlyInterest.textContent = formatCurrency(calculation.monthlyInterest);
 
       if (duration > 0) {
-        monthlyPayment.textContent = formatCurrency(balance / duration);
+        totalInterest.textContent = formatCurrency(calculation.totalInterest);
+        totalInstallment.textContent = formatCurrency(calculation.totalInstallment);
+        monthlyPayment.textContent = formatCurrency(calculation.monthlyPayment);
       } else {
-        monthlyPayment.textContent = "₱0.00";
+        totalInterest.textContent = "Select duration";
+        totalInstallment.textContent = "Select duration";
+        monthlyPayment.textContent = "Select duration";
       }
 
       if (paymentDayInput.value) {
@@ -1504,8 +1542,9 @@
       const paymentScheduleValue = paymentDayInput.value;
       const durationMonths = Number(durationMonthsInput.value);
 
-      const balance = productPrice - downPayment;
-      const monthlyPaymentAmount = balance / durationMonths;
+      const calculation = calculateInstallment(productPrice, downPayment, durationMonths);
+      const balance = calculation.balance;
+      const monthlyPaymentAmount = calculation.monthlyPayment;
 
       const paymentScheduleText = paymentDayInput.options[paymentDayInput.selectedIndex].textContent;
 
@@ -1525,10 +1564,16 @@
         productPrice: productPrice,
         downPayment: downPayment,
         remainingBalance: balance,
+        interestRate: 3,
+        monthlyInterest: calculation.monthlyInterest,
+        totalInterest: calculation.totalInterest,
+        totalInstallment: calculation.totalInstallment,
         paymentSchedule: paymentScheduleValue,
         paymentScheduleText: paymentScheduleText,
         durationMonths: durationMonths,
         monthlyPayment: monthlyPaymentAmount,
+        overdueFee: 0,
+        overdueInterest: 0,
         status: "Approved",
         approvedAt: new Date().toISOString()
       };
@@ -1630,5 +1675,4 @@
   </script>
 
 </body>
-
 </html>
